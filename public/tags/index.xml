@@ -1,87 +1,31 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Tags - Tag - Avishek Saha</title>
-        <link>https://example.com/tags/</link>
+        <link>https://avisaha.netlify.app/tags/</link>
         <description>Tags - Tag - Avishek Saha</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>avisheksaha123@gmail.com (Avishek Saha)</managingEditor>
-            <webMaster>avisheksaha123@gmail.com (Avishek Saha)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 01 Dec 2020 21:13:14 -0500</lastBuildDate><atom:link href="https://example.com/tags/" rel="self" type="application/rss+xml" /><item>
-    <title>plot</title>
-    <link>https://example.com/tags/plot/</link>
-    <pubDate>Tue, 01 Dec 2020 21:13:14 -0500</pubDate>
+            <webMaster>avisheksaha123@gmail.com (Avishek Saha)</webMaster><copyright>Avishek Saha</copyright><atom:link href="https://avisaha.netlify.app/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>内容</title>
+    <link>https://avisaha.netlify.app/tags/content/_index.zh-cn/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
     <author>Avishek Saha</author>
-    <guid>https://example.com/tags/plot/</guid>
+    <guid>https://avisaha.netlify.app/tags/content/_index.zh-cn/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>R Markdown</title>
-    <link>https://example.com/tags/r-markdown/</link>
-    <pubDate>Tue, 01 Dec 2020 21:13:14 -0500</pubDate>
+    <title>安装</title>
+    <link>https://avisaha.netlify.app/tags/installation/_index.zh-cn/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
     <author>Avishek Saha</author>
-    <guid>https://example.com/tags/r-markdown/</guid>
+    <guid>https://avisaha.netlify.app/tags/installation/_index.zh-cn/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>regression</title>
-    <link>https://example.com/tags/regression/</link>
-    <pubDate>Tue, 01 Dec 2020 21:13:14 -0500</pubDate>
+    <title>配置</title>
+    <link>https://avisaha.netlify.app/tags/configuration/_index.zh-cn/</link>
+    <pubDate>Mon, 01 Jan 0001 00:00:00 &#43;0000</pubDate>
     <author>Avishek Saha</author>
-    <guid>https://example.com/tags/regression/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>configuration</title>
-    <link>https://example.com/tags/configuration/</link>
-    <pubDate>Fri, 06 Mar 2020 21:29:01 &#43;0800</pubDate>
-    <author>Avishek Saha</author>
-    <guid>https://example.com/tags/configuration/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>installation</title>
-    <link>https://example.com/tags/installation/</link>
-    <pubDate>Fri, 06 Mar 2020 21:29:01 &#43;0800</pubDate>
-    <author>Avishek Saha</author>
-    <guid>https://example.com/tags/installation/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>content</title>
-    <link>https://example.com/tags/content/</link>
-    <pubDate>Thu, 05 Mar 2020 15:58:26 &#43;0800</pubDate>
-    <author>Avishek Saha</author>
-    <guid>https://example.com/tags/content/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Markdown</title>
-    <link>https://example.com/tags/markdown/</link>
-    <pubDate>Thu, 05 Mar 2020 15:58:26 &#43;0800</pubDate>
-    <author>Avishek Saha</author>
-    <guid>https://example.com/tags/markdown/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>shortcodes</title>
-    <link>https://example.com/tags/shortcodes/</link>
-    <pubDate>Wed, 04 Mar 2020 16:29:41 &#43;0800</pubDate>
-    <author>Avishek Saha</author>
-    <guid>https://example.com/tags/shortcodes/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>HTML</title>
-    <link>https://example.com/tags/html/</link>
-    <pubDate>Sun, 01 Dec 2019 21:57:40 &#43;0800</pubDate>
-    <author>Avishek Saha</author>
-    <guid>https://example.com/tags/html/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>emoji</title>
-    <link>https://example.com/tags/emoji/</link>
-    <pubDate>Tue, 01 Oct 2019 17:55:28 &#43;0800</pubDate>
-    <author>Avishek Saha</author>
-    <guid>https://example.com/tags/emoji/</guid>
+    <guid>https://avisaha.netlify.app/tags/configuration/_index.zh-cn/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>
