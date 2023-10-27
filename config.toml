@@ -1,4 +1,4 @@
-baseURL = "https://example.com"
+baseURL = "https://avisaha.netlify.app/"
 
 # theme
 theme = "LoveIt"
@@ -241,6 +241,11 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       appID = ""
       searchKey = ""
 
+  # Add custom CSS file to load
+  [params.customCSS]
+    enabled = true
+    path = "/css/_custom.scss"  # Adjust the path to match your file structure
+
   # Home page config
   # 主页信息设置
   [params.home]
@@ -262,8 +267,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       title = "👋🏽 Hi, I'm Avishek Saha!"
       # subtitle shown in home page (HTML format is supported)
       # 主页显示的网站副标题 (允许 HTML 格式)
-      subtitle = "I have recently completed Master of Data Science from UBC | Machine Learning"
-      # whether to use typeit animation for subtitle
+      subtitle = "I recently earned my Master's degree in Data Science from UBC.  During my studies, I collaborated with Statistics Canada on a Capstone Project.  I've also accumulated one year of experience as a Junior Data Scientist at a software company.  My passions lie in personalization, recommendations, machine learning engineering, and the business side of data.  I'm currently based in Kelowna, British Columbia."      # whether to use typeit animation for subtitle
       # 是否为副标题显示打字机动画
       typeit = true
       # whether to show social links
@@ -457,19 +461,19 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       Twitter = true
       Facebook = true
       Linkedin = true
-      Whatsapp = false
+      Whatsapp = true
       Pinterest = false
       Tumblr = false
-      HackerNews = true
+      HackerNews = false
       Reddit = false
       VK = false
       Buffer = false
       Xing = false
-      Line = true
+      Line = false
       Instapaper = false
       Pocket = false
       Flipboard = false
-      Weibo = true
+      Weibo = false
       Blogger = false
       Baidu = false
       Odnoklassniki = false
