@@ -89,27 +89,70 @@
 <p><a href="https://github.com/sahaavi/Housing-Price-Prediction"><b>Price Prediction Deployment</b></a></p> 
 </div>
 
-- Launched a user-friendly application on AWS that allows users to input feature variables value for house price prediction, expanding accessibility to predicted house prices.
-- Enhanced data reliability through the implementation of data cleaning, standardization, and transformation techniques within machine learning pipelines using scikit-learn to develop accurate models.
-- Assessed machine learning models based on RMSE to identify the most optimal predictive performance, ensuring the deployment of the most effective solution.
-Established a streamlined CI/CD pipeline using GitHub Actions, ensuring efficient AWS deployment and continuous integration of the application.
+- Launched a user-friendly application on **AWS** that allows users to input feature variables value for house price **prediction**, expanding accessibility to predicted house prices.
+- Enhanced data reliability through the implementation of **data cleaning**, **standardization**, and **transformation** techniques within machine learning pipelines using **scikit-learn** to develop accurate models.
+- Assessed **machine learning models** based on RMSE to identify the most optimal predictive performance, ensuring the deployment of the most effective solution.
+Established a streamlined **CI/CD pipeline** using **GitHub Actions**, ensuring efficient **AWS deployment and continuous integration** of the application.
 
 <div class="container">
 <p><a href="https://github.com/sahaavi/Job-to-Skill"><b>Job to Skill</b></a></p> 
 </div>
 
-- Developed a streamlined process for scraping LinkedIn job postings via the LinkedIn API and efficiently refined results through user-specified filters, enhancing the job search experience.
-- Integrated the OpenAI API to provide tailored skill and tool suggestions for individual jobs, a strategic approach grounded in job descriptions.
-- Created interactive visualizations to showcase the frequency of specific skills and programming languages required in job postings, enabling job seekers to prioritize their skill development effectively.
-- Implemented a CI pipeline using GitHub Actions to ensure continuous integration and streamline development workflows.
+- Developed a streamlined process for scraping LinkedIn job postings via the LinkedIn **API** and efficiently refined results through user-specified filters, enhancing the job search experience.
+- Integrated the **OpenAI API** to provide tailored skill and tool suggestions for individual jobs, a strategic approach grounded in job descriptions.
+- Created **interactive visualizations** to showcase the frequency of specific skills and programming languages required in job postings, enabling job seekers to prioritize their skill development effectively.
+- Implemented a **CI pipeline** using **GitHub Actions** to ensure continuous integration and streamline development workflows.
 
 <div class="container">
 <p><a href="https://www.mecs-press.org/ijitcs/ijitcs-v14-n4/v14n4-2.html"><b>Autism Spectrum Disorder (ASD) Prediction</b></a></p> 
 </div>
 
-- Built a machine learning model after reviewing peer reviewed research papers, using SVM and CNN classification that predicts ASD traits with 94% accuracy.
-Created a dashboard using Tableau for analyzing ASD traits among test takers.
+- Built a **machine learning model** after reviewing peer reviewed research papers, using SVM and CNN classification that predicts ASD traits with 94% accuracy.
+Created a **dashboard** using **Tableau** for analyzing ASD traits among test takers.
 - Achieved recognition by publishing research findings in the esteemed International Journal of Information Technology and Computer Science (IJITCS), contributing to the advancement of knowledge in the field.
+
+
+### Certifications
+
+<div class="container">
+<p><a href="https://www.coursera.org/account/accomplishments/professional-cert/UPST3J3ELKT8"><b>Google Data Analytics Specialization</b></a></p> 
+</div>
+<div class="container">
+<p><a href="https://coursera.org/verify/specialization/AF9GDWUZQNX7"><b>Python 3 Programming Specialization</b></a></p> 
+</div>
+<div class="container">
+<p><a href="https://coursera.org/verify/LA3HDZ2WQNYM"><b>Supervised Machine Learning: Regression and Classification</b></a></p> 
+</div>
+<div class="container">
+<p><a href="https://www.datacamp.com/statement-of-accomplishment/course/dc519cbbf5ac1b54a35e4e279ebf4be38b4c76de"><b>Supervised Learning with scikit-learn</b></a></p> 
+</div>
+<div class="container">
+<p><a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/9d5b86be018993fb08ae8367880bae1bb194122b"><b>Unsupervised Learning in Python</b></a></p> 
+</div>
+<div class="container">
+<p><a href="https://www.coursera.org/account/accomplishments/verify/G5M4JL24NTTS"><b>Introduction to TensorFlow for Artificial Intelligence, Machine Learning, and Deep Learning</b></a></p> 
+</div>
+<div class="container">
+<p><a href="https://www.coursera.org/account/accomplishments/verify/HG9XZZWP5QD6"><b>Analyze Datasets and Train ML Models using AutoML</b></a></p> 
+</div>
+<div class="container">
+<p><a href="https://www.coursera.org/account/accomplishments/verify/K5D9X2MS8VLM"><b>SQL for Data Science</b></a></p> 
+</div>
+<div class="container">
+<p><a href="https://ude.my//UC-051e8e20-5b78-4534-864a-70580c5e079c"><b>Web Scraping in Python BeautifulSoup, Selenium & Scrapy 2023</b></a></p> 
+</div>
+<div class="container">
+<p><a href="https://www.linkedin.com/learning/certificates/cf8b34643b62afad24fe9b5cbd88e598c8b37a1ece63e521c415a32f068add14?trk=backfilled_certificate"><b>Data Fluency: Exploring and Describing Data</b></a></p> 
+</div>
+<div class="container">
+<p><a href="https://www.linkedin.com/learning/certificates/0e9631449154d9a37363df0dc338f8fa16a32d5c3acee61ae8123e60eee8dca6?trk=backfilled_certificate"><b>Learning Data Analytics</b></a></p> 
+</div>
+<div class="container">
+<p><a href="https://www.coursera.org/verify/MGZNM9P5RE5L"><b>Fundamentals of Visualization with Tableau</b></a></p> 
+</div>
+<div class="container">
+<p><a href="https://www.datacamp.com/statement-of-accomplishment/course/24b6fdbe5b548aebe2cc48cacc659d48c6b6ebce"><b>Introduction to Tableau</b></a></p> 
+</div>
 
 <!---
 
@@ -158,4 +201,5 @@ Check the [LICENSE file](https://github.com/dillonzq/LoveIt/blob/master/LICENSE)
 
 ## Special Thanks
 -->
-
+<br>
+<br>
