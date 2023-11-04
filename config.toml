@@ -37,7 +37,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 [author]
   name = "Avishek Saha"
   email = "avisheksaha123@gmail.com"
-  link = "https://avisheksaha.com"
+  link = "https://avisaha.netlify.app/"
 
 # Menu config
 [menu]
@@ -353,7 +353,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
     Lichess = ""
     ORCID = ""
     Pleroma = ""
-    Kaggle = ""
+    Kaggle = "avi1023"
     MediaWiki= ""
     Plume = ""
     HackTheBox = ""
