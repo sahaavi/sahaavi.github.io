@@ -1,8 +1,0 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>Documentation - Category - Avishek Saha</title>
-        <link>https://avisaha.netlify.app/categories/documentation/</link>
-        <description>Documentation - Category - Avishek Saha</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>avisheksaha123@gmail.com (Avishek Saha)</managingEditor>
-            <webMaster>avisheksaha123@gmail.com (Avishek Saha)</webMaster><copyright>Avishek Saha</copyright><atom:link href="https://avisaha.netlify.app/categories/documentation/" rel="self" type="application/rss+xml" /></channel>
-</rss>
