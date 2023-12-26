@@ -1,0 +1,39 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Avishek Saha</title>
+        <link>https://avisaha.netlify.app/</link>
+        <description>Avishek</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>avisheksaha123@gmail.com (Avishek Saha)</managingEditor>
+            <webMaster>avisheksaha123@gmail.com (Avishek Saha)</webMaster><copyright>Avishek Saha</copyright><lastBuildDate>Mon, 25 Dec 2023 00:00:00 &#43;0000</lastBuildDate>
+            <atom:link href="https://avisaha.netlify.app/index.xml" rel="self" type="application/rss+xml" />
+        <item>
+    <title>Introduction to Recommendation System</title>
+    <link>https://avisaha.netlify.app/2023-12-25-introduction/</link>
+    <pubDate>Mon, 25 Dec 2023 00:00:00 &#43;0000</pubDate>
+    <author>Avishek Saha</author>
+    <guid>https://avisaha.netlify.app/2023-12-25-introduction/</guid>
+    <description><![CDATA[A recommendation system, also known as a recommender system, is a specialized type of information filtering system rooted in artificial intelligence and machine learning. Leveraging Big Data, these systems analyze diverse criteria such as past purchases, search history, demographic information, and other relevant factors to suggest or recommend additional products or items to consumers. By tailoring suggestions to individual users, recommendation systems play a crucial role in helping users explore and discover products and services they might not have encountered independently.]]></description>
+</item>
+<item>
+    <title>Introduction &amp; Word Vectors</title>
+    <link>https://avisaha.netlify.app/2023-11-07-introduction-word-vectors/</link>
+    <pubDate>Tue, 07 Nov 2023 00:00:00 &#43;0000</pubDate>
+    <author>Avishek Saha</author>
+    <guid>https://avisaha.netlify.app/2023-11-07-introduction-word-vectors/</guid>
+    <description><![CDATA[Representation of the meaning of a word Definition: meaning
+The idea that is represented by a word, phrase, etc. The idea that a person wants to express by using words, signs, etc. The idea that is expressed in a work of writting, art, etc. Commonest linguistic way of thinking of meaning: signifier (symbol) &lt;=&gt; signified (idea or thing)
+//denotational semantics// ]]></description>
+</item>
+<item>
+    <title>Real-Time Twitter Data Insights️</title>
+    <link>https://avisaha.netlify.app/2023-07-25-real-time-twitter-data-insights/</link>
+    <pubDate>Tue, 25 Jul 2023 00:00:00 &#43;0000</pubDate>
+    <author>Avishek Saha</author>
+    <guid>https://avisaha.netlify.app/2023-07-25-real-time-twitter-data-insights/</guid>
+    <description><![CDATA[<div class="featured-image">
+                <img src="/outptu_table.webp" referrerpolicy="no-referrer">
+            </div>🕵️ Although we may not be enthusiastic Twitter users, we acknowledge its significant impact on the world (especially with famous figures like Trump known for his tweets). The data available on Twitter is not only valuable for gaining insights, but what’s even more impressive is that we can analyze Twitter storms almost in real-time. This enables us to understand the prevailing thoughts and emotions worldwide as they unfold.
+However, like a well-guarded treasure, Twitter has security measures in place that prevent us from accessing the data immediately.]]></description>
+</item>
+</channel>
+</rss>

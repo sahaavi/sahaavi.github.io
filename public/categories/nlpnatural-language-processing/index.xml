@@ -1,0 +1,18 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>NLP(Natural language processing) - Category - Avishek Saha</title>
+        <link>https://avisaha.netlify.app/categories/nlpnatural-language-processing/</link>
+        <description>NLP(Natural language processing) - Category - Avishek Saha</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>avisheksaha123@gmail.com (Avishek Saha)</managingEditor>
+            <webMaster>avisheksaha123@gmail.com (Avishek Saha)</webMaster><copyright>Avishek Saha</copyright><lastBuildDate>Tue, 07 Nov 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://avisaha.netlify.app/categories/nlpnatural-language-processing/" rel="self" type="application/rss+xml" /><item>
+    <title>Introduction &amp; Word Vectors</title>
+    <link>https://avisaha.netlify.app/2023-11-07-introduction-word-vectors/</link>
+    <pubDate>Tue, 07 Nov 2023 00:00:00 &#43;0000</pubDate>
+    <author>Avishek Saha</author>
+    <guid>https://avisaha.netlify.app/2023-11-07-introduction-word-vectors/</guid>
+    <description><![CDATA[Representation of the meaning of a word Definition: meaning
+The idea that is represented by a word, phrase, etc. The idea that a person wants to express by using words, signs, etc. The idea that is expressed in a work of writting, art, etc. Commonest linguistic way of thinking of meaning: signifier (symbol) &lt;=&gt; signified (idea or thing)
+//denotational semantics// ]]></description>
+</item>
+</channel>
+</rss>
