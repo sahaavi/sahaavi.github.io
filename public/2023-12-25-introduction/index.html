@@ -9,7 +9,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://avisaha.netlify.app/2023-12-25-introduction/" /><meta property="og:image" content="https://avisaha.netlify.app/images/avatar.png"/><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-12-25T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-12-25T21:08:27-08:00" /><meta property="og:site_name" content="Avishek Saha" />
+<meta property="article:modified_time" content="2023-12-25T21:19:23-08:00" /><meta property="og:site_name" content="Avishek Saha" />
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://avisaha.netlify.app/images/avatar.png"/>
 
@@ -34,8 +34,8 @@
                             "url": "https:\/\/avisaha.netlify.app\/images\/coding.png",
                             "width":  3200 ,
                             "height":  2048 
-                        }],"genre": "posts","keywords": "Recommender system","wordcount":  98 ,
-        "url": "https:\/\/avisaha.netlify.app\/2023-12-25-introduction\/","datePublished": "2023-12-25T00:00:00+00:00","dateModified": "2023-12-25T21:08:27-08:00","license": "Avishek Saha","publisher": {
+                        }],"genre": "posts","keywords": "Recommender system","wordcount":  250 ,
+        "url": "https:\/\/avisaha.netlify.app\/2023-12-25-introduction\/","datePublished": "2023-12-25T00:00:00+00:00","dateModified": "2023-12-25T21:19:23-08:00","license": "Avishek Saha","publisher": {
             "@type": "Organization",
             "name": "Avishek Saha","logo": {
                     "@type": "ImageObject",
@@ -113,8 +113,8 @@
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Introduction to Recommendation System</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="https://avisaha.netlify.app/" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>Avishek Saha</a></span>&nbsp;<span class="post-category">included in <a href="/categories/recommender-system/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Recommender system</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-12-25">2023-12-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;98 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;<span id="/2023-12-25-introduction/" class="leancloud_visitors" data-flag-title="Introduction to Recommendation System">
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-12-25">2023-12-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;250 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;<span id="/2023-12-25-introduction/" class="leancloud_visitors" data-flag-title="Introduction to Recommendation System">
                         <i class="far fa-eye fa-fw" aria-hidden="true"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
                     </span>&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
@@ -122,21 +122,47 @@
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#collector">Collector</a></li>
+    <li><a href="#ranker">Ranker</a></li>
+    <li><a href="#server">Server</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#popularity-based-recommender-system">Popularity based recommender system</a></li>
+  </ul>
+</nav></div>
             </div><div class="content" id="content"><p>A recommendation system, also known as a recommender system, is a specialized type of information filtering system rooted in artificial intelligence and machine learning. Leveraging Big Data, these systems analyze diverse criteria such as past purchases, search history, demographic information, and other relevant factors to suggest or recommend additional products or items to consumers. By tailoring suggestions to individual users, recommendation systems play a crucial role in helping users explore and discover products and services they might not have encountered independently.</p>
-<p>Types of Recommendation System:</p>
+<h1 id="key-components-of-a-recommendation-system">Key Components of a Recommendation System</h1>
+<p>Recommendation systems build on three core components.</p>
+<h2 id="collector">Collector</h2>
+<p>The collector’s role is to know what is in the collection of things that may be rec‐
+ommended, and the necessary features or attributes of those things. Note that this
+collection is often a subset based on context or state.</p>
+<h2 id="ranker">Ranker</h2>
+<p>The ranker’s role is to take the collection provided by the collector and order some or
+all of its elements, according to a model for the context and user.</p>
+<h2 id="server">Server</h2>
+<p>The server’s role is to take the ordered subset provided by the ranker, ensure that the
+necessary data schema is satisfied—including essential business logic—and return the
+requested number of recommendations.</p>
+<h1 id="types-of-recommendation-system">Types of Recommendation System:</h1>
 <ol>
 <li>Popularity based recommender system</li>
 <li>Classification</li>
-<li>COntent based recommender systems</li>
+<li>Content based recommender systems</li>
 <li>Collaborative filtering</li>
 <li>Hybrid approaches</li>
 </ol>
+<h2 id="popularity-based-recommender-system">Popularity based recommender system</h2>
+<p>Can be seen platforms like Netflix, Newspapers site, amazon, spotify. So, it basically suggests you the products or things that are currently popular in that region or popular among the users like you.</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
             <div class="post-info-mod">
-                <span>Updated on 2023-12-25</span>
+                <span>Updated on 2023-12-25&nbsp;<a class="git-hash" href="https://github.com/sahaavi//commit/5c5c884f59a16ee5ad8711ae4a30a0dd78f04e24" target="_blank" title="commit by Avishek Saha(avisheksaha123@gmail.com) 5c5c884f59a16ee5ad8711ae4a30a0dd78f04e24: recommendation system updated">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>5c5c884</a></span>
             </div></div>
         <div class="post-info-line">
             <div class="post-info-md"><span>
