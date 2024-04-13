@@ -259,7 +259,15 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       title = "👋🏽 Hi, I'm Avishek Saha!"
       # subtitle shown in home page (HTML format is supported)
       # 主页显示的网站副标题 (允许 HTML 格式)
-      subtitle = "I recently earned my Master's degree in Data Science from UBC.  During my studies, I collaborated with Statistics Canada on a Capstone Project.  I've also accumulated one year of experience as a Junior Data Scientist at a software company.  My passions lie in personalization, recommendations, machine learning engineering, and the business side of data.  I'm currently based in Kelowna, British Columbia."      # whether to use typeit animation for subtitle
+      subtitle = """I am a recent graduate with a Master's degree in Data Science
+      from UBC, supplemented by a Bachelor's degree in Computer Science.
+      Throughout my academic journey, I actively engaged with real-world data
+      challenges, including a collaborative project with Statistics Canada for
+      my Capstone Project. My expertise and interests are centered around
+      personalization, recommendations, and leveraging data analytics for
+      strategic business insights. Currently located in Richmond, British
+      Columbia, I am eager to apply my skills and passion for data science to
+      drive impactful solutions in the analytics domain.""" # whether to use typeit animation for subtitle
       # 是否为副标题显示打字机动画
       typeit = true
       # whether to show social links
