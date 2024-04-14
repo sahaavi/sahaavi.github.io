@@ -2,19 +2,22 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://avisaha.netlify.app/</loc><lastmod>2023-12-25T21:19:23-08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://avisaha.netlify.app/categories/</loc><lastmod>2023-12-25T21:19:23-08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://avisaha.netlify.app/2023-12-25-introduction/</loc><lastmod>2023-12-25T21:19:23-08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://avisaha.netlify.app/posts/</loc><lastmod>2023-12-25T21:19:23-08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://avisaha.netlify.app/tags/recommender-system/</loc><lastmod>2023-12-25T21:19:23-08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://avisaha.netlify.app/categories/recommender-system/</loc><lastmod>2023-12-25T21:19:23-08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://avisaha.netlify.app/tags/</loc><lastmod>2023-12-25T21:19:23-08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://avisaha.netlify.app/</loc><lastmod>2024-04-13T17:20:26-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://avisaha.netlify.app/categories/</loc><lastmod>2024-04-13T17:20:26-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://avisaha.netlify.app/2024-04-13-customer-personality-analysis/</loc><lastmod>2024-04-13T17:20:26-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://avisaha.netlify.app/tags/customer_personality_analysis/</loc><lastmod>2024-04-13T17:20:26-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://avisaha.netlify.app/posts/</loc><lastmod>2024-04-13T17:20:26-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://avisaha.netlify.app/tags/project/</loc><lastmod>2024-04-13T17:20:26-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://avisaha.netlify.app/categories/project/</loc><lastmod>2024-04-13T17:20:26-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://avisaha.netlify.app/tags/</loc><lastmod>2024-04-13T17:20:26-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://avisaha.netlify.app/2023-12-25-introduction/</loc><lastmod>2023-12-29T08:25:57-08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://avisaha.netlify.app/tags/recommender-system/</loc><lastmod>2023-12-29T08:25:57-08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
+            <loc>https://avisaha.netlify.app/categories/recommender-system/</loc><lastmod>2023-12-29T08:25:57-08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://avisaha.netlify.app/2023-11-07-introduction-word-vectors/</loc><lastmod>2023-11-07T22:25:02-08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://avisaha.netlify.app/tags/nlp/</loc><lastmod>2023-11-07T22:25:02-08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://avisaha.netlify.app/categories/nlpnatural-language-processing/</loc><lastmod>2023-11-07T22:25:02-08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://avisaha.netlify.app/tags/wordvec/</loc><lastmod>2023-11-07T22:25:02-08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://avisaha.netlify.app/tags/data_analysis/</loc><lastmod>2023-11-03T17:30:44-07:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://avisaha.netlify.app/categories/project/</loc><lastmod>2023-11-03T17:30:44-07:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://avisaha.netlify.app/2023-07-25-real-time-twitter-data-insights/</loc><lastmod>2023-11-03T17:30:44-07:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://avisaha.netlify.app/tags/small_project/</loc><lastmod>2023-11-03T17:30:44-07:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://avisaha.netlify.app/about/</loc><lastmod>2023-11-03T17:30:44-07:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
