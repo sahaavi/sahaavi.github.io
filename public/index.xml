@@ -4,9 +4,18 @@
         <link>https://avisaha.netlify.app/</link>
         <description>Avishek</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>avisheksaha123@gmail.com (Avishek Saha)</managingEditor>
-            <webMaster>avisheksaha123@gmail.com (Avishek Saha)</webMaster><copyright>Avishek Saha</copyright><lastBuildDate>Mon, 25 Dec 2023 00:00:00 &#43;0000</lastBuildDate>
+            <webMaster>avisheksaha123@gmail.com (Avishek Saha)</webMaster><copyright>Avishek Saha</copyright><lastBuildDate>Sat, 13 Apr 2024 00:00:00 &#43;0000</lastBuildDate>
             <atom:link href="https://avisaha.netlify.app/index.xml" rel="self" type="application/rss+xml" />
         <item>
+    <title>Customer Personality Analysis</title>
+    <link>https://avisaha.netlify.app/2024-04-13-customer-personality-analysis/</link>
+    <pubDate>Sat, 13 Apr 2024 00:00:00 &#43;0000</pubDate>
+    <author>Avishek Saha</author>
+    <guid>https://avisaha.netlify.app/2024-04-13-customer-personality-analysis/</guid>
+    <description><![CDATA[Background In the competitive landscape of modern business, understanding and catering to the diverse needs of customers is crucial for sustainable growth. A leading retail company, &ldquo;XYZ Mart,&rdquo; aimed to enhance its marketing strategies by gaining deeper insights into customer behavior and preferences. As part of this endeavor, the company embarked on a project to analyze customer personalities and segment them effectively.
+Problem Statement XYZ Mart faced challenges in effectively targeting its marketing efforts due to a lack of precise customer segmentation.]]></description>
+</item>
+<item>
     <title>Introduction to Recommendation System</title>
     <link>https://avisaha.netlify.app/2023-12-25-introduction/</link>
     <pubDate>Mon, 25 Dec 2023 00:00:00 &#43;0000</pubDate>
