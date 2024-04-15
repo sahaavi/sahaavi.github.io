@@ -9,21 +9,8 @@ In the competitive landscape of modern business, understanding and catering to t
 
 XYZ Mart faced challenges in effectively targeting its marketing efforts due to a lack of precise customer segmentation. Traditional demographic-based approaches were proving inadequate in capturing the nuanced preferences and behaviors of individual customers. Thus, the company sought a data-driven solution to segment customers based on their personalities and preferences, enabling personalized marketing strategies.
 
-## Research Approach - Plan and Objective
-The primary objective of the project was to develop a robust customer segmentation framework based on personality traits and preferences. To achieve this, the following research approach was devised:
-
-### Data Collection
-Gather comprehensive customer data, including transaction history, demographics, and behavioral attributes.
-### Exploratory Data Analysis (EDA)
-Conduct an in-depth exploration of the collected data to identify patterns, trends, and potential insights.
-### Feature Engineering
-Develop new features or transform existing ones to capture relevant aspects of customer behavior and preferences.
-### Model Development
-Implement machine learning algorithms, including Gaussian Mixture Model (GMM) and the Apriori algorithm, to cluster customers and uncover associations within their behaviors.
-### Validation and Evaluation
-Validate the effectiveness of the developed models using appropriate metrics and evaluate their impact on marketing strategies.
-### Documentation and Presentation
-Document the entire process and present the findings, insights, and recommendations to stakeholders.
+## Objective
+The primary objective of the project was to develop a robust customer segmentation framework based on personality traits and preferences.
 
 ## Methodology and Framework of Analysis
 
@@ -36,14 +23,43 @@ Some screenshots of EDA:
 
 <img src="Distribution of Customer's Age.png"/>
 
+<img src="Distribution of Customer's Income.png"/>
+
+<img src="Number of Outliers.png"/>
+
+<img src="Relationship bw income and total spent.png" />
+
+<img src="Relationship bw income vs total spent based on education.png" />
+
+<img src="Relationship bw income vs total spent based on having child.png" />
+
 ### Feature Engineering
 Engineered new features such as purchase frequency, average transaction value, and product category preferences. Transformed categorical variables into numerical representations using techniques like one-hot encoding.
+
 ### Model Development
-Implemented a Gaussian Mixture Model (GMM) to cluster customers based on their purchasing patterns and preferences. Applied the Apriori algorithm to identify association rules among frequently purchased items.
+Implemented a Gaussian Mixture Model (GMM) to cluster customers based on their purchasing patterns and preferences. 
+
+To take a look at the clustering of customers in the dataset, I’ll define the segments of the clients. Here we will use 4 equally weighted customer segments:
+
+**Stars**: Old customers with high income and high spending nature.  
+**Need Attention**: New customers with below-average income and low spending nature.   
+**High Potential**: New customers with high income and high spending nature.  
+**Leaky Bucket**: Old customers with below-average income and a low spending nature.
+
+<img src="clustering.png"/>
+
+Applied the Apriori algorithm to identify association rules among frequently purchased items.
+
+<img src="apriori algo.png"/>
+
+Here, you can see that frequent consumers of fruits are more likely to also be frequent consumers of sweets. Because in the top 5 results, we can observe frequent consumers of fruits listed on the left-hand side.
+
 ### Validation and Evaluation
 Split the dataset into training and validation sets to assess the performance of the models. Evaluated the clustering results using metrics such as silhouette score and adjusted Rand index. Conducted A/B testing to measure the effectiveness of personalized marketing strategies based on the developed segmentation.
+
 ### Documentation and Presentation
 Documented the entire process, including data preprocessing, model development, and evaluation. Prepared a detailed report highlighting key findings, insights, and recommendations. Presented the findings to stakeholders, emphasizing the potential impact on marketing strategies and revenue growth.
-### Conclusion
+
+## Conclusion
 The implementation of advanced data analytics techniques enabled XYZ Mart to gain actionable insights into customer behavior and preferences. By leveraging the developed segmentation framework, the company could tailor its marketing strategies to individual customer segments, resulting in improved customer engagement, higher conversion rates, and enhanced revenue growth.
 

@@ -19,13 +19,12 @@
 
 <div class="container">
 <p>
-<b>Programming:</b> Python, R, SQL, C#, Java, HTML, C, C++, OOP, API’s </br>
-<b>Data Analysis:</b> Statistical Analysis, Hypothesis Testing, A/B testing, Regression Analysis, Web-Scraping, etc. </br>
-<b>ML:</b> Decision Tree, Linear Models, RandomForest, Boosting, Lasso, PCA, Clustering, ETL, Data-Science Pipeline (cleansing, wrangling, training, predicting), etc.  </br>
-<b>Visualization:</b> Tableau, Jupyter Notebook, Excel Charts  </br>
-<b>Packages:</b> NumPy, Pandas, scikit-learn, altair, TensorFlow, Selenium, etc.  </br>
-<b>Database:</b> MySQL, NoSQL  </br>
-<b>MLOps:</b> Docker, AWS (Amazon Web Services), Git </br>
+<b>Programming:</b> Python(NumPy, Pandas, ScikitLearn, altair, TensorFlow, Selenium), R </br>
+<b>Tools, Frameworks:</b> OOP, API’s, Django, Docker, AWS, Git </br>
+<b>Data Visualization:</b> [Tableau](https://public.tableau.com/app/profile/avishek.saha/vizzes), Power BI, Plotly Dash </br>
+<b>Data Analysis:</b> Statistical Analysis, Hypothesis Testing, A/B testing, Web-Scraping, ETL </br>
+<b>ML:</b> Classification, Regression, Boosting, PCA, Clustering </br>
+<b>Database:</b> MySQL, NoSQL, MongoDB  </br>
 </p>
 </div>
 
@@ -63,27 +62,22 @@
 </div>
 <div class="container">
   <p style="text-align: left;"><i>Data Scientist - Internship</i></p>
-  <p style="text-align: right;"><i>Apr 2023 – Jun 2023</i></p>
+  <p style="text-align: right;"><i>Apr 2023 – Jul 2023</i></p>
 </div>
 
 - Utilized **clustering algorithms** (density-based, distribution-based, centroid-based) to **segment** proximity measures for various amenities, enhancing the interpretability and practicality of Statistics Canada's Proximity Measure Database for urban planning and policy-making.
 - Used **R** to perform comprehensive **data profiling** activities, including **data exploration, outlier detection**, and **statistical analysis**, gaining valuable insights into data quality challenges.
 - Conducted **cluster profiling** to extract valuable insights, empowering policymakers and urban planners with data-driven guidance for effective community development initiatives.
 
+### [PROJECT EXPERIENCE](https://avisaha.netlify.app/categories/project/)
+
 <div class="container">
-  <p style="text-align: left;"><b>Softology IT</b></p>
-  <p style="text-align: right;"><b>Dhaka, BD</b></p>
-</div>
-<div class="container">
-  <p style="text-align: left;"><i>Junior Data Scientist</i></p>
-  <p style="text-align: right;"><i>Jan 2022 – Sep 2022</i></p>
+<p><a href="https://avisaha.netlify.app/2024-04-13-customer-personality-analysis/"><b>Customer Personality Analysis</b></a></p> 
 </div>
 
-- Analyzed store sales data with the objective of optimizing **customer segmentation** for retail brands.
-- Achieved a significant 27% boost in sales for a retail brand by employing a strategic approach combining **hypothesis testing, association rules**, and clustering to effectively target the appropriate audience.
-
-
-### PROJECT EXPERIENCE
+- Implemented **Gaussian Mixture Model** (GMM) to cluster customers, identifying **high-value segments** like 'High Potential' customers, resulting in improved marketing efficiency and higher conversion rates.
+- Developed a **discretization** method for numerical variables, categorizing consumers into 'Low Consumer,' 'Frequent Consumer,' and 'Biggest Consumer,' enabling tailored marketing strategies.
+- Applied the **Apriori algorithm** to uncover associations such as frequent fruit consumers being more likely to purchase sweets, optimizing cross-selling strategies and driving revenue growth.
 
 <div class="container">
 <p><a href="https://github.com/sahaavi/Housing-Price-Prediction"><b>Price Prediction Deployment</b></a></p> 
@@ -121,7 +115,10 @@ Created a **dashboard** using **Tableau** for analyzing ASD traits among test ta
 <p><a href="https://coursera.org/verify/specialization/AF9GDWUZQNX7"><b>Python 3 Programming Specialization</b></a></p> 
 </div>
 <div class="container">
-<p><a href="https://coursera.org/verify/LA3HDZ2WQNYM"><b>Supervised Machine Learning: Regression and Classification</b></a></p> 
+<p><a href="https://www.coursera.org/account/accomplishments/specialization/PN5BR36XJJQV"><b>Machine Learning Specialization</b></a></p> 
+</div>
+<div class="container">
+<p><a href="https://www.linkedin.com/learning/certificates/4bccfa0e6fb15bf75badac5cc87d65e350624026e79cc67094efd4c48bcb922b"><b>Career Essentials in Data Analysis by Microsoft and LinkedIn</b></a></p> 
 </div>
 <div class="container">
 <p><a href="https://www.datacamp.com/statement-of-accomplishment/course/dc519cbbf5ac1b54a35e4e279ebf4be38b4c76de"><b>Supervised Learning with scikit-learn</b></a></p> 

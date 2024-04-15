@@ -79,7 +79,7 @@ math:
 - Used **R** to perform comprehensive **data profiling** activities, including **data exploration, outlier detection**, and **statistical analysis**, gaining valuable insights into data quality challenges.
 - Conducted **cluster profiling** to extract valuable insights, empowering policymakers and urban planners with data-driven guidance for effective community development initiatives.
 
-### PROJECT EXPERIENCE
+### [PROJECT EXPERIENCE](https://avisaha.netlify.app/categories/project/)
 
 <div class="container">
 <p><a href="https://avisaha.netlify.app/2024-04-13-customer-personality-analysis/"><b>Customer Personality Analysis</b></a></p> 
