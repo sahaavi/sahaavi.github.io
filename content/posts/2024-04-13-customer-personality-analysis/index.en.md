@@ -4,7 +4,7 @@ author: Avishek Saha
 date: '2023-03-21'
 slug: []
 categories:
-  - Project
+  - Projects
 tags:
   - customer_personality_analysis
   - project

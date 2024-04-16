@@ -4,7 +4,7 @@ author: Avishek Saha
 date: '2023-07-07'
 slug: []
 categories:
-  - Project
+  - Projects
 tags:
   - price prediction
   - aws

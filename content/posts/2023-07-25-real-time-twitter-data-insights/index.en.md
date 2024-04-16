@@ -4,7 +4,7 @@ author: Avishek Saha
 date: '2023-07-25'
 slug: []
 categories:
-  - Project
+  - Projects
 tags:
   - data_analysis
   - small_project

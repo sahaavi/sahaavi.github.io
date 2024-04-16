@@ -64,6 +64,16 @@ Industry Data Exploration and Integration Lab – Centre for Special Business Pr
 Description The Data Exploration and Integration Lab (DEIL) at Statistics Canada is creating a new set of granular measures that assess local access to a variety of amenities such as libraries, parks, educational facilities, hospitals, and more. The measures are generated out of a gravity model approach, where the cost of transportation is weighted by the magnitude or importance of the entity they travel to.]]></description>
 </item>
 <item>
+    <title>Canada Lynx Spatial Analysis</title>
+    <link>https://avisaha.netlify.app/2023-04-30-canada-lynx-spatial-analysis/</link>
+    <pubDate>Sun, 30 Apr 2023 00:00:00 &#43;0000</pubDate>
+    <author>Avishek Saha</author>
+    <guid>https://avisaha.netlify.app/2023-04-30-canada-lynx-spatial-analysis/</guid>
+    <description><![CDATA[GitHub Repo :- https://github.com/sahaavi/Canada-Lynx-Spatial-Analysis/tree/main
+Project Report :- https://github.com/sahaavi/Canada-Lynx-Spatial-Analysis/blob/main/docs/Report.pdf
+This project is aimed at analyzing the spatial patterns of Canada Lynx locations and building a model to predict their location based on environmental covariates. The first and second moment descriptives of the Canada Lynx locations were analyzed to understand the spatial patterns. The model was fitted using the inhomogeneous Poisson process approach to predict the intensity of Canada Lynx locations.]]></description>
+</item>
+<item>
     <title>Customer Personality Analysis</title>
     <link>https://avisaha.netlify.app/2024-04-13-customer-personality-analysis/</link>
     <pubDate>Tue, 21 Mar 2023 00:00:00 &#43;0000</pubDate>
