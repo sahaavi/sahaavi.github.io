@@ -4,7 +4,17 @@
         <link>https://avisaha.netlify.app/categories/project/</link>
         <description>Project - Category - Avishek Saha</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>avisheksaha123@gmail.com (Avishek Saha)</managingEditor>
-            <webMaster>avisheksaha123@gmail.com (Avishek Saha)</webMaster><copyright>Avishek Saha</copyright><lastBuildDate>Tue, 25 Jul 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://avisaha.netlify.app/categories/project/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>avisheksaha123@gmail.com (Avishek Saha)</webMaster><copyright>Avishek Saha</copyright><lastBuildDate>Mon, 31 Jul 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://avisaha.netlify.app/categories/project/" rel="self" type="application/rss+xml" /><item>
+    <title>Supply Chain Analytics</title>
+    <link>https://avisaha.netlify.app/2023-07-31-supply-chain-analytics/</link>
+    <pubDate>Mon, 31 Jul 2023 00:00:00 &#43;0000</pubDate>
+    <author>Avishek Saha</author>
+    <guid>https://avisaha.netlify.app/2023-07-31-supply-chain-analytics/</guid>
+    <description><![CDATA[GitHub Repo :- https://github.com/sahaavi/Supply-Chain-Analytics-in-Tableau/tree/main
+Tableau :- https://public.tableau.com/app/profile/avishek.saha/viz/SupplyChainAnalytics_16895737251610/ShipmentDelayAnalysis
+Customer Analysis: Create a map visualization to display the distribution of customers across different customer markets. Visualize customer country-wise sales using bar charts or treemaps. Analyze number of customers over time. Analyze customer churn rate over time. Order Analysis: Create a time series line chart to show the trend of order quantity over the years. Analyze the order volume by month using bar charts or heat maps.]]></description>
+</item>
+<item>
     <title>Real-Time Twitter Data Insights️</title>
     <link>https://avisaha.netlify.app/2023-07-25-real-time-twitter-data-insights/</link>
     <pubDate>Tue, 25 Jul 2023 00:00:00 &#43;0000</pubDate>
@@ -31,7 +41,8 @@ Description The Data Exploration and Integration Lab (DEIL) at Statistics Canada
     <pubDate>Tue, 21 Mar 2023 00:00:00 &#43;0000</pubDate>
     <author>Avishek Saha</author>
     <guid>https://avisaha.netlify.app/2024-04-13-customer-personality-analysis/</guid>
-    <description><![CDATA[Background In the competitive landscape of modern business, understanding and catering to the diverse needs of customers is crucial for sustainable growth. A leading retail company, &ldquo;XYZ Mart,&rdquo; aimed to enhance its marketing strategies by gaining deeper insights into customer behavior and preferences. As part of this endeavor, the company embarked on a project to analyze customer personalities and segment them effectively.
+    <description><![CDATA[GitHub Repo :- https://github.com/sahaavi/Customer-Personality-Analysis
+Background In the competitive landscape of modern business, understanding and catering to the diverse needs of customers is crucial for sustainable growth. A leading retail company, &ldquo;XYZ Mart,&rdquo; aimed to enhance its marketing strategies by gaining deeper insights into customer behavior and preferences. As part of this endeavor, the company embarked on a project to analyze customer personalities and segment them effectively.
 Problem Statement XYZ Mart faced challenges in effectively targeting its marketing efforts due to a lack of precise customer segmentation.]]></description>
 </item>
 </channel>
