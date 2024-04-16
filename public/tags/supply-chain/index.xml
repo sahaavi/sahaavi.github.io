@@ -1,0 +1,18 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>supply chain - Tag - Avishek Saha</title>
+        <link>https://avisaha.netlify.app/tags/supply-chain/</link>
+        <description>supply chain - Tag - Avishek Saha</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>avisheksaha123@gmail.com (Avishek Saha)</managingEditor>
+            <webMaster>avisheksaha123@gmail.com (Avishek Saha)</webMaster><copyright>Avishek Saha</copyright><lastBuildDate>Mon, 31 Jul 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://avisaha.netlify.app/tags/supply-chain/" rel="self" type="application/rss+xml" /><item>
+    <title>Supply Chain Analytics</title>
+    <link>https://avisaha.netlify.app/2023-07-31-supply-chain-analytics/</link>
+    <pubDate>Mon, 31 Jul 2023 00:00:00 &#43;0000</pubDate>
+    <author>Avishek Saha</author>
+    <guid>https://avisaha.netlify.app/2023-07-31-supply-chain-analytics/</guid>
+    <description><![CDATA[GitHub Repo :- https://github.com/sahaavi/Supply-Chain-Analytics-in-Tableau/tree/main
+Tableau :- https://public.tableau.com/app/profile/avishek.saha/viz/SupplyChainAnalytics_16895737251610/ShipmentDelayAnalysis
+Customer Analysis: Create a map visualization to display the distribution of customers across different customer markets. Visualize customer country-wise sales using bar charts or treemaps. Analyze number of customers over time. Analyze customer churn rate over time. Order Analysis: Create a time series line chart to show the trend of order quantity over the years. Analyze the order volume by month using bar charts or heat maps.]]></description>
+</item>
+</channel>
+</rss>

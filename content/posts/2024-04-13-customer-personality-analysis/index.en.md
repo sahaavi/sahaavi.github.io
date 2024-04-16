@@ -45,6 +45,8 @@ seo:
   images: []
 ---
 
+**GitHub Repo** :- https://github.com/sahaavi/Customer-Personality-Analysis
+
 ## Background
 
 In the competitive landscape of modern business, understanding and catering to the diverse needs of customers is crucial for sustainable growth. A leading retail company, "XYZ Mart," aimed to enhance its marketing strategies by gaining deeper insights into customer behavior and preferences. As part of this endeavor, the company embarked on a project to analyze customer personalities and segment them effectively.
