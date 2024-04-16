@@ -5,7 +5,7 @@ author: Avishek Saha, Ricky Heinrich, Noman Mohammad, Jonah Edmundson
 date: '2023-06-22'
 slug: []
 categories:
-  - Project
+  - Projects
 tags:
   - capstone project
   - clustering

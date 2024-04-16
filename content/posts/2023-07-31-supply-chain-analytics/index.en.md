@@ -4,7 +4,7 @@ author: Avishek Saha
 date: '2023-07-31'
 slug: []
 categories:
-  - Project
+  - Projects
 tags:
   - data analytics
   - data analysis
