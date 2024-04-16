@@ -14,7 +14,7 @@ authorLink: ''
 description: ''
 license: ''
 images: ['outptu_table.webp', 'plot.webp']
-featuredImage: 'outptu_table.webp'
+featuredImage: ''
 featuredImagePreview: 'outptu_table.webp'
 hiddenFromHomePage: no
 hiddenFromSearch: no

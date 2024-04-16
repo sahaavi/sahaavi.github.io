@@ -4,25 +4,35 @@
         <link>https://avisaha.netlify.app/categories/project/</link>
         <description>Project - Category - Avishek Saha</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>avisheksaha123@gmail.com (Avishek Saha)</managingEditor>
-            <webMaster>avisheksaha123@gmail.com (Avishek Saha)</webMaster><copyright>Avishek Saha</copyright><lastBuildDate>Sat, 13 Apr 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://avisaha.netlify.app/categories/project/" rel="self" type="application/rss+xml" /><item>
-    <title>Customer Personality Analysis</title>
-    <link>https://avisaha.netlify.app/2024-04-13-customer-personality-analysis/</link>
-    <pubDate>Sat, 13 Apr 2024 00:00:00 &#43;0000</pubDate>
-    <author>Avishek Saha</author>
-    <guid>https://avisaha.netlify.app/2024-04-13-customer-personality-analysis/</guid>
-    <description><![CDATA[Background In the competitive landscape of modern business, understanding and catering to the diverse needs of customers is crucial for sustainable growth. A leading retail company, &ldquo;XYZ Mart,&rdquo; aimed to enhance its marketing strategies by gaining deeper insights into customer behavior and preferences. As part of this endeavor, the company embarked on a project to analyze customer personalities and segment them effectively.
-Problem Statement XYZ Mart faced challenges in effectively targeting its marketing efforts due to a lack of precise customer segmentation.]]></description>
-</item>
-<item>
+            <webMaster>avisheksaha123@gmail.com (Avishek Saha)</webMaster><copyright>Avishek Saha</copyright><lastBuildDate>Tue, 25 Jul 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://avisaha.netlify.app/categories/project/" rel="self" type="application/rss+xml" /><item>
     <title>Real-Time Twitter Data Insights️</title>
     <link>https://avisaha.netlify.app/2023-07-25-real-time-twitter-data-insights/</link>
     <pubDate>Tue, 25 Jul 2023 00:00:00 &#43;0000</pubDate>
     <author>Avishek Saha</author>
     <guid>https://avisaha.netlify.app/2023-07-25-real-time-twitter-data-insights/</guid>
-    <description><![CDATA[<div class="featured-image">
-                <img src="/outptu_table.webp" referrerpolicy="no-referrer">
-            </div>🕵️ Although we may not be enthusiastic Twitter users, we acknowledge its significant impact on the world (especially with famous figures like Trump known for his tweets). The data available on Twitter is not only valuable for gaining insights, but what’s even more impressive is that we can analyze Twitter storms almost in real-time. This enables us to understand the prevailing thoughts and emotions worldwide as they unfold.
+    <description><![CDATA[🕵️ Although we may not be enthusiastic Twitter users, we acknowledge its significant impact on the world (especially with famous figures like Trump known for his tweets). The data available on Twitter is not only valuable for gaining insights, but what’s even more impressive is that we can analyze Twitter storms almost in real-time. This enables us to understand the prevailing thoughts and emotions worldwide as they unfold.
 However, like a well-guarded treasure, Twitter has security measures in place that prevent us from accessing the data immediately.]]></description>
+</item>
+<item>
+    <title>Segmentation of the Statistics Canada’s Set of Proximity Measures – A Clustering Algorithm Approach</title>
+    <link>https://avisaha.netlify.app/2023-06-22-segmentation-of-the-statistics-canada-s-set-of-proximity-measures-a-clustering-algorithm-approach/</link>
+    <pubDate>Thu, 22 Jun 2023 00:00:00 &#43;0000</pubDate>
+    <author>Avishek Saha, Ricky Heinrich, Noman Mohammad, Jonah Edmundson</author>
+    <guid>https://avisaha.netlify.app/2023-06-22-segmentation-of-the-statistics-canada-s-set-of-proximity-measures-a-clustering-algorithm-approach/</guid>
+    <description><![CDATA[GitHub Repo :- https://github.com/sahaavi/Segmentation-of-Proximity-Measures/tree/main
+Project Report :- https://github.com/sahaavi/Segmentation-of-Proximity-Measures/blob/main/docs/final-report/PMS_finalreport.pdf
+Project Description Organization Statistics Canada
+Industry Data Exploration and Integration Lab – Centre for Special Business Project, Statistics Canada
+Description The Data Exploration and Integration Lab (DEIL) at Statistics Canada is creating a new set of granular measures that assess local access to a variety of amenities such as libraries, parks, educational facilities, hospitals, and more. The measures are generated out of a gravity model approach, where the cost of transportation is weighted by the magnitude or importance of the entity they travel to.]]></description>
+</item>
+<item>
+    <title>Customer Personality Analysis</title>
+    <link>https://avisaha.netlify.app/2024-04-13-customer-personality-analysis/</link>
+    <pubDate>Tue, 21 Mar 2023 00:00:00 &#43;0000</pubDate>
+    <author>Avishek Saha</author>
+    <guid>https://avisaha.netlify.app/2024-04-13-customer-personality-analysis/</guid>
+    <description><![CDATA[Background In the competitive landscape of modern business, understanding and catering to the diverse needs of customers is crucial for sustainable growth. A leading retail company, &ldquo;XYZ Mart,&rdquo; aimed to enhance its marketing strategies by gaining deeper insights into customer behavior and preferences. As part of this endeavor, the company embarked on a project to analyze customer personalities and segment them effectively.
+Problem Statement XYZ Mart faced challenges in effectively targeting its marketing efforts due to a lack of precise customer segmentation.]]></description>
 </item>
 </channel>
 </rss>

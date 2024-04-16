@@ -1,7 +1,7 @@
 ---
 title: Customer Personality Analysis
 author: Avishek Saha
-date: '2024-04-13'
+date: '2023-03-21'
 slug: []
 categories:
   - Project
@@ -15,7 +15,7 @@ description: ''
 license: ''
 images: []
 featuredImage: ''
-featuredImagePreview: ''
+featuredImagePreview: 'clustering.png'
 hiddenFromHomePage: no
 hiddenFromSearch: no
 twemoji: no
