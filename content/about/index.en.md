@@ -31,7 +31,7 @@ math:
 <p>
 <b>Programming:</b> Python(NumPy, Pandas, ScikitLearn, altair, TensorFlow, Selenium), R </br>
 <b>Tools, Frameworks:</b> OOP, API’s, Django, Docker, AWS, Git </br>
-<b>Data Visualization:</b> [Tableau](https://public.tableau.com/app/profile/avishek.saha/vizzes), Power BI, Plotly Dash </br>
+<b>Data Visualization:</b> <a href="https://public.tableau.com/app/profile/avishek.saha/vizzes">Tableau</a>, Power BI, Plotly Dash </br>
 <b>Data Analysis:</b> Statistical Analysis, Hypothesis Testing, A/B testing, Web-Scraping, ETL </br>
 <b>ML:</b> Classification, Regression, Boosting, PCA, Clustering </br>
 <b>Database:</b> MySQL, NoSQL, MongoDB  </br>
@@ -90,7 +90,7 @@ math:
 - Applied the **Apriori algorithm** to uncover associations such as frequent fruit consumers being more likely to purchase sweets, optimizing cross-selling strategies and driving revenue growth.
 
 <div class="container">
-<p><a href="https://github.com/sahaavi/Housing-Price-Prediction"><b>Price Prediction Deployment</b></a></p> 
+<p><a href="https://avisaha.netlify.app/2023-07-07-housing-price-prediction/"><b>Price Prediction Deployment</b></a></p> 
 </div>
 
 - Launched a user-friendly application on **AWS** that allows users to input feature variables value for house price **prediction**, expanding accessibility to predicted house prices.
@@ -99,7 +99,7 @@ math:
 Established a streamlined **CI/CD pipeline** using **GitHub Actions**, ensuring efficient **AWS deployment and continuous integration** of the application.
 
 <div class="container">
-<p><a href="https://github.com/sahaavi/Job-to-Skill"><b>Job to Skill</b></a></p> 
+<p><a href="https://avisaha.netlify.app/2023-03-20-job-to-skill/"><b>Job to Skill</b></a></p> 
 </div>
 
 - Developed a streamlined process for scraping LinkedIn job postings via the LinkedIn **API** and efficiently refined results through user-specified filters, enhancing the job search experience.
