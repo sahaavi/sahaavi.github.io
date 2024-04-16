@@ -1,0 +1,18 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>plotly dash - Tag - Avishek Saha</title>
+        <link>https://avisaha.netlify.app/tags/plotly-dash/</link>
+        <description>plotly dash - Tag - Avishek Saha</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>avisheksaha123@gmail.com (Avishek Saha)</managingEditor>
+            <webMaster>avisheksaha123@gmail.com (Avishek Saha)</webMaster><copyright>Avishek Saha</copyright><lastBuildDate>Sun, 19 Mar 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://avisaha.netlify.app/tags/plotly-dash/" rel="self" type="application/rss+xml" /><item>
+    <title>New-Venture-s-Compass</title>
+    <link>https://avisaha.netlify.app/2023-03-19-new-venture-s-compass/</link>
+    <pubDate>Sun, 19 Mar 2023 00:00:00 &#43;0000</pubDate>
+    <author>Avishek Saha</author>
+    <guid>https://avisaha.netlify.app/2023-03-19-new-venture-s-compass/</guid>
+    <description><![CDATA[GitHub Repo :- https://github.com/sahaavi/New-Venture-s-Compass
+Dashboard Video :- https://youtu.be/bs5oX2mORGQ?si=27KLoOi4sf7ECzaq
+Project Description The app contains a landing page that gives descriptive information on data sources used and the different development indicators from Worldbank project whose purpose is to assess business environment in different countries. This enables the reader to gather all background domain information required to maximize understanding of the dashboard information. The app has three different tabs for different functions – 1.]]></description>
+</item>
+</channel>
+</rss>
