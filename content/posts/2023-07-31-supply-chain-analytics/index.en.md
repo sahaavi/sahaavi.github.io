@@ -9,6 +9,7 @@ tags:
   - data analytics
   - data analysis
   - supply chain
+  - project
 subtitle: ''
 lastmod: '2024-04-15T19:08:07-07:00'
 authorLink: ''

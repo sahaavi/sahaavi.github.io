@@ -4,7 +4,27 @@
         <link>https://avisaha.netlify.app/tags/project/</link>
         <description>project - Tag - Avishek Saha</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>avisheksaha123@gmail.com (Avishek Saha)</managingEditor>
-            <webMaster>avisheksaha123@gmail.com (Avishek Saha)</webMaster><copyright>Avishek Saha</copyright><lastBuildDate>Tue, 21 Mar 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://avisaha.netlify.app/tags/project/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>avisheksaha123@gmail.com (Avishek Saha)</webMaster><copyright>Avishek Saha</copyright><lastBuildDate>Mon, 31 Jul 2023 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://avisaha.netlify.app/tags/project/" rel="self" type="application/rss+xml" /><item>
+    <title>Supply Chain Analytics</title>
+    <link>https://avisaha.netlify.app/2023-07-31-supply-chain-analytics/</link>
+    <pubDate>Mon, 31 Jul 2023 00:00:00 &#43;0000</pubDate>
+    <author>Avishek Saha</author>
+    <guid>https://avisaha.netlify.app/2023-07-31-supply-chain-analytics/</guid>
+    <description><![CDATA[GitHub Repo :- https://github.com/sahaavi/Supply-Chain-Analytics-in-Tableau/tree/main
+Tableau :- https://public.tableau.com/app/profile/avishek.saha/viz/SupplyChainAnalytics_16895737251610/ShipmentDelayAnalysis
+Customer Analysis: Create a map visualization to display the distribution of customers across different customer markets. Visualize customer country-wise sales using bar charts or treemaps. Analyze number of customers over time. Analyze customer churn rate over time. Order Analysis: Create a time series line chart to show the trend of order quantity over the years. Analyze the order volume by month using bar charts or heat maps.]]></description>
+</item>
+<item>
+    <title>Housing Price Prediction</title>
+    <link>https://avisaha.netlify.app/2023-07-07-housing-price-prediction/</link>
+    <pubDate>Fri, 07 Jul 2023 00:00:00 &#43;0000</pubDate>
+    <author>Avishek Saha</author>
+    <guid>https://avisaha.netlify.app/2023-07-07-housing-price-prediction/</guid>
+    <description><![CDATA[GitHub Repo :- https://github.com/sahaavi/Housing-Price-Prediction
+This project is an end-to-end machine learning project that involves building a model to predict housing prices using the California Housing dataset. The project covers all stages of a typical machine learning project, including data exploration, preparation, feature engineering, model selection and evaluation, and deployment.
+APP Prediction Result ]]></description>
+</item>
+<item>
     <title>Customer Personality Analysis</title>
     <link>https://avisaha.netlify.app/2024-04-13-customer-personality-analysis/</link>
     <pubDate>Tue, 21 Mar 2023 00:00:00 &#43;0000</pubDate>
