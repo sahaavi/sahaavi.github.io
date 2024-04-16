@@ -14,5 +14,15 @@
 This project is an end-to-end machine learning project that involves building a model to predict housing prices using the California Housing dataset. The project covers all stages of a typical machine learning project, including data exploration, preparation, feature engineering, model selection and evaluation, and deployment.
 APP Prediction Result ]]></description>
 </item>
+<item>
+    <title>Job to Skill</title>
+    <link>https://avisaha.netlify.app/2023-03-20-job-to-skill/</link>
+    <pubDate>Mon, 20 Mar 2023 00:00:00 &#43;0000</pubDate>
+    <author>Avishek Saha</author>
+    <guid>https://avisaha.netlify.app/2023-03-20-job-to-skill/</guid>
+    <description><![CDATA[GitHub Repo :- https://github.com/sahaavi/Job-to-Skill
+Demo :- https://youtu.be/rYlRbNha0eM
+Project Description This project involved scraping job listings from LinkedIn to extract technologies and skills mentioned in the job descriptions. Using GPT-2, we analyzed the job requirements and visualized the distribution of skills required for various positions. Additionally, we generated potential interview questions and answers tailored to the identified skills, aiding in interview preparation and skill development.]]></description>
+</item>
 </channel>
 </rss>

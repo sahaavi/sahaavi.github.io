@@ -84,6 +84,16 @@ Background In the competitive landscape of modern business, understanding and ca
 Problem Statement XYZ Mart faced challenges in effectively targeting its marketing efforts due to a lack of precise customer segmentation.]]></description>
 </item>
 <item>
+    <title>Job to Skill</title>
+    <link>https://avisaha.netlify.app/2023-03-20-job-to-skill/</link>
+    <pubDate>Mon, 20 Mar 2023 00:00:00 &#43;0000</pubDate>
+    <author>Avishek Saha</author>
+    <guid>https://avisaha.netlify.app/2023-03-20-job-to-skill/</guid>
+    <description><![CDATA[GitHub Repo :- https://github.com/sahaavi/Job-to-Skill
+Demo :- https://youtu.be/rYlRbNha0eM
+Project Description This project involved scraping job listings from LinkedIn to extract technologies and skills mentioned in the job descriptions. Using GPT-2, we analyzed the job requirements and visualized the distribution of skills required for various positions. Additionally, we generated potential interview questions and answers tailored to the identified skills, aiding in interview preparation and skill development.]]></description>
+</item>
+<item>
     <title>New-Venture-s-Compass</title>
     <link>https://avisaha.netlify.app/2023-03-19-new-venture-s-compass/</link>
     <pubDate>Sun, 19 Mar 2023 00:00:00 &#43;0000</pubDate>
