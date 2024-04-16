@@ -2,27 +2,27 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://avisaha.netlify.app/</loc><lastmod>2024-04-15T20:48:21-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://avisaha.netlify.app/categories/</loc><lastmod>2024-04-15T20:48:21-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://avisaha.netlify.app/</loc><lastmod>2024-04-15T21:00:40-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://avisaha.netlify.app/categories/</loc><lastmod>2024-04-15T21:00:40-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://avisaha.netlify.app/2023-12-25-introduction/</loc><lastmod>2023-12-29T08:25:57-08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://avisaha.netlify.app/posts/</loc><lastmod>2024-04-15T20:48:21-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://avisaha.netlify.app/posts/</loc><lastmod>2024-04-15T21:00:40-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://avisaha.netlify.app/tags/recommender-system/</loc><lastmod>2023-12-29T08:25:57-08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://avisaha.netlify.app/categories/recommender-system/</loc><lastmod>2023-12-29T08:25:57-08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
-            <loc>https://avisaha.netlify.app/tags/</loc><lastmod>2024-04-15T20:48:21-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://avisaha.netlify.app/tags/</loc><lastmod>2024-04-15T21:00:40-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://avisaha.netlify.app/2023-11-07-introduction-word-vectors/</loc><lastmod>2023-11-07T22:25:02-08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://avisaha.netlify.app/tags/nlp/</loc><lastmod>2023-11-07T22:25:02-08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://avisaha.netlify.app/categories/nlpnatural-language-processing/</loc><lastmod>2023-11-07T22:25:02-08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://avisaha.netlify.app/tags/wordvec/</loc><lastmod>2023-11-07T22:25:02-08:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://avisaha.netlify.app/tags/data-analysis/</loc><lastmod>2024-04-15T20:44:46-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://avisaha.netlify.app/tags/data-analytics/</loc><lastmod>2024-04-15T20:44:46-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://avisaha.netlify.app/tags/project/</loc><lastmod>2024-04-15T20:44:46-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://avisaha.netlify.app/categories/projects/</loc><lastmod>2024-04-15T20:48:21-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://avisaha.netlify.app/tags/project/</loc><lastmod>2024-04-15T21:00:40-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://avisaha.netlify.app/categories/projects/</loc><lastmod>2024-04-15T21:00:40-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://avisaha.netlify.app/tags/supply-chain/</loc><lastmod>2024-04-15T20:44:46-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://avisaha.netlify.app/2023-07-31-supply-chain-analytics/</loc><lastmod>2024-04-15T20:44:46-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://avisaha.netlify.app/tags/data_analysis/</loc><lastmod>2024-04-15T20:44:46-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://avisaha.netlify.app/2023-07-25-real-time-twitter-data-insights/</loc><lastmod>2024-04-15T20:44:46-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://avisaha.netlify.app/tags/small_project/</loc><lastmod>2024-04-15T20:44:46-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://avisaha.netlify.app/tags/aws/</loc><lastmod>2024-04-15T20:44:46-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://avisaha.netlify.app/tags/aws/</loc><lastmod>2024-04-15T21:00:40-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://avisaha.netlify.app/tags/aws-ec2/</loc><lastmod>2024-04-15T20:44:46-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://avisaha.netlify.app/tags/end-to-end-machine-learning-project/</loc><lastmod>2024-04-15T20:44:46-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://avisaha.netlify.app/tags/flask/</loc><lastmod>2024-04-15T20:44:46-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
@@ -40,12 +40,16 @@
             <loc>https://avisaha.netlify.app/tags/spatial-analysis/</loc><lastmod>2024-04-15T20:44:46-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://avisaha.netlify.app/2024-04-13-customer-personality-analysis/</loc><lastmod>2024-04-15T20:44:46-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://avisaha.netlify.app/tags/customer_personality_analysis/</loc><lastmod>2024-04-15T20:44:46-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://avisaha.netlify.app/tags/dashboard/</loc><lastmod>2024-04-15T20:48:21-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://avisaha.netlify.app/tags/data-visualization/</loc><lastmod>2024-04-15T20:48:21-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://avisaha.netlify.app/tags/heroku/</loc><lastmod>2024-04-15T20:48:21-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://avisaha.netlify.app/2023-03-19-new-venture-s-compass/</loc><lastmod>2024-04-15T20:48:21-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://avisaha.netlify.app/tags/plotly-dash/</loc><lastmod>2024-04-15T20:48:21-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://avisaha.netlify.app/tags/python/</loc><lastmod>2024-04-15T20:48:21-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://avisaha.netlify.app/tags/api/</loc><lastmod>2024-04-15T21:00:40-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://avisaha.netlify.app/2023-03-20-job-to-skill/</loc><lastmod>2024-04-15T21:00:40-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://avisaha.netlify.app/tags/openai-api/</loc><lastmod>2024-04-15T21:00:40-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://avisaha.netlify.app/tags/python/</loc><lastmod>2024-04-15T21:00:40-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://avisaha.netlify.app/tags/wrapper-api/</loc><lastmod>2024-04-15T21:00:40-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://avisaha.netlify.app/tags/dashboard/</loc><lastmod>2024-04-15T20:52:55-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://avisaha.netlify.app/tags/data-visualization/</loc><lastmod>2024-04-15T20:52:55-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://avisaha.netlify.app/tags/heroku/</loc><lastmod>2024-04-15T20:52:55-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://avisaha.netlify.app/2023-03-19-new-venture-s-compass/</loc><lastmod>2024-04-15T20:52:55-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://avisaha.netlify.app/tags/plotly-dash/</loc><lastmod>2024-04-15T20:52:55-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://avisaha.netlify.app/about/</loc><lastmod>2024-04-15T15:22:59-07:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://avisaha.netlify.app/categories/documentation/</loc><lastmod>2023-10-26T19:16:23-07:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>
             <loc>https://avisaha.netlify.app/tags/content/_index.zh-cn/</loc><lastmod>2023-10-26T19:16:23-07:00</lastmod><changefreq>weekly</changefreq><priority>0.5</priority></url><url>

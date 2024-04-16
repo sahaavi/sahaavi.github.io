@@ -44,5 +44,15 @@ This project is aimed at analyzing the spatial patterns of Canada Lynx locations
 Background In the competitive landscape of modern business, understanding and catering to the diverse needs of customers is crucial for sustainable growth. A leading retail company, &ldquo;XYZ Mart,&rdquo; aimed to enhance its marketing strategies by gaining deeper insights into customer behavior and preferences. As part of this endeavor, the company embarked on a project to analyze customer personalities and segment them effectively.
 Problem Statement XYZ Mart faced challenges in effectively targeting its marketing efforts due to a lack of precise customer segmentation.]]></description>
 </item>
+<item>
+    <title>Job to Skill</title>
+    <link>https://avisaha.netlify.app/2023-03-20-job-to-skill/</link>
+    <pubDate>Mon, 20 Mar 2023 00:00:00 &#43;0000</pubDate>
+    <author>Avishek Saha</author>
+    <guid>https://avisaha.netlify.app/2023-03-20-job-to-skill/</guid>
+    <description><![CDATA[GitHub Repo :- https://github.com/sahaavi/Job-to-Skill
+Demo :- https://youtu.be/rYlRbNha0eM
+Project Description This project involved scraping job listings from LinkedIn to extract technologies and skills mentioned in the job descriptions. Using GPT-2, we analyzed the job requirements and visualized the distribution of skills required for various positions. Additionally, we generated potential interview questions and answers tailored to the identified skills, aiding in interview preparation and skill development.]]></description>
+</item>
 </channel>
 </rss>
