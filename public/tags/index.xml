@@ -45,6 +45,14 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
+    <title>project</title>
+    <link>https://avisaha.netlify.app/tags/project/</link>
+    <pubDate>Mon, 31 Jul 2023 00:00:00 &#43;0000</pubDate>
+    <author>Avishek Saha</author>
+    <guid>https://avisaha.netlify.app/tags/project/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
     <title>supply chain</title>
     <link>https://avisaha.netlify.app/tags/supply-chain/</link>
     <pubDate>Mon, 31 Jul 2023 00:00:00 &#43;0000</pubDate>
@@ -69,19 +77,11 @@
     <description><![CDATA[]]></description>
 </item>
 <item>
-    <title>capstone project</title>
-    <link>https://avisaha.netlify.app/tags/capstone-project/</link>
-    <pubDate>Thu, 22 Jun 2023 00:00:00 &#43;0000</pubDate>
+    <title>aws</title>
+    <link>https://avisaha.netlify.app/tags/aws/</link>
+    <pubDate>Fri, 07 Jul 2023 00:00:00 &#43;0000</pubDate>
     <author>Avishek Saha</author>
-    <guid>https://avisaha.netlify.app/tags/capstone-project/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>clustering</title>
-    <link>https://avisaha.netlify.app/tags/clustering/</link>
-    <pubDate>Thu, 22 Jun 2023 00:00:00 &#43;0000</pubDate>
-    <author>Avishek Saha</author>
-    <guid>https://avisaha.netlify.app/tags/clustering/</guid>
+    <guid>https://avisaha.netlify.app/tags/aws/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>

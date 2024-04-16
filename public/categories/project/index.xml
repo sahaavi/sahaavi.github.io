@@ -24,6 +24,16 @@ Customer Analysis: Create a map visualization to display the distribution of cus
 However, like a well-guarded treasure, Twitter has security measures in place that prevent us from accessing the data immediately.]]></description>
 </item>
 <item>
+    <title>Housing Price Prediction</title>
+    <link>https://avisaha.netlify.app/2023-07-07-housing-price-prediction/</link>
+    <pubDate>Fri, 07 Jul 2023 00:00:00 &#43;0000</pubDate>
+    <author>Avishek Saha</author>
+    <guid>https://avisaha.netlify.app/2023-07-07-housing-price-prediction/</guid>
+    <description><![CDATA[GitHub Repo :- https://github.com/sahaavi/Housing-Price-Prediction
+This project is an end-to-end machine learning project that involves building a model to predict housing prices using the California Housing dataset. The project covers all stages of a typical machine learning project, including data exploration, preparation, feature engineering, model selection and evaluation, and deployment.
+APP Prediction Result ]]></description>
+</item>
+<item>
     <title>Segmentation of the Statistics Canada’s Set of Proximity Measures – A Clustering Algorithm Approach</title>
     <link>https://avisaha.netlify.app/2023-06-22-segmentation-of-the-statistics-canada-s-set-of-proximity-measures-a-clustering-algorithm-approach/</link>
     <pubDate>Thu, 22 Jun 2023 00:00:00 &#43;0000</pubDate>
