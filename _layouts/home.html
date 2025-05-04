@@ -1,0 +1,57 @@
+---
+layout: default
+---
+
+<div class="hero">
+  <div class="hero-content">
+    <h1>{{ site.title }}</h1>
+    <p>{{ site.description }}</p>
+  </div>
+  <div class="neural-net-bg"></div>
+</div>
+
+<section class="featured-posts">
+  <h2>Latest Blog Posts</h2>
+  <div class="post-grid">
+    {% for post in site.posts limit:3 %}
+    <div class="post-card">
+      <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+      <span class="post-date">{{ post.date | date: "%B %d, %Y" }}</span>
+      <p>{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+    </div>
+    {% endfor %}
+  </div>
+  <a href="{{ '/blog/' | relative_url }}" class="btn">View All Posts</a>
+</section>
+
+<section class="featured-projects">
+  <h2>ML Projects</h2>
+  <div class="project-grid">
+    {% for project in site.projects limit:4 %}
+    <div class="project-card">
+      <h3><a href="{{ project.url | relative_url }}">{{ project.title }}</a></h3>
+      <p>{{ project.excerpt | strip_html | truncatewords: 20 }}</p>
+      {% if project.github_repo %}
+      <a href="https://github.com/{{ project.github_repo }}" class="github-link">View on GitHub</a>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+  <a href="{{ '/projects/' | relative_url }}" class="btn">View All Projects</a>
+</section>
+
+<section class="featured-books">
+  <h2>Books</h2>
+  <div class="book-grid">
+    {% for book in site.books limit:3 %}
+    <div class="book-card">
+      {% if book.cover %}
+      <img src="{{ book.cover | relative_url }}" alt="{{ book.title }}">
+      {% endif %}
+      <h3><a href="{{ book.url | relative_url }}">{{ book.title }}</a></h3>
+      <p>{{ book.excerpt | strip_html | truncatewords: 20 }}</p>
+    </div>
+    {% endfor %}
+  </div>
+  <a href="{{ '/books/' | relative_url }}" class="btn">View All Books</a>
+</section>

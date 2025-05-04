@@ -1,0 +1,16 @@
+---
+layout: default
+---
+<div class="notion-page">
+  <h1>{{ page.title }}</h1>
+  
+  <div id="notion-content" data-page-id="{{ page.notion_id }}">
+    <p>Loading Notion page...</p>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      loadNotionPage('{{ page.notion_id }}', 'notion-content');
+    });
+  </script>
+</div>

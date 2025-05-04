@@ -1,0 +1,34 @@
+---
+layout: default
+title: Books
+---
+
+<div class="page-header">
+  <h1>Books</h1>
+  <p>My published books on machine learning, data science, and AI.</p>
+</div>
+
+<div class="book-list">
+  {% for book in site.books %}
+    <div class="book-item">
+      <div class="book-cover">
+        {% if book.cover %}
+        <img src="{{ book.cover | relative_url }}" alt="{{ book.title }}">
+        {% endif %}
+      </div>
+      <div class="book-info">
+        <h2><a href="{{ book.url | relative_url }}">{{ book.title }}</a></h2>
+        {% if book.subtitle %}
+        <h3>{{ book.subtitle }}</h3>
+        {% endif %}
+        {% if book.author %}
+        <div class="book-author">by {{ book.author }}</div>
+        {% endif %}
+        <div class="book-excerpt">
+          {{ book.excerpt | strip_html | truncatewords: 50 }}
+        </div>
+        <a href="{{ book.url | relative_url }}" class="read-more">Read more</a>
+      </div>
+    </div>
+  {% endfor %}
+</div>
