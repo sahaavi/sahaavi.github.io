@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introduction to Machine Learning | Your Name - ML Engineer</title>
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lunr@2.3.9/lunr.min.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="site-title">
+        <a href="/">Your Name - ML Engineer</a>
+      </div>
+      <nav class="site-nav">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/blog/" class="nav-link">Blog</a>
+        <a href="/projects/" class="nav-link">Projects</a>
+        <a href="/books/" class="nav-link">Books</a>
+        <a href="/about/" class="nav-link">About</a>
+      </nav>
+    </div>
+  </header>
+  
+  <div class="search-container">
+    <input type="text" id="search-input" placeholder="Search...">
+    <div id="search-results" class="search-results"></div>
+  </div>
+
+  <main class="content">
+    <article class="post">
+  <header class="post-header">
+    <h1>Introduction to Machine Learning</h1>
+    <div class="post-meta">
+      <span class="post-date">May 01, 2023</span>
+      
+      <span class="post-author">by Your Name</span>
+      
+    </div>
+  </header>
+
+  <div class="post-content">
+    <h1 id="introduction-to-machine-learning">Introduction to Machine Learning</h1>
+
+<p>Machine learning is a subset of artificial intelligence that focuses on developing systems that can learn from and make decisions based on data. Instead of explicitly programming rules, machine learning algorithms build a model based on sample data to make predictions or decisions.</p>
+
+<h2 id="key-concepts-in-machine-learning">Key Concepts in Machine Learning</h2>
+
+<h3 id="supervised-learning">Supervised Learning</h3>
+
+<p>Supervised learning involves training a model on labeled data. The algorithm learns the mapping function from input variables to the output variable, allowing it to predict outputs for new inputs.</p>
+
+<p>Example of a simple linear regression in Python:</p>
+
+<p>```python
+import numpy as np
+from sklearn.linear_model import LinearRegression</p>
+
+<h1 id="sample-data">Sample data</h1>
+<p>X = np.array([[1, 1], [1, 2], [2, 2], [2, 3]])
+y = np.array([1, 2, 2, 3])</p>
+
+<h1 id="train-the-model">Train the model</h1>
+<p>model = LinearRegression().fit(X, y)</p>
+
+<h1 id="make-predictions">Make predictions</h1>
+<p>predictions = model.predict(np.array([[3, 5]]))
+print(predictions)  # Output: [4.5]</p>
+
+  </div>
+
+  
+  <div class="post-tags">
+    Tags: 
+    
+    <a href="/tags/machine-learning/" class="tag">machine learning</a>
+    
+    <a href="/tags/data-science/" class="tag">data science</a>
+    
+    <a href="/tags/tutorial/" class="tag">tutorial</a>
+    
+  </div>
+  
+</article>
+  </main>
+  
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-col">
+        <h2>Your Name - ML Engineer</h2>
+        <p>Machine Learning Engineer portfolio, blog, and book publishing platform.</p>
+      </div>
+      <div class="footer-col">
+        <h2>Connect</h2>
+        <ul class="social-links">
+          
+          <li><a href="https://github.com/username">GitHub</a></li>
+          
+          
+          <li><a href="https://linkedin.com/in/username">LinkedIn</a></li>
+          
+          
+          <li><a href="mailto:your-email@example.com">Email</a></li>
+          
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2025 Your Name - ML Engineer. All rights reserved.
+    </div>
+  </footer>
+  
+  <script src="/assets/js/search.js"></script>
+  <script src="/assets/js/main.js"></script>
+  <script>hljs.highlightAll();</script>
+</body>
+</html>

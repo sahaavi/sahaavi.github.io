@@ -1,0 +1,44 @@
+[
+  {
+    "id": "0",
+    "title": "Blog",
+    "content": "Blog | Your Name - ML Engineer Your Name - ML Engineer Home Blog Projects Books About Blog Thoughts, insights, and tutorials on machine learning and artificial intelligence. Introduction to Machine Learning May 01, 2023 machine learning data science tutorial Introduction to Machine Learning Read more Your Name - ML Engineer Machine Learning Engineer portfolio, blog, and book publishing platform. Connect GitHub LinkedIn Email &copy; 2025 Your Name - ML Engineer. All rights reserved.",
+    "url": "/blog/index/",
+    "type": "post"
+  },
+  {
+    "id": "1",
+    "title": "Introduction to Machine Learning",
+    "content": "Introduction to Machine Learning | Your Name - ML Engineer Your Name - ML Engineer Home Blog Projects Books About Introduction to Machine Learning May 01, 2023 by Your Name Introduction to Machine Learning Machine learning is a subset of artificial intelligence that focuses on developing systems that can learn from and make decisions based on data. Instead of explicitly programming rules, machine learning algorithms build a model based on sample data to make predictions or decisions. Key Concepts in Machine Learning Supervised Learning Supervised learning involves training a model on labeled data. The algorithm learns the mapping function from input variables to the output variable, allowing it to predict outputs for new inputs. Example of a simple linear regression in Python: ```python import numpy as np from sklearn.linear_model import LinearRegression Sample data X = np.array([[1, 1], [1, 2], [2, 2], [2, 3]]) y = np.array([1, 2, 2, 3]) Train the model model = LinearRegression().fit(X, y) Make predictions predictions = model.predict(np.array([[3, 5]])) print(predictions) # Output: [4.5] Tags: machine learning data science tutorial Your Name - ML Engineer Machine Learning Engineer portfolio, blog, and book publishing platform. Connect GitHub LinkedIn Email &copy; 2025 Your Name - ML Engineer. All rights reserved.",
+    "url": "/blog/introduction-to-machine-learning/index/",
+    "type": "post"
+  },
+  {
+    "id": "2",
+    "title": "index",
+    "content": "",
+    "url": "/projects/index/",
+    "type": "project"
+  },
+  {
+    "id": "3",
+    "title": "Text Classification with BERT",
+    "content": "Text Classification with BERT | Your Name - ML Engineer Your Name - ML Engineer Home Blog Projects Books About Text Classification with BERT View on GitHub Text Classification with BERT This project demonstrates how to use BERT (Bidirectional Encoder Representations from Transformers) for text classification tasks. The implementation uses PyTorch and Hugging Face’s Transformers library. Problem Statement Given a set of text documents, classify them into predefined categories. This is a common task in natural language processing with applications in: Sentiment analysis Topic categorization Spam detection Intent recognition Solution Overview The solution leverages BERT, a powerful pre-trained language model developed by Google. The key benefits of using BERT include: Contextual word embeddings Bidirectional context understanding Transfer learning capabilities State-of-the-art performance Implementation The model architecture consists of the pre-trained BERT model with a classification head on top. We fine-tune the entire model on our specific dataset. Model Architecture ```python import torch from torch import nn from transformers import BertModel class BertClassifier(nn.Module): def init (self, num_classes=6): super(BertClassifier, self). init () self.bert = BertModel.from_pretrained(‘bert-base-uncased’) self.dropout = nn.Dropout(0.1) self.fc = nn.Linear(768, num_classes) def forward(self, input_ids, attention_mask): outputs = self.bert(input_ids=input_ids, attention_mask=attention_mask) pooled_output = outputs.pooler_output x = self.dropout(pooled_output) logits = self.fc(x) return logits Technologies: NLP BERT PyTorch Text Classification Featured Code Your Name - ML Engineer Machine Learning Engineer portfolio, blog, and book publishing platform. Connect GitHub LinkedIn Email &copy; 2025 Your Name - ML Engineer. All rights reserved.",
+    "url": "/projects/text-classification/index/",
+    "type": "project"
+  },
+  {
+    "id": "4",
+    "title": "The Deep Learning Guide",
+    "content": "The Deep Learning Guide | Your Name - ML Engineer Your Name - ML Engineer Home Blog Projects Books About The Deep Learning Guide From Fundamentals to Advanced Applications by Your Name Read Online The Deep Learning Guide This comprehensive guide takes you through the exciting world of deep learning, from fundamental concepts to advanced applications. About This Book Whether you’re a beginner or an experienced practitioner, this book provides valuable insights and practical knowledge to help you master deep learning. The content is structured to build your understanding progressively, with each chapter building on the previous one. What You’ll Learn The mathematical foundations of neural networks How to design, train, and optimize different neural network architectures Techniques for handling various data types: images, text, time series Advanced concepts like attention mechanisms and transformers Best practices for model deployment and production Preview Chapter: Neural Network Fundamentals Neural networks are composed of layers of interconnected nodes, mimicking the structure of the human brain. The basic building block is the artificial neuron, which takes several inputs, applies weights, adds a bias term, and passes the result through an activation function. The mathematical representation of a neuron is: \\[y = \\sigma(w_1x_1 + w_2x_2 + ... + w_nx_n + b) = \\sigma(\\mathbf{w}^T\\mathbf{x} + b)\\] Where: $\\mathbf{x}$ is the input vector $\\mathbf{w}$ contains the weights $b$ is the bias term $\\sigma$ is the activation function Common activation functions include: Sigmoid: $\\sigma(z) = \\frac{1}{1 + e^{-z}}$ ReLU: $\\sigma(z) = \\max(0, z)$ Tanh: $\\sigma(z) = \\tanh(z)$ Download the sample PDF to read the complete first chapter! Table of Contents Introduction to Deep Learning Neural Network Fundamentals Convolutional Neural Networks Recurrent Neural Networks Transformer Architectures Generative Models Reinforcement Learning Practical Applications Your Name - ML Engineer Machine Learning Engineer portfolio, blog, and book publishing platform. Connect GitHub LinkedIn Email &copy; 2025 Your Name - ML Engineer. All rights reserved.",
+    "url": "/books/deep-learning-guide/index/",
+    "type": "book"
+  },
+  {
+    "id": "5",
+    "title": "Books",
+    "content": "Books | Your Name - ML Engineer Your Name - ML Engineer Home Blog Projects Books About Books My published books on machine learning, data science, and AI. The Deep Learning Guide From Fundamentals to Advanced Applications by Your Name The Deep Learning Guide Read more Books Books My published books on machine learning, data science, and AI. Read more Your Name - ML Engineer Machine Learning Engineer portfolio, blog, and book publishing platform. Connect GitHub LinkedIn Email &copy; 2025 Your Name - ML Engineer. All rights reserved.",
+    "url": "/books/index/index/",
+    "type": "book"
+  }
+]

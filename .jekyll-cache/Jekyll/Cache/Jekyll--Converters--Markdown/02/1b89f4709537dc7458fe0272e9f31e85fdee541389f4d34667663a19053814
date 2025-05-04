@@ -1,0 +1,43 @@
+I"�<h1 id="the-deep-learning-guide">The Deep Learning Guide</h1>
+
+<p>This comprehensive guide takes you through the exciting world of deep learning, from fundamental concepts to advanced applications.</p>
+
+<h2 id="about-this-book">About This Book</h2>
+
+<p>Whether you’re a beginner or an experienced practitioner, this book provides valuable insights and practical knowledge to help you master deep learning. The content is structured to build your understanding progressively, with each chapter building on the previous one.</p>
+
+<h2 id="what-youll-learn">What You’ll Learn</h2>
+
+<ul>
+  <li>The mathematical foundations of neural networks</li>
+  <li>How to design, train, and optimize different neural network architectures</li>
+  <li>Techniques for handling various data types: images, text, time series</li>
+  <li>Advanced concepts like attention mechanisms and transformers</li>
+  <li>Best practices for model deployment and production</li>
+</ul>
+
+<h2 id="preview-chapter-neural-network-fundamentals">Preview Chapter: Neural Network Fundamentals</h2>
+
+<p>Neural networks are composed of layers of interconnected nodes, mimicking the structure of the human brain. The basic building block is the artificial neuron, which takes several inputs, applies weights, adds a bias term, and passes the result through an activation function.</p>
+
+<p>The mathematical representation of a neuron is:</p>
+
+\[y = \sigma(w_1x_1 + w_2x_2 + ... + w_nx_n + b) = \sigma(\mathbf{w}^T\mathbf{x} + b)\]
+
+<p>Where:</p>
+<ul>
+  <li>$\mathbf{x}$ is the input vector</li>
+  <li>$\mathbf{w}$ contains the weights</li>
+  <li>$b$ is the bias term</li>
+  <li>$\sigma$ is the activation function</li>
+</ul>
+
+<p>Common activation functions include:</p>
+<ul>
+  <li>Sigmoid: $\sigma(z) = \frac{1}{1 + e^{-z}}$</li>
+  <li>ReLU: $\sigma(z) = \max(0, z)$</li>
+  <li>Tanh: $\sigma(z) = \tanh(z)$</li>
+</ul>
+
+<p>Download the sample PDF to read the complete first chapter!</p>
+:ET

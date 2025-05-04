@@ -1,0 +1,27 @@
+I"·<h1 id="introduction-to-machine-learning">Introduction to Machine Learning</h1>
+
+<p>Machine learning is a subset of artificial intelligence that focuses on developing systems that can learn from and make decisions based on data. Instead of explicitly programming rules, machine learning algorithms build a model based on sample data to make predictions or decisions.</p>
+
+<h2 id="key-concepts-in-machine-learning">Key Concepts in Machine Learning</h2>
+
+<h3 id="supervised-learning">Supervised Learning</h3>
+
+<p>Supervised learning involves training a model on labeled data. The algorithm learns the mapping function from input variables to the output variable, allowing it to predict outputs for new inputs.</p>
+
+<p>Example of a simple linear regression in Python:</p>
+
+<p>```python
+import numpy as np
+from sklearn.linear_model import LinearRegression</p>
+
+<h1 id="sample-data">Sample data</h1>
+<p>X = np.array([[1, 1], [1, 2], [2, 2], [2, 3]])
+y = np.array([1, 2, 2, 3])</p>
+
+<h1 id="train-the-model">Train the model</h1>
+<p>model = LinearRegression().fit(X, y)</p>
+
+<h1 id="make-predictions">Make predictions</h1>
+<p>predictions = model.predict(np.array([[3, 5]]))
+print(predictions)  # Output: [4.5]</p>
+:ET
