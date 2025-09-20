@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+
+{% block title %}{{ SITENAME }} - {{ page.title|striptags }}{% endblock %}
+
+{% block main_class %}{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div class="container mx-auto px-6 py-8">
+        <div class="flex gap-8">
+            <!-- Sidebar Table of Contents -->
+            <aside class="w-80 sidebar-nav">
+                <div class="book-page rounded-lg p-6 border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                        <span class="text-2xl mr-2">📖</span>
+                        Table of Contents
+                    </h3>
+                    
+                    <nav class="space-y-1" id="book-toc">
+                        <!-- Chapter 1 -->
+                        <div class="toc-item rounded-md p-3 cursor-pointer" data-chapter="introduction">
+                            <div class="flex items-center justify-between">
+                                <span class="font-medium text-gray-900">1. Introduction</span>
+                                <span class="text-xs text-gray-500">5 min</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">Getting started with ML systems</p>
+                        </div>
+                        
+                        <!-- Chapter 2 -->
+                        <div class="toc-item rounded-md p-3 cursor-pointer" data-chapter="development">
+                            <div class="flex items-center justify-between">
+                                <span class="font-medium text-gray-900">2. Model Development</span>
+                                <span class="text-xs text-gray-500">15 min</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">Building and training models</p>
+                        </div>
+                        
+                        <!-- Chapter 3 -->
+                        <div class="toc-item rounded-md p-3 cursor-pointer" data-chapter="deployment">
+                            <div class="flex items-center justify-between">
+                                <span class="font-medium text-gray-900">3. Deployment</span>
+                                <span class="text-xs text-gray-500">20 min</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">Taking models to production</p>
+                        </div>
+                        
+                        <!-- Chapter 4 -->
+                        <div class="toc-item rounded-md p-3 cursor-pointer" data-chapter="monitoring">
+                            <div class="flex items-center justify-between">
+                                <span class="font-medium text-gray-900">4. Monitoring</span>
+                                <span class="text-xs text-gray-500">12 min</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">Keeping systems healthy</p>
+                        </div>
+                        
+                        <!-- Chapter 5 -->
+                        <div class="toc-item rounded-md p-3 cursor-pointer" data-chapter="scaling">
+                            <div class="flex items-center justify-between">
+                                <span class="font-medium text-gray-900">5. Scaling</span>
+                                <span class="text-xs text-gray-500">18 min</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">Handling growth and complexity</p>
+                        </div>
+                    </nav>
+                    
+                    <!-- Progress Bar -->
+                    <div class="mt-6 pt-4 border-t border-gray-200">
+                        <div class="flex items-center justify-between text-sm text-gray-600 mb-2">
+                            <span>Progress</span>
+                            <span id="progress-text">0%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-blue-600 h-2 rounded-full transition-all duration-300" style="width: 0%" id="progress-bar"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Download Links -->
+                    <div class="mt-6 pt-4 border-t border-gray-200">
+                        <h4 class="font-medium text-gray-900 mb-3">Download</h4>
+                        <div class="space-y-2">
+                            <a href="/pdfs/sample-chapter.pdf" class="flex items-center text-sm text-blue-600 hover:text-blue-800 transition-colors">
+                                <span class="mr-2">📄</span>
+                                Sample Chapter (PDF)
+                            </a>
+                            <a href="https://github.com/yourusername/ml-book" class="flex items-center text-sm text-blue-600 hover:text-blue-800 transition-colors">
+                                <span class="mr-2">💻</span>
+                                GitHub Repository
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            
+            <!-- Main Book Content -->
+            <main class="flex-1">
+                <article class="book-page rounded-lg border border-gray-200 overflow-hidden">
+                    <!-- Book Header -->
+                    <header class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-20 bg-white bg-opacity-20 rounded-lg flex items-center justify-center">
+                                <span class="text-2xl">📚</span>
+                            </div>
+                            <div>
+                                <h1 class="text-3xl font-bold">{{ page.title }}</h1>
+                                <p class="text-blue-100 mt-2">A comprehensive guide to building scalable ML systems</p>
+                                <div class="flex items-center space-x-4 mt-4 text-sm">
+                                    <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full">In Progress</span>
+                                    <span>Expected: 2024</span>
+                                    <span>5 Chapters</span>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+                    
+                    <!-- Book Content -->
+                    <div class="p-8 prose prose-lg max-w-none" id="book-content">
+                        {{ page.content }}
+                    </div>
+                    
+                    <!-- Navigation Footer -->
+                    <footer class="bg-gray-50 border-t border-gray-200 p-6">
+                        <div class="flex justify-between items-center">
+                            <button id="prev-chapter" class="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors disabled:opacity-50" disabled>
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                                <span>Previous Chapter</span>
+                            </button>
+                            
+                            <div class="text-center">
+                                <p class="text-sm text-gray-600">Chapter <span id="current-chapter">1</span> of 5</p>
+                            </div>
+                            
+                            <button id="next-chapter" class="flex items-center space-x-2 text-blue-600 hover:text-blue-800 transition-colors">
+                                <span>Next Chapter</span>
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </footer>
+                </article>
+            </main>
+        </div>
+    </div>
+</div>
+
+<script>
+// Book navigation functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const tocItems = document.querySelectorAll('.toc-item');
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    const currentChapterSpan = document.getElementById('current-chapter');
+    const prevButton = document.getElementById('prev-chapter');
+    const nextButton = document.getElementById('next-chapter');
+    
+    let currentChapter = 1;
+    const totalChapters = 5;
+    
+    // Update progress
+    function updateProgress() {
+        const progress = (currentChapter / totalChapters) * 100;
+        progressBar.style.width = progress + '%';
+        progressText.textContent = Math.round(progress) + '%';
+        currentChapterSpan.textContent = currentChapter;
+        
+        // Update navigation buttons
+        prevButton.disabled = currentChapter === 1;
+        nextButton.disabled = currentChapter === totalChapters;
+        
+        // Update active TOC item
+        tocItems.forEach((item, index) => {
+            item.classList.toggle('active', index + 1 === currentChapter);
+        });
+    }
+    
+    // TOC item clicks
+    tocItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            currentChapter = index + 1;
+            updateProgress();
+        });
+    });
+    
+    // Navigation buttons
+    prevButton.addEventListener('click', () => {
+        if (currentChapter > 1) {
+            currentChapter--;
+            updateProgress();
+        }
+    });
+    
+    nextButton.addEventListener('click', () => {
+        if (currentChapter < totalChapters) {
+            currentChapter++;
+            updateProgress();
+        }
+    });
+    
+    // Initialize
+    updateProgress();
+});
+</script>
+{% endblock %}
