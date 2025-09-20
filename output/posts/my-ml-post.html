@@ -87,14 +87,22 @@
     
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8">
-  <article>
+<article>
     <header>
-      <h2>
-        <a href="/posts/my-ml-post.html" rel="bookmark"
-           title="Permalink to My First ML Blog Post">My First ML Blog Post</a></h2>
-      
+        <h1>My First ML Blog Post</h1>
+        <div class="article-meta">
+            <time datetime="2025-09-19T00:00:00+00:00">Fri 19 September 2025</time>
+            <span class="category">in <a href="/category/machine-learning.html">Machine Learning</a></span>
+            <div class="tags">
+                <span class="tag"><a href="/tag/neural-networks.html">neural-networks</a></span>
+                <span class="tag"><a href="/tag/python.html">python</a></span>
+                <span class="tag"><a href="/tag/deep-learning.html">deep-learning</a></span>
+            </div>
+        </div>
     </header>
-    <h1>My First ML Blog Post</h1>
+    
+    <div class="article-content">
+        <h1>My First ML Blog Post</h1>
 <p>Welcome to my ML engineering journey! This post explores the fundamentals of neural networks and their practical applications.</p>
 <h2>Neural Network Basics</h2>
 <p>Neural networks are the backbone of modern AI systems. Here's a simple implementation:</p>
@@ -114,7 +122,7 @@
 
 <h2>Mathematical Foundation</h2>
 <p>The loss function for regression tasks:</p>
-<p>$$L(y, \hat{y}) = \frac{1}{2n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2$$</p>
+<div class="math">$$L(y, \hat{y}) = \frac{1}{2n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2$$</div>
 <p>This forms the basis for backpropagation and gradient descent optimization.</p>
 <h2>Next Steps</h2>
 <p>In upcoming posts, I'll dive deeper into:
@@ -122,24 +130,74 @@
 - Production ML systems
 - MLOps best practices</p>
 <p>Stay tuned for more ML insights!</p>
+<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
+    var align = "center",
+        indent = "0em",
+        linebreak = "false";
+
+    if (true) {
+        align = (screen.width < 768) ? "left" : align;
+        indent = (screen.width < 768) ? "0em" : indent;
+        linebreak = (screen.width < 768) ? 'true' : linebreak;
+    }
+
+    var mathjaxscript = document.createElement('script');
+    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
+    mathjaxscript.type = 'text/javascript';
+    mathjaxscript.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-AMS-MML_HTMLorMML';
+
+    var configscript = document.createElement('script');
+    configscript.type = 'text/x-mathjax-config';
+    configscript[(window.opera ? "innerHTML" : "text")] =
+        "MathJax.Hub.Config({" +
+        "    config: ['MMLorHTML.js']," +
+        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js','color.js','mhchem.js'], equationNumbers: { autoNumber: 'none' } }," +
+        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
+        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
+        "    displayAlign: '"+ align +"'," +
+        "    displayIndent: '"+ indent +"'," +
+        "    showMathMenu: true," +
+        "    messageStyle: 'normal'," +
+        "    tex2jax: { " +
+        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
+        "        displayMath: [ ['$$','$$'] ]," +
+        "        processEscapes: true," +
+        "        preview: 'TeX'," +
+        "    }, " +
+        "    'HTML-CSS': { " +
+        "        availableFonts: ['STIX', 'TeX']," +
+        "        preferredFont: 'STIX'," +
+        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }," +
+        "        linebreaks: { automatic: "+ linebreak +", width: '90% container' }," +
+        "    }, " +
+        "}); " +
+        "if ('default' !== 'default') {" +
+            "MathJax.Hub.Register.StartupHook('HTML-CSS Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax['HTML-CSS'].FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+            "MathJax.Hub.Register.StartupHook('SVG Jax Ready',function () {" +
+                "var VARIANT = MathJax.OutputJax.SVG.FONTDATA.VARIANT;" +
+                "VARIANT['normal'].fonts.unshift('MathJax_default');" +
+                "VARIANT['bold'].fonts.unshift('MathJax_default-bold');" +
+                "VARIANT['italic'].fonts.unshift('MathJax_default-italic');" +
+                "VARIANT['-tex-mathit'].fonts.unshift('MathJax_default-italic');" +
+            "});" +
+        "}";
+
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(configscript);
+    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
+}
+</script>
+    </div>
+    
     <footer>
-      <p>Published: <time datetime="2025-09-19T00:00:00+00:00">
-        Fri 19 September 2025
-      </time></p>
-        <address>
-          By             <a href="/author/your-name.html">Your Name</a>
-        </address>
-        <p>
-          Category: <a href="/category/machine-learning.html">Machine Learning</a>
-        </p>
-        <p>
-          Tags:
-            <a href="/tag/neural-networks.html">neural-networks</a>
-            <a href="/tag/python.html">python</a>
-            <a href="/tag/deep-learning.html">deep-learning</a>
-        </p>
+        <p>By <a href="/author/your-name.html">Your Name</a></p>
     </footer>
-  </article>
+</article>
     </main>
     
     <!-- Footer -->

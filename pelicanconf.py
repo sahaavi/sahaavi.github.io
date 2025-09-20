@@ -35,17 +35,13 @@ DEFAULT_PAGINATION = 10
 # Theme and plugins
 THEME = 'themes/ml-theme'
 PLUGIN_PATHS = ['plugins']
-PLUGINS = ['search', 'render_math']
+PLUGINS = ['plugins.search_index', 'pelican.plugins.render_math']
 
 # Math rendering
 MATH_JAX = {
     'tex_extensions': ['color.js','mhchem.js'],
     'responsive': True,
 }
-
-# Search configuration
-SEARCH_MODE = "output"
-SEARCH_HTML_SELECTOR = "main"
 
 # Static paths
 STATIC_PATHS = ['images', 'pdfs', 'extra']
