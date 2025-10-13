@@ -4,6 +4,7 @@
 AUTHOR = 'Avishek Saha'
 SITENAME = "Avishek's Lab"
 SITEURL = 'https://sahaavi.github.io/'
+SITESTORAGE = "https://github.com/sahaavi/sahaavi.github.io/tree/master/content"
 SITESUBTITLE = 'ML Engineer & Data Scientist'
 
 PATH = 'content'
