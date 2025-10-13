@@ -1,92 +1,61 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!-- Hero Section -->
-<section class="bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-700 text-white rounded-2xl p-12 mb-12 shadow-2xl">
-    <div class="max-w-4xl mx-auto text-center">
-        <h1 class="text-5xl font-bold mb-6">Welcome to ML Engineer's Lab</h1>
-        <p class="text-xl text-blue-100 mb-8">From Models to Production - Your guide to building scalable machine learning systems</p>
-        <div class="flex justify-center space-x-4">
-            <a href="{{ SITEURL }}/books.html" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
-                📚 Read the Book
-            </a>
-            <a href="{{ SITEURL }}/projects.html" class="border border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors">
-                🚀 View Projects
-            </a>
-        </div>
+<!-- Profile Section -->
+<section class="max-w-3xl mx-auto py-12">
+  <div class="flex flex-col md:flex-row gap-12 items-start mb-16">
+    <!-- Profile Photo -->
+    <div class="flex-shrink-0">
+      <img 
+        src="{{ SITEURL }}/images/profile.jpg" 
+        alt="Avishek Saha" 
+        class="w-48 h-48 rounded-full object-cover shadow-lg"
+      />
     </div>
-</section>
-
-<!-- Featured Content -->
-<section class="mb-12">
-    <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center">Latest Articles</h2>
     
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {% for article in articles_page.object_list %}
-        <article class="bg-white rounded-lg shadow-lg border border-gray-200 overflow-hidden hover:shadow-xl transition-shadow">
-            <div class="p-6">
-                <header class="mb-4">
-                    <h3 class="text-xl font-bold text-gray-900 mb-2">
-                        <a href="{{ SITEURL }}/{{ article.url }}" class="hover:text-blue-600 transition-colors">
-                            {{ article.title }}
-                        </a>
-                    </h3>
-                    <div class="flex items-center text-sm text-gray-600 space-x-4">
-                        <time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
-                        {% if article.category %}
-                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">
-                            {{ article.category }}
-                        </span>
-                        {% endif %}
-                    </div>
-                </header>
-                
-                <div class="text-gray-700 mb-4">
-                    {{ article.summary }}
-                </div>
-                
-                {% if article.tags %}
-                <div class="flex flex-wrap gap-2 mb-4">
-                    {% for tag in article.tags %}
-                    <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
-                        {{ tag }}
-                    </span>
-                    {% endfor %}
-                </div>
-                {% endif %}
-                
-                <footer>
-                    <a href="{{ SITEURL }}/{{ article.url }}" class="text-blue-600 hover:text-blue-800 font-medium text-sm">
-                        Read more →
-                    </a>
-                </footer>
-            </div>
-        </article>
-        {% endfor %}
-    </div>
-</section>
+    <!-- About Content -->
+    <div class="flex-1">
+      
+      <div class="prose prose-lg text-gray-700 space-y-4">
+        <p>
+          I like building things that make sense of messy data — systems that see
+          patterns where humans see noise.
+        </p>
 
-{% if articles_page.has_other_pages() %}
-<div class="flex justify-center">
-    <nav class="flex items-center space-x-4">
-        {% if articles_page.has_previous() %}
-        <a href="{{ SITEURL }}/{{ articles_page.previous_page.url }}" 
-           class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-            ← Previous
-        </a>
-        {% endif %}
-        
-        <span class="text-gray-600">
-            Page {{ articles_page.number }} of {{ articles_page.paginator.num_pages }}
-        </span>
-        
-        {% if articles_page.has_next() %}
-        <a href="{{ SITEURL }}/{{ articles_page.next_page.url }}" 
-           class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-            Next →
-        </a>
-        {% endif %}
-    </nav>
-</div>
-{% endif %}
+        <p>
+          I grew up in Dhaka, studied Computer Science, and spent my early
+          twenties building small software projects for local clients. Somewhere
+          between debugging code and training my first machine learning model, I
+          realized what I really enjoyed wasn't just writing code — it was
+          teaching machines how to learn from data.
+        </p>
+
+        <p>
+          To get better at that, I moved to Canada to study Data Science at the
+          University of British Columbia. During my time there, I worked with
+          Statistics Canada on clustering models for urban analytics and fell in
+          love with the rigor of applied research.
+        </p>
+
+        <p>
+          These days, I work as a Data Analyst at BC Rapid Transit Company, where
+          I build dashboards, automate data pipelines, and design systems that
+          help engineers make faster, data-informed decisions.
+        </p>
+
+        <p>
+          In parallel, I'm developing a SaaS-based personal finance app for
+          Canadian users — part experiment, part obsession — where I'm exploring
+          how machine learning can make financial decisions more transparent and
+          personalized.
+        </p>
+
+        <p>
+          I'm still learning, still building, and still figuring out how to
+          connect data, design, and human intuition into something useful.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock content %}

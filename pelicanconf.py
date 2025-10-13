@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 
-AUTHOR = 'Your Name'
-SITENAME = 'ML Engineer\'s Lab'
-SITEURL = ''
-SITESUBTITLE = 'From Models to Production'
+AUTHOR = 'Avishek Saha'
+SITENAME = "Avishek's Lab"
+SITEURL = 'https://sahaavi.github.io/'
+SITESUBTITLE = 'ML Engineer & Data Scientist'
 
 PATH = 'content'
-TIMEZONE = 'UTC'
+TIMEZONE = 'America/Vancouver'
 DEFAULT_LANG = 'en'
 
 # Feed generation
@@ -19,15 +19,15 @@ AUTHOR_FEED_RSS = None
 
 # Blogroll
 LINKS = (
-    ('GitHub', 'https://github.com/yourusername'),
-    ('LinkedIn', 'https://linkedin.com/in/yourprofile'),
-    ('Papers', '#papers'),
+    ('GitHub', 'https://github.com/sahaavi'),
+    ('LinkedIn', 'https://linkedin.com/in/sahaavi'),
+    # ('Papers', '#papers'),
 )
 
 # Social widget
 SOCIAL = (
-    ('Twitter', 'https://twitter.com/yourusername'),
-    ('GitHub', 'https://github.com/yourusername'),
+    ('Twitter', 'https://x.com/avi_in_tech'),
+    ('GitHub', 'https://github.com/sahaavi'),
 )
 
 DEFAULT_PAGINATION = 10

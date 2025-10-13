@@ -3,143 +3,432 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ML Engineer's Lab - Books & Publications</title>
+    <title>Avishek's Lab - Books & Publications</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#2563eb',
+                        'secondary': '#64748b',
+                        'accent': '#f59e0b',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'mono': ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <!-- MathJax for LaTeX -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
-    <!-- Lunr.js for search -->
-    <script src="https://unpkg.com/lunr/lunr.js"></script>
-    
     <!-- Prism.js for syntax highlighting -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-tomorrow.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-core.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/autoloader/prism-autoloader.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
     
     <style>
-        .neural-bg {
+        .gradient-bg {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
-        .search-suggestions {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 0.5rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            max-height: 300px;
+        
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .book-page {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            background: #fefefe;
+        }
+        
+        .sidebar-nav {
+            position: sticky;
+            top: 2rem;
+            max-height: calc(100vh - 4rem);
             overflow-y: auto;
         }
-        .search-suggestion {
-            padding: 0.75rem;
-            border-bottom: 1px solid #f1f5f9;
-            cursor: pointer;
+        
+        .toc-item {
+            transition: all 0.2s ease;
         }
-        .search-suggestion:hover {
-            background: #f8fafc;
+        
+        .toc-item:hover {
+            background: rgba(37, 99, 235, 0.1);
+            border-left: 3px solid #2563eb;
         }
-        .tag {
-            background: #3b82f6;
-            color: white;
-            padding: 0.25rem 0.5rem;
-            border-radius: 0.25rem;
-            font-size: 0.75rem;
-            margin-right: 0.5rem;
+        
+        .toc-item.active {
+            background: rgba(37, 99, 235, 0.15);
+            border-left: 3px solid #2563eb;
+            font-weight: 600;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
+<body class="bg-gray-50 text-gray-900 font-sans">
     <!-- Header -->
-    <header class="neural-bg text-white shadow-lg">
-        <div class="container mx-auto px-4 py-6">
+    <header class="gradient-bg text-white shadow-xl sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
-                <div>
-                    <h1 class="text-3xl font-bold">ML Engineer's Lab</h1>
-                    <p class="text-blue-100">From Models to Production</p>
+                <div class="flex items-center space-x-4">
+                    <div class="w-10 h-10 bg-white bg-opacity-20 rounded-lg flex items-center justify-center">
+                        <span class="text-xl font-bold">ML</span>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold">Avishek's Lab</h1>
+                        <p class="text-blue-100 text-sm">ML Engineer & Data Scientist</p>
+                    </div>
                 </div>
                 
                 <!-- Search Bar -->
-                <div class="relative w-96">
+                <div class="relative w-80">
                     <input 
                         type="text" 
                         id="search-input" 
                         placeholder="Search posts, books, code..." 
-                        class="w-full px-4 py-2 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                        class="w-full px-4 py-2 rounded-lg text-gray-900 bg-white bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:bg-white transition-all"
                     >
-                    <ul id="search-suggestions" class="absolute top-full left-0 right-0 mt-1 search-suggestions hidden"></ul>
+                    <div class="absolute right-3 top-2.5">
+                        <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </div>
                 </div>
             </div>
             
             <!-- Navigation -->
-            <nav class="mt-4">
-                <ul class="flex space-x-6">
-                    <li><a href="/" class="hover:text-blue-200">Home</a></li>
-                    <li><a href="/category/machine-learning.html" class="hover:text-blue-200">ML Posts</a></li>
-                    <li><a href="/books.html" class="hover:text-blue-200">Books</a></li>
-                    <li><a href="/projects.html" class="hover:text-blue-200">Projects</a></li>
-                    <li><a href="/papers.html" class="hover:text-blue-200">Papers</a></li>
+            <nav class="mt-6">
+                <ul class="flex space-x-8">
+                    <li><a href="https://sahaavi.github.io/" class="hover:text-blue-200 transition-colors flex items-center space-x-2">
+                        <span>🏠</span><span>Home</span>
+                    </a></li>
+                    <li><a href="https://sahaavi.github.io/category/machine-learning.html" class="hover:text-blue-200 transition-colors flex items-center space-x-2">
+                        <span>🤖</span><span>Blog</span>
+                    </a></li>
+                    <!-- <li><a href="https://sahaavi.github.io/books.html" class="hover:text-blue-200 transition-colors flex items-center space-x-2">
+                        <span>📚</span><span>Books</span>
+                    </a></li> -->
+                    <li><a href="https://sahaavi.github.io/projects.html" class="hover:text-blue-200 transition-colors flex items-center space-x-2">
+                        <span>🚀</span><span>Projects</span>
+                    </a></li>
+                    <!-- <li><a href="https://sahaavi.github.io/papers.html" class="hover:text-blue-200 transition-colors flex items-center space-x-2">
+                        <span>📄</span><span>Papers</span>
+                    </a></li> -->
                 </ul>
             </nav>
         </div>
     </header>
     
     <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
-<article>
-    <header>
-        <h1>Books & Publications</h1>
-    </header>
-    
-    <div class="page-content">
-        <h1>Books &amp; Publications</h1>
-<h2>My ML Engineering Book</h2>
-<h3>"Production Machine Learning Systems"</h3>
-<p><em>A comprehensive guide to building scalable ML systems</em></p>
-<p><strong>Status:</strong> In Progress | <strong>Expected:</strong> 2024</p>
-<p>This book covers the complete ML lifecycle from research to production, including:</p>
+    <main class="">
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+    <div class="container mx-auto px-6 py-8">
+        <div class="flex gap-8">
+            <!-- Sidebar Table of Contents -->
+            <aside class="w-80 sidebar-nav">
+                <div class="book-page rounded-lg p-6 border border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-900 mb-4 flex items-center">
+                        <span class="text-2xl mr-2">📖</span>
+                        Table of Contents
+                    </h3>
+                    
+                    <nav class="space-y-1" id="book-toc">
+                        <!-- Chapter 1 -->
+                        <div class="toc-item rounded-md p-3 cursor-pointer" data-chapter="introduction">
+                            <div class="flex items-center justify-between">
+                                <span class="font-medium text-gray-900">1. Introduction</span>
+                                <span class="text-xs text-gray-500">5 min</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">Getting started with ML systems</p>
+                        </div>
+                        
+                        <!-- Chapter 2 -->
+                        <div class="toc-item rounded-md p-3 cursor-pointer" data-chapter="development">
+                            <div class="flex items-center justify-between">
+                                <span class="font-medium text-gray-900">2. Model Development</span>
+                                <span class="text-xs text-gray-500">15 min</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">Building and training models</p>
+                        </div>
+                        
+                        <!-- Chapter 3 -->
+                        <div class="toc-item rounded-md p-3 cursor-pointer" data-chapter="deployment">
+                            <div class="flex items-center justify-between">
+                                <span class="font-medium text-gray-900">3. Deployment</span>
+                                <span class="text-xs text-gray-500">20 min</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">Taking models to production</p>
+                        </div>
+                        
+                        <!-- Chapter 4 -->
+                        <div class="toc-item rounded-md p-3 cursor-pointer" data-chapter="monitoring">
+                            <div class="flex items-center justify-between">
+                                <span class="font-medium text-gray-900">4. Monitoring</span>
+                                <span class="text-xs text-gray-500">12 min</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">Keeping systems healthy</p>
+                        </div>
+                        
+                        <!-- Chapter 5 -->
+                        <div class="toc-item rounded-md p-3 cursor-pointer" data-chapter="scaling">
+                            <div class="flex items-center justify-between">
+                                <span class="font-medium text-gray-900">5. Scaling</span>
+                                <span class="text-xs text-gray-500">18 min</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1">Handling growth and complexity</p>
+                        </div>
+                    </nav>
+                    
+                    <!-- Progress Bar -->
+                    <div class="mt-6 pt-4 border-t border-gray-200">
+                        <div class="flex items-center justify-between text-sm text-gray-600 mb-2">
+                            <span>Progress</span>
+                            <span id="progress-text">0%</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2">
+                            <div class="bg-blue-600 h-2 rounded-full transition-all duration-300" style="width: 0%" id="progress-bar"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Download Links -->
+                    <div class="mt-6 pt-4 border-t border-gray-200">
+                        <h4 class="font-medium text-gray-900 mb-3">Download</h4>
+                        <div class="space-y-2">
+                            <a href="/pdfs/sample-chapter.pdf" class="flex items-center text-sm text-blue-600 hover:text-blue-800 transition-colors">
+                                <span class="mr-2">📄</span>
+                                Sample Chapter (PDF)
+                            </a>
+                            <a href="https://github.com/yourusername/ml-book" class="flex items-center text-sm text-blue-600 hover:text-blue-800 transition-colors">
+                                <span class="mr-2">💻</span>
+                                GitHub Repository
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            
+            <!-- Main Book Content -->
+            <main class="flex-1">
+                <article class="book-page rounded-lg border border-gray-200 overflow-hidden">
+                    <!-- Book Header -->
+                    <header class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-20 bg-white bg-opacity-20 rounded-lg flex items-center justify-center">
+                                <span class="text-2xl">📚</span>
+                            </div>
+                            <div>
+                                <h1 class="text-3xl font-bold">Books & Publications</h1>
+                                <p class="text-blue-100 mt-2">A comprehensive guide to building scalable ML systems</p>
+                                <div class="flex items-center space-x-4 mt-4 text-sm">
+                                    <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full">In Progress</span>
+                                    <span>Expected: 2024</span>
+                                    <span>5 Chapters</span>
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+                    
+                    <!-- Book Content -->
+                    <div class="p-8 prose prose-lg max-w-none" id="book-content">
+                        <h1>Production Machine Learning Systems</h1>
+<h2>Overview</h2>
+<p>This book covers the complete ML lifecycle from research to production, including model development, MLOps strategies, deployment patterns, monitoring systems, and scaling considerations.</p>
+<h2>What You'll Learn</h2>
+<h3>Chapter 1: Introduction to ML Systems</h3>
 <ul>
-<li>Model development and experimentation</li>
-<li>MLOps and deployment strategies  </li>
-<li>Monitoring and maintenance</li>
-<li>Scaling considerations</li>
+<li>Understanding the ML lifecycle</li>
+<li>Key challenges in production ML</li>
+<li>Architecture patterns and best practices</li>
+<li>Setting up your development environment</li>
 </ul>
-<p><a href="/pdfs/sample-chapter.pdf">Read Sample Chapter (PDF)</a> | <a href="https://github.com/yourusername/ml-book">GitHub Repository</a></p>
+<h3>Chapter 2: Model Development &amp; Experimentation</h3>
+<ul>
+<li>Experiment tracking and versioning</li>
+<li>Feature engineering at scale</li>
+<li>Model selection and validation</li>
+<li>Hyperparameter optimization strategies</li>
+</ul>
+<h3>Chapter 3: MLOps &amp; Deployment Strategies</h3>
+<ul>
+<li>CI/CD for machine learning</li>
+<li>Containerization with Docker</li>
+<li>Kubernetes for ML workloads</li>
+<li>Blue-green and canary deployments</li>
+</ul>
+<h3>Chapter 4: Monitoring &amp; Maintenance</h3>
+<ul>
+<li>Model performance monitoring</li>
+<li>Data drift detection</li>
+<li>Alert systems and dashboards</li>
+<li>Automated retraining pipelines</li>
+</ul>
+<h3>Chapter 5: Scaling Considerations</h3>
+<ul>
+<li>Distributed training strategies</li>
+<li>Model serving at scale</li>
+<li>Cost optimization techniques</li>
+<li>Multi-region deployments</li>
+</ul>
+<h2>Code Examples</h2>
+<p>Throughout the book, you'll find practical code examples in Python, covering:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Example: Setting up experiment tracking</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">mlflow</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">mlflow.sklearn</span>
+
+<span class="k">with</span> <span class="n">mlflow</span><span class="o">.</span><span class="n">start_run</span><span class="p">():</span>
+    <span class="c1"># Train your model</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">train_model</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+    <span class="c1"># Log metrics and model</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">log_metric</span><span class="p">(</span><span class="s2">&quot;accuracy&quot;</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">predictions</span><span class="p">))</span>
+    <span class="n">mlflow</span><span class="o">.</span><span class="n">sklearn</span><span class="o">.</span><span class="n">log_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="s2">&quot;model&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h2>Prerequisites</h2>
+<ul>
+<li>Python programming experience</li>
+<li>Basic understanding of machine learning concepts</li>
+<li>Familiarity with cloud platforms (AWS, GCP, or Azure)</li>
+<li>Docker and Kubernetes basics (helpful but not required)</li>
+</ul>
+<h2>Resources</h2>
+<ul>
+<li><strong>GitHub Repository</strong>: Complete code examples and exercises</li>
+<li><strong>Sample Datasets</strong>: Real-world datasets for hands-on practice</li>
+<li><strong>Video Tutorials</strong>: Supplementary video content</li>
+<li><strong>Community Forum</strong>: Connect with other readers</li>
+</ul>
 <hr>
-<h2>Recommended Reading</h2>
-<h3>Essential ML Books</h3>
-<ul>
-<li><strong>"Designing Machine Learning Systems"</strong> by Chip Huyen</li>
-<li><strong>"Machine Learning Design Patterns"</strong> by Lakshmanan, Robinson &amp; Munn</li>
-<li><strong>"Building Machine Learning Powered Applications"</strong> by Emmanuel Ameisen</li>
-</ul>
-<h3>Papers I'm Reading</h3>
-<ul>
-<li><a href="https://arxiv.org/abs/1706.03762">Attention Is All You Need</a></li>
-<li><a href="https://arxiv.org/abs/1810.04805">BERT: Pre-training of Deep Bidirectional Transformers</a></li>
-<li><a href="https://arxiv.org/abs/2005.14165">GPT-3: Language Models are Few-Shot Learners</a></li>
-</ul>
-<hr>
-<h2>Book Reviews &amp; Notes</h2>
-<p>I regularly review ML books and papers. Check out my <a href="https://notion.so/yourworkspace/reading-notes">Notion reading notes</a> for detailed summaries and insights.</p>
+<p><em>This book is currently in progress. Expected completion: 2024</em></p>
+                    </div>
+                    
+                    <!-- Navigation Footer -->
+                    <footer class="bg-gray-50 border-t border-gray-200 p-6">
+                        <div class="flex justify-between items-center">
+                            <button id="prev-chapter" class="flex items-center space-x-2 text-gray-600 hover:text-gray-900 transition-colors disabled:opacity-50" disabled>
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                                <span>Previous Chapter</span>
+                            </button>
+                            
+                            <div class="text-center">
+                                <p class="text-sm text-gray-600">Chapter <span id="current-chapter">1</span> of 5</p>
+                            </div>
+                            
+                            <button id="next-chapter" class="flex items-center space-x-2 text-blue-600 hover:text-blue-800 transition-colors">
+                                <span>Next Chapter</span>
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </footer>
+                </article>
+            </main>
+        </div>
     </div>
-</article>
+</div>
+
+<script>
+// Book navigation functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const tocItems = document.querySelectorAll('.toc-item');
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    const currentChapterSpan = document.getElementById('current-chapter');
+    const prevButton = document.getElementById('prev-chapter');
+    const nextButton = document.getElementById('next-chapter');
+    
+    let currentChapter = 1;
+    const totalChapters = 5;
+    
+    // Update progress
+    function updateProgress() {
+        const progress = (currentChapter / totalChapters) * 100;
+        progressBar.style.width = progress + '%';
+        progressText.textContent = Math.round(progress) + '%';
+        currentChapterSpan.textContent = currentChapter;
+        
+        // Update navigation buttons
+        prevButton.disabled = currentChapter === 1;
+        nextButton.disabled = currentChapter === totalChapters;
+        
+        // Update active TOC item
+        tocItems.forEach((item, index) => {
+            item.classList.toggle('active', index + 1 === currentChapter);
+        });
+    }
+    
+    // TOC item clicks
+    tocItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+            currentChapter = index + 1;
+            updateProgress();
+        });
+    });
+    
+    // Navigation buttons
+    prevButton.addEventListener('click', () => {
+        if (currentChapter > 1) {
+            currentChapter--;
+            updateProgress();
+        }
+    });
+    
+    nextButton.addEventListener('click', () => {
+        if (currentChapter < totalChapters) {
+            currentChapter++;
+            updateProgress();
+        }
+    });
+    
+    // Initialize
+    updateProgress();
+});
+</script>
     </main>
     
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8 mt-12">
-        <div class="container mx-auto px-4 text-center">
-            <p>&copy; Your Name. Built with Pelican & Python.</p>
-            <div class="mt-4 space-x-4">
-                <a href="https://twitter.com/yourusername" class="text-blue-400 hover:text-blue-300">Twitter</a>
-                <a href="https://github.com/yourusername" class="text-blue-400 hover:text-blue-300">GitHub</a>
+    <footer class="bg-gray-900 text-white py-12 mt-16">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Avishek's Lab</h3>
+                    <p class="text-gray-400">Building the future of machine learning, one model at a time.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="https://sahaavi.github.io/" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="https://sahaavi.github.io/books.html" class="hover:text-white transition-colors">Books</a></li>
+                        <li><a href="https://sahaavi.github.io/projects.html" class="hover:text-white transition-colors">Projects</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://x.com/avi_in_tech" class="text-gray-400 hover:text-white transition-colors">Twitter</a>
+                        <a href="https://github.com/sahaavi" class="text-gray-400 hover:text-white transition-colors">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; Avishek Saha.</p>
             </div>
         </div>
     </footer>
-    
-    <!-- Search Script -->
-    <script src="/theme/js/search.js"></script>
     
     <!-- MathJax Configuration -->
     <script>
