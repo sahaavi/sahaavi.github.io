@@ -1,0 +1,31 @@
+{{- define "main" }}
+
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{- if .Description }}
+  <p class="page-description">{{ .Description }}</p>
+  {{- end }}
+</header>
+
+<ul class="post-list">
+  {{- range .Pages }}
+  <li class="post-list-item">
+    <span class="post-list-date">{{ .Date.Format "02 Jan 2006" }}</span>
+    <span class="post-list-sep">&middot;</span>
+    {{- if site.Params.ShowReadingTime }}
+    <span class="post-list-meta">{{ math.Round (div (countwords .Content) 200.0) }} min</span>
+    <span class="post-list-sep">&middot;</span>
+    {{- end }}
+    <a href="{{ .Permalink }}" class="post-list-title">{{ .Title }}</a>
+    {{- if .Params.tags }}
+    <span class="post-list-tags">
+      {{- range .Params.tags }}
+      <span class="post-list-tag">{{ . }}</span>
+      {{- end }}
+    </span>
+    {{- end }}
+  </li>
+  {{- end }}
+</ul>
+
+{{- end }}{{/* end main */}}

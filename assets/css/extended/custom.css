@@ -1,0 +1,334 @@
+/* Custom Theme — Inter font, clean layout */
+
+/* ── Base Typography ── */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: -0.01em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* ── Color Tweaks ── */
+:root {
+  --primary: #1a73e8;
+  --accent: #0d47a1;
+}
+
+.dark {
+  --primary: #4fc3f7;
+  --accent: #81d4fa;
+  --theme: #0f1724;
+  --entry: #162033;
+  --border: #1e3054;
+}
+
+/* ── Hero Section (Homepage) ── */
+.hero-section {
+  margin: 2rem 0 3rem;
+}
+
+.hero-greeting {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.hero-bio {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--secondary);
+  margin-bottom: 0.75rem;
+  max-width: 600px;
+}
+
+.hero-bio a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.hero-bio a:hover {
+  text-decoration: underline;
+}
+
+/* ── Home Sections ── */
+.home-section {
+  margin-bottom: 2.5rem;
+}
+
+.home-section-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── Post List (shared between homepage and /posts/) ── */
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.post-list-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding: 0.5rem 0;
+  line-height: 1.6;
+}
+
+.post-list-date {
+  font-size: 0.85rem;
+  color: var(--secondary);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  min-width: 6.5rem;
+}
+
+.post-list-sep {
+  color: var(--secondary);
+  opacity: 0.5;
+}
+
+.post-list-meta {
+  font-size: 0.85rem;
+  color: var(--secondary);
+  white-space: nowrap;
+}
+
+.post-list-title {
+  font-weight: 500;
+  color: var(--content);
+  text-decoration: none;
+}
+
+.post-list-title:hover {
+  color: var(--primary);
+}
+
+.post-list-tags {
+  display: inline-flex;
+  gap: 0.3rem;
+  margin-left: 0.2rem;
+}
+
+.post-list-tag {
+  font-size: 0.72rem;
+  color: var(--secondary);
+  background: var(--code-bg);
+  padding: 0.1rem 0.45rem;
+  border-radius: 3px;
+}
+
+/* ── Featured Projects List (Homepage) ── */
+.project-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.project-list-item {
+  padding: 0.5rem 0;
+  line-height: 1.6;
+}
+
+.project-list-name {
+  font-weight: 500;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.project-list-name:hover {
+  text-decoration: underline;
+}
+
+.project-list-sep {
+  color: var(--secondary);
+  opacity: 0.5;
+  margin: 0 0.3rem;
+}
+
+.project-list-desc {
+  font-size: 0.92rem;
+  color: var(--secondary);
+}
+
+.view-all-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.view-all-link:hover {
+  text-decoration: underline;
+}
+
+/* ── Projects Grid (Projects page) ── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.project-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--entry);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.dark .project-card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.project-cover {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.project-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-cover img {
+  transform: scale(1.05);
+}
+
+.project-content {
+  padding: 1.2rem;
+}
+
+.project-content h2 {
+  font-size: 1.2rem;
+  margin: 0 0 0.5rem;
+  line-height: 1.4;
+}
+
+.project-content h2 a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.project-description {
+  font-size: 0.9rem;
+  color: var(--secondary);
+  margin-bottom: 0.8rem;
+  line-height: 1.5;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.project-tag {
+  background: var(--tertiary);
+  color: var(--secondary);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  text-decoration: none;
+}
+
+.project-meta-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.project-meta-tags .project-tag {
+  text-decoration: none;
+}
+
+.project-links {
+  margin-top: 0.5rem;
+}
+
+.project-link {
+  color: var(--primary);
+  font-size: 0.9rem;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.project-link:hover {
+  text-decoration: underline;
+}
+
+/* ── Page Header ── */
+.page-header {
+  margin-bottom: 1.5rem;
+}
+
+.page-description {
+  color: var(--secondary);
+  font-size: 1rem;
+  margin-top: 0.3rem;
+}
+
+/* ── Code Blocks ── */
+.post-content pre {
+  border-radius: 8px;
+}
+
+/* ── Footer Social Icons ── */
+.social-icons {
+  margin-top: 0.5rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .hero-greeting {
+    font-size: 1.7rem;
+  }
+
+  .hero-bio {
+    font-size: 0.95rem;
+  }
+
+  .post-list-item {
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.6rem 0;
+  }
+
+  .post-list-date {
+    min-width: auto;
+  }
+
+  .post-list-sep {
+    display: none;
+  }
+
+  .post-list-tags {
+    margin-left: 0;
+    margin-top: 0.2rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,45 @@
+{{- define "main" }}
+
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{- if .Description }}
+  <p class="page-description">{{ .Description }}</p>
+  {{- end }}
+</header>
+
+<div class="projects-grid">
+  {{- range .Pages }}
+  <article class="project-card">
+    {{- if .Params.cover.image }}
+    <a href="{{ .Permalink }}">
+      <div class="project-cover">
+        {{- $image := .Params.cover.image }}
+        {{- if .Params.cover.relative }}
+        <img src="{{ .Permalink }}{{ $image }}" alt="{{ .Params.cover.alt | default .Title }}" loading="lazy" />
+        {{- else }}
+        <img src="{{ $image }}" alt="{{ .Params.cover.alt | default .Title }}" loading="lazy" />
+        {{- end }}
+      </div>
+    </a>
+    {{- end }}
+    <div class="project-content">
+      <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+      {{- if .Description }}
+      <p class="project-description">{{ .Description }}</p>
+      {{- end }}
+      {{- if .Params.tags }}
+      <div class="project-tags">
+        {{- range .Params.tags }}
+        <span class="project-tag">{{ . }}</span>
+        {{- end }}
+      </div>
+      {{- end }}
+      <div class="project-links">
+        <a href="{{ .Permalink }}" class="project-link">Read More &rarr;</a>
+      </div>
+    </div>
+  </article>
+  {{- end }}
+</div>
+
+{{- end }}{{/* end main */}}
