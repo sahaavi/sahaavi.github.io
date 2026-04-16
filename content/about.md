@@ -2,26 +2,26 @@
 title: "About"
 layout: "single"
 url: "/about/"
-summary: "About Avishek Saha - AI Engineer"
+summary: "About Avishek Saha - applied AI systems builder"
 ShowReadingTime: false
 ShowBreadCrumbs: false
 ShowShareButtons: false
 ---
 
-I'm an AI Engineer focused on building intelligent systems that solve real-world problems — AI agents, multimodal applications, and production ML pipelines.
+I build applied AI systems for operational workflows, with a focus on multimodal agents, tool-using LLM applications, and Python backend systems.
 
-I hold a **Master of Data Science from UBC** and a **BSc in Computer Science from AIUB** (CGPA: 3.91/4.0). I've co-founded a software company, built AI-powered products, and published research in machine learning.
+My strongest recent project is **Maintenance-Eye**: a real-time maintenance copilot that combines live audio, camera input, tool use, and human-in-the-loop confirmation for field technicians. I built it with **Google ADK, Gemini Live API, FastAPI, Firestore, Cloud Run, Docker, and Terraform**.
 
-Currently, I'm a Data Analyst at **BC Rapid Transit Company** where I build data pipelines and prototype AI solutions for maintenance operations. On the side, I'm building **Pennymize**, an AI-powered personal finance SaaS.
+I hold a **Master of Data Science from UBC** and currently work at **BC Rapid Transit Company**, where I build data pipelines and prototype maintenance-focused AI workflows. My portfolio is centered on shipped, operationally grounded systems rather than AI demos without deployment or workflow context.
 
 ---
 
 ## What I Build
 
-- **AI Agents & LLM Applications** — RAG pipelines, multimodal agents, prompt engineering, tool-use systems
-- **Machine Learning Systems** — Classification, clustering, forecasting, model deployment, MLOps
-- **Cloud Infrastructure** — GCP (Vertex AI, BigQuery, Cloud Functions), AWS (S3, Lambda), Docker, CI/CD
-- **Data Engineering** — ETL pipelines, feature engineering, data modeling, PostgreSQL
+- **Applied AI Systems** — multimodal agents, tool-using LLM applications, structured retrieval, and human-in-the-loop workflows
+- **Python Backends & APIs** — FastAPI, Django, data pipelines, SQL, and production-minded service design
+- **Cloud Delivery** — GCP, AWS deployment workflows, Docker, Terraform, CI/CD, and production-minded application delivery
+- **Operational Data Workflows** — maintenance analytics, ETL pipelines, transformation layers, and data modeling for decision support
 
 ---
 
@@ -30,30 +30,21 @@ Currently, I'm a Data Analyst at **BC Rapid Transit Company** where I build data
 ### BC Rapid Transit Company — Data Analyst
 *Dec 2024 - Present | Burnaby, BC*
 
-- Building Python data pipelines integrating SQL and maintenance databases for asset reliability analysis
-- Developing dashboards and KPI tracking for maintenance planning across operations teams
-- Implementing Microsoft Fabric for analytics engineering workflows
-- Prototyping a multimodal AI agent for maintenance diagnostics using computer vision and natural language
-
-### Pennymize — Founder & AI Developer
-*Aug 2024 - Present | Vancouver, BC*
-
-- Building a personal finance SaaS for Canadian users with AI-driven expense categorization and investment optimization
-- Developing backend architecture (PostgreSQL, Django, React) with ML models for budget forecasting
-- Designing RAG-based recommendation system for contextual financial advice
+- Build Python- and SQL-based data pipelines for maintenance and asset data, supporting reliability analysis and operational reporting
+- Develop analytics workflows for maintenance planning, KPI tracking, and engineering decision support, including modeling and transformation work in Microsoft Fabric
+- Prototype AI-assisted maintenance workflows that combine camera input, natural-language interaction, and structured asset context for technician diagnostics
 
 ### Statistics Canada — Data Scientist (Capstone)
 *Apr 2023 - Jul 2023 | Ottawa, ON*
 
-- Implemented clustering algorithms (K-means, hierarchical) to segment the Proximity Measure Database for urban planning
-- Conducted data profiling, exploration, and outlier detection in R
-- Delivered actionable insights through cluster profiling for urban development policy recommendations
+- Implemented clustering algorithms (K-means, hierarchical) to segment the Proximity Measure Database for urban planning applications
+- Conducted data profiling, exploration, and outlier detection in R, then translated the findings into cluster profiles for policy use
 
 ### Softology IT — Co-Founder
 *Sep 2021 - Aug 2022 | Dhaka, Bangladesh*
 
-- Co-founded a software development firm delivering Android apps, e-commerce solutions, and UI/UX design
-- Managed end-to-end project delivery across multiple concurrent client engagements
+- Co-founded a software development firm delivering Android apps, e-commerce solutions, and UI/UX design for local clients
+- Managed end-to-end project delivery across multiple concurrent client engagements under tight client and timeline constraints
 
 ---
 
@@ -78,15 +69,10 @@ Currently, I'm a Data Analyst at **BC Rapid Transit Company** where I build data
 
 ## Skills
 
-**Languages:** Python, R, SQL, Bash
+**Applied AI & LLM Systems:** AI Agents, LLM Integration, Tool Use, RAG, Prompt Engineering, Evaluation, Multimodal AI, NLP, Computer Vision
 
-**AI & ML:** LLM Integration, AI Agents, RAG, Prompt Engineering, Classification, Clustering, Forecasting, NLP, Computer Vision, Model Deployment
+**Backend & Data:** Python, FastAPI, SQL, PostgreSQL, Django, Pandas, NumPy, ETL Pipelines, Data Modeling, Microsoft Fabric
 
-**Frameworks:** TensorFlow, PyTorch, Scikit-learn, Pandas, NumPy, Django
+**Cloud & Delivery:** GCP (Cloud Run, Firestore, Gemini), AWS deployment workflows, Docker, Terraform, GitHub Actions, CI/CD, REST APIs
 
-**Cloud & DevOps:** GCP (Vertex AI, Cloud Functions, BigQuery), AWS (S3, Lambda), Docker, GitHub Actions
-
-**Data:** PostgreSQL, Microsoft Fabric, Apache Beam, ETL Pipelines, Feature Engineering
-
-**Visualization:** Power BI, Tableau, Plotly, Dash
-
+**Analytics & ML:** Scikit-learn, TensorFlow, R, Power BI, Tableau, Classification, Clustering

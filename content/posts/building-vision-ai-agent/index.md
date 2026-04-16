@@ -1,7 +1,7 @@
 ---
 title: "Building a Vision Maintenance AI Agent with Google Gemini"
 date: 2026-03-07
-draft: false
+draft: true
 description: "How I built a multimodal AI agent for equipment diagnostics using Google Gemini's vision and language capabilities."
 tags: ["computer-vision", "google-gemini", "ai-agents", "python"]
 categories: ["AI Engineering"]
@@ -16,6 +16,8 @@ math: false
 
 As part of the **Google Gemini AI Challenge 2026**, I built a multimodal AI agent that helps maintenance technicians diagnose equipment issues. Here's the story of what I built, why, and the key technical decisions along the way.
 
+> Editor note: this draft is intentionally unpublished while the portfolio focuses on the stronger `Maintenance-Eye` project case study. If this post is republished later, it should stay aligned with the deployed system and avoid unsupported claims.
+
 ## The Problem
 
 Maintenance technicians at transit companies spend significant time diagnosing equipment failures. They flip through thick manuals, search through past incident reports, and call senior colleagues for advice. All while the equipment sits broken and operations are impacted.
@@ -24,11 +26,11 @@ What if a technician could simply point their phone camera at a piece of equipme
 
 ## The Architecture
 
-The system combines three AI capabilities:
+The deployed system combines three core capabilities:
 
-1. **Visual analysis** — Google Gemini processes camera images to identify equipment type, visible damage, and anomalies
-2. **Natural language understanding** — The technician describes symptoms conversationally, and the agent extracts key diagnostic signals
-3. **Knowledge retrieval** — Past maintenance records and equipment manuals are indexed for retrieval, providing historical context for each diagnosis
+1. **Visual and audio input** — camera frames and microphone audio stream from a mobile web client
+2. **Real-time multimodal reasoning** — Gemini Live handles live voice and visual context together
+3. **Tool use with confirmation gating** — the backend orchestrates retrieval and action tools, while keeping critical actions behind explicit user confirmation
 
 ## Why Google Gemini?
 
@@ -40,17 +42,17 @@ Gemini's native multimodal capabilities make it ideal for this use case:
 
 ## Key Technical Decisions
 
-### 1. Prompt Engineering Over Fine-Tuning
+### 1. Real-Time Interaction Over Form-Based Input
 
-For this application, careful prompt engineering with few-shot examples outperformed the fine-tuning approach. The maintenance domain has clear patterns that can be captured in well-structured prompts.
+The core product decision was to build around camera, voice, and interruption-friendly interaction instead of a text-heavy workflow. For maintenance use cases, reducing context switching mattered more than making the system look like a traditional chatbot.
 
-### 2. Vector Database for Maintenance History
+### 2. Tool-Oriented Backend Design
 
-Past incidents are embedded and stored in a vector database. When a new issue comes in, the system retrieves the most similar past incidents to provide context — essentially giving the AI "memory" of how similar problems were solved before.
+Instead of relying on a single prompt, the backend uses structured tools for asset lookup, maintenance context, work-order support, and safety guidance. That makes the system easier to reason about and keeps action-taking paths explicit.
 
-### 3. Structured Output for Work Orders
+### 3. Human-in-the-Loop Confirmation
 
-The agent generates structured JSON work orders that can integrate directly with existing maintenance management systems, eliminating manual data entry.
+For safety-sensitive actions, the system proposes the action but requires explicit confirmation before execution. That keeps the AI useful without pretending it should act autonomously in operational workflows.
 
 ## What I Learned
 
@@ -62,7 +64,7 @@ Building this agent reinforced several key insights:
 
 ## What's Next
 
-I'm continuing to refine the agent's diagnostic accuracy and working on integrating it with real maintenance management systems. The goal is to demonstrate that AI can meaningfully reduce diagnostic time in industrial maintenance settings.
+The next steps are deeper enterprise-system integration, stronger offline behavior for low-connectivity settings, and more specialized workflows for different maintenance contexts.
 
 ---
 

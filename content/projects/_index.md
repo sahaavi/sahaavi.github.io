@@ -1,4 +1,4 @@
 ---
 title: "Projects"
-description: "AI and ML projects I've built — from multimodal agents to production ML systems"
+description: "Selected applied AI and ML systems I've built, centered on shipped and operationally grounded work"
 ---
