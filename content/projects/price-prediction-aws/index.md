@@ -2,44 +2,44 @@
 title: "Price Prediction Platform on AWS"
 date: 2024-01-01
 draft: false
-description: "End-to-end ML-based house price prediction system deployed on AWS with Lambda, EC2, and S3, featuring CI/CD via GitHub Actions."
+description: "An earlier end-to-end ML deployment project for house price prediction using Flask, AWS ECR/EC2, Docker, and GitHub Actions."
 tags: ["aws", "mlops", "deployment", "python", "github-actions"]
 cover:
   image: ""
   alt: "Price Prediction on AWS"
   relative: true
-weight: 4
+weight: 2
 showToc: true
 ---
 
 ## Overview
 
-A fully deployed machine learning system for house price prediction, built on AWS infrastructure with automated CI/CD pipelines.
+An earlier machine learning deployment project for house price prediction, built as a Flask application with an AWS deployment workflow and automated GitHub Actions pipeline.
 
 ## Architecture
 
-- **AWS Lambda** — Serverless inference endpoint
-- **AWS EC2** — Model training and data processing
-- **AWS S3** — Model artifact and dataset storage
-- **GitHub Actions** — Automated CI/CD pipeline for continuous deployment
+- **Flask application** — serves the prediction interface and inference flow
+- **AWS ECR** — stores the Docker image built by the CI pipeline
+- **AWS EC2** — hosts the deployed container and self-hosted GitHub runner
+- **GitHub Actions** — runs CI and pushes the deployment image
 
 ## Features
 
-- **Dynamic feature testing** — Users can adjust input features and get instant predictions
-- **Automated deployment** — Push to main triggers model retraining and redeployment
-- **Scalable inference** — Lambda-based endpoints scale automatically with demand
+- **Interactive prediction UI** — users can change housing features and see updated predictions
+- **Containerized deployment workflow** — Docker image built and pushed through GitHub Actions
+- **End-to-end project structure** — data ingestion, transformation, training, and prediction pipelines in one codebase
 
 ## Tech Stack
 
-- Python (Scikit-learn, Pandas)
-- AWS (Lambda, EC2, S3)
+- Python (Scikit-learn, Pandas, Flask)
+- AWS (ECR, EC2)
 - GitHub Actions
 - Docker
 
 ## Links
 
-- [Project Details](https://avisaha.netlify.app/categories/project/)
+- [GitHub Repository](https://github.com/sahaavi/Housing-Price-Prediction)
 
 ## Key Takeaway
 
-This project demonstrates end-to-end MLOps — from model development to cloud deployment with CI/CD. It covers the full lifecycle that production ML systems require.
+This project was an early end-to-end ML deployment exercise focused on packaging a prediction model as a containerized web app with an AWS deployment workflow and CI/CD automation.

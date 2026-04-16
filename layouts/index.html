@@ -3,21 +3,23 @@
 <div class="hero-section">
   <h1 class="hero-greeting">Hi, I'm Avishek Saha.</h1>
   <p class="hero-bio">
-    I'm an AI Engineer building intelligent systems — AI agents,
-    multimodal applications, and production ML pipelines. I hold
-    a Master of Data Science from UBC and a CS degree from AIUB.
+    I build applied AI systems for operational workflows, especially
+    multimodal agents, tool-using LLM applications, and Python backends.
   </p>
   <p class="hero-bio">
-    Currently at BC Rapid Transit Company, building AI solutions
-    for maintenance operations. Also building
-    <a href="/projects/pennymize/">Pennymize</a>, an AI-powered personal finance app.
+    My strongest recent project is <a href="/projects/vision-maintenance-agent/">Maintenance-Eye</a>,
+    a real-time maintenance copilot built with Google ADK, Gemini Live API,
+    FastAPI, Firestore, and Cloud Run. At BC Rapid Transit Company, I work on
+    data pipelines and prototype maintenance-focused AI workflows.
   </p>
 </div>
 
+{{- $posts := where site.RegularPages "Section" "posts" }}
+{{- if gt (len $posts) 0 }}
 <div class="home-section">
   <h2 class="home-section-title">Recent Writing</h2>
   <ul class="post-list">
-    {{- range (where site.RegularPages "Section" "posts") | first 5 }}
+    {{- range $posts | first 5 }}
     <li class="post-list-item">
       <span class="post-list-date">{{ .Date.Format "02 Jan 2006" }}</span>
       <span class="post-list-sep">&middot;</span>
@@ -40,11 +42,13 @@
   <a href="/posts/" class="view-all-link">All posts &rarr;</a>
   {{- end }}
 </div>
+{{- end }}
 
+{{- $projects := sort (where site.RegularPages "Section" "projects") "Weight" "asc" }}
 <div class="home-section">
   <h2 class="home-section-title">Featured Projects</h2>
   <ul class="project-list">
-    {{- range (where site.RegularPages "Section" "projects") | first 3 }}
+    {{- range $projects | first 3 }}
     <li class="project-list-item">
       <a href="{{ .Permalink }}" class="project-list-name">{{ .Title }}</a>
       {{- if .Description }}
