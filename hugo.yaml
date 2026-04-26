@@ -18,8 +18,8 @@ minify:
 params:
   env: production
   title: "Avishek Saha"
-  description: "AI Engineer | Building intelligent systems with ML, LLMs, and cloud infrastructure"
-  keywords: ["AI Engineer", "Machine Learning", "Deep Learning", "Portfolio", "Blog"]
+  description: "Applied AI Engineer building multimodal agents and LLM systems for operational workflows"
+  keywords: ["Applied AI Engineer", "Multimodal Agents", "LLM Systems", "Operational Workflows", "FastAPI", "RAG"]
   author: "Avishek Saha"
   images: ["/images/og-image.png"]
   DateFormat: "Jan 2, 2006"
@@ -64,26 +64,22 @@ params:
 
 menu:
   main:
-    - identifier: posts
-      name: Blog
-      url: /posts/
-      weight: 10
     - identifier: projects
       name: Projects
       url: /projects/
-      weight: 20
+      weight: 10
     - identifier: books
       name: Books
       url: /books/
-      weight: 30
+      weight: 20
     - identifier: about
       name: About
       url: /about/
-      weight: 40
+      weight: 30
     - identifier: search
       name: Search
       url: /search/
-      weight: 50
+      weight: 40
 
 outputs:
   home:

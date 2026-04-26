@@ -8,7 +8,7 @@
 </header>
 
 <div class="projects-grid">
-  {{- range .Pages }}
+  {{- range sort .Pages "Weight" "asc" }}
   <article class="project-card">
     {{- if .Params.cover.image }}
     <a href="{{ .Permalink }}">

@@ -2,44 +2,40 @@
 title: "Autism Spectrum Disorder Prediction"
 date: 2021-08-01
 draft: false
-description: "Classification models using SVM and deep learning (CNN) for ASD detection with 94% accuracy. Published in IJITCS."
-tags: ["deep-learning", "classification", "cnn", "research", "python"]
+description: "Published applied machine-learning research exploring SVM and CNN approaches for ASD screening classification."
+tags: ["machine-learning", "classification", "cnn", "research", "python"]
 cover:
   image: ""
   alt: "ASD Prediction Research"
   relative: true
-weight: 3
+weight: 4
 showToc: true
 ---
 
 ## Overview
 
-Designed classification models for **Autism Spectrum Disorder (ASD)** detection using Support Vector Machines and Convolutional Neural Networks, achieving **94% accuracy**. This research was published in the International Journal of Information Technology and Computer Science (IJITCS).
+This is an earlier applied machine-learning research project on **Autism Spectrum Disorder (ASD)** screening classification using Support Vector Machines and Convolutional Neural Networks. The work was published in the International Journal of Information Technology and Computer Science (IJITCS).
+
+I keep this page as published research evidence, not as the center of my current applied-AI engineering story. My current engineering proof is Maintenance-Eye, and GovtIntel is the in-progress RAG system.
 
 ## Publication
 
-**Published in:** [International Journal of Information Technology and Computer Science (IJITCS), Vol.14, No.4](https://www.mecs-press.org/ijitcs/ijitcs-v14-n4/v14n4-2.html)
+**Published in:** [International Journal of Information Technology and Computer Science (IJITCS), Vol. 14, No. 4](https://www.mecs-press.org/ijitcs/ijitcs-v14-n4/v14n4-2.html)
 
 ## Approach
 
-1. **Data preprocessing** — Cleaned and prepared ASD screening datasets with feature engineering
-2. **Model development** — Implemented SVM and CNN architectures for binary classification
-3. **Evaluation** — Compared model performance using accuracy, precision, recall, and F1-score
-4. **Visualization** — Created Tableau dashboards to help healthcare professionals understand demographic patterns
+1. **Data preparation** - prepared ASD screening data for classification experiments
+2. **Modeling** - explored SVM and CNN approaches for binary classification
+3. **Evaluation** - compared model outputs using standard classification metrics
+4. **Visualization** - used Tableau to communicate dataset patterns and results
 
 ## Tech Stack
 
-- Python (Scikit-learn, TensorFlow)
-- Support Vector Machines
-- Convolutional Neural Networks
+- Python
+- Scikit-learn
+- TensorFlow
 - Tableau
-
-## Results
-
-- **94% accuracy** on ASD detection
-- CNN outperformed traditional ML approaches on this dataset
-- Visualization dashboards provided actionable insights for healthcare professionals
 
 ## Key Takeaway
 
-This project combined rigorous ML methodology with healthcare domain application, demonstrating how deep learning can assist in early screening for developmental conditions.
+The project reflects early applied-ML research experience. I avoid using unsupported performance claims here unless the original training and evaluation evidence is available for review.

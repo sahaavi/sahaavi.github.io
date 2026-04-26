@@ -16,8 +16,8 @@ showToc: true
 
 Pennymize is an unfinished product concept, not a launched application.
 
-I explored the product space because personal finance software for Canadian users has clear gaps, but I intentionally deprioritized this work while focusing on shipping stronger applied-AI portfolio projects.
+I explored the product space because personal finance software for Canadian users has clear gaps, but I intentionally deprioritized this work while focusing on stronger applied-AI portfolio projects.
 
 ## Why Keep This Page
 
-I'm keeping this page as a record of a product direction I explored, not as proof of a shipped system.
+I'm keeping this draft page as a record of an earlier direction I explored, not as proof of a shipped system and not as active startup work.

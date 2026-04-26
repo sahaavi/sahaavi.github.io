@@ -1,64 +1,69 @@
 ---
 title: "Maintenance-Eye"
+slug: "maintenance-eye"
 date: 2026-03-01
 draft: false
-description: "A deployed multimodal maintenance copilot for field technicians, built with Google ADK, Gemini Live API, FastAPI, Firestore, and Cloud Run."
-tags: ["computer-vision", "google-gemini", "ai-agents", "python"]
+description: "A real-time multimodal maintenance copilot that sees, listens, speaks, and acts through tool-using workflows."
+tags: ["google-adk", "gemini-live-api", "multimodal", "fastapi", "applied-ai"]
 cover:
   image: ""
-  alt: "Vision Maintenance AI Agent"
+  alt: "Maintenance-Eye"
   relative: true
 weight: 1
 showToc: true
 ---
 
+## Overview
+
+**Maintenance-Eye** is a real-time AI copilot for physical infrastructure maintenance. Built for the **Google Gemini Live Agent Challenge 2026**, it lets a technician point a phone camera at equipment, speak naturally, and get grounded assistance without switching to a separate typing workflow.
+
+## Links
+
+- [GitHub Repository](https://github.com/sahaavi/Maintenance-Eye)
+- [Live Demo](https://maintenance-eye-swrz6daraq-uc.a.run.app)
+
+## Status
+
+Maintenance-Eye is the shipped flagship in my public portfolio. The live deployment, repository, architecture diagram, infrastructure files, API routes, and tests are the evidence anchors for the case study.
+
+## Demo Fallback
+
+The Cloud Run app is the primary demo. If the Firestore-backed readiness path is unavailable when someone visits, the repository documents local setup with a JSON-backed EAM fallback so the core inspection, chat, and tool-flow architecture can still be reviewed.
+
+## Problem
+
+Transit and infrastructure maintenance work is physical, noisy, and time-sensitive. Technicians often need to inspect equipment, recall safety procedures, search maintenance history, and create work orders while their hands are already occupied by tools and safety gear. Traditional enterprise systems force a stop-and-type workflow that interrupts inspections and slows response time.
+
 ## What I Built
 
-**Maintenance-Eye** is a real-time multimodal maintenance copilot for field technicians. A technician can point a phone camera at equipment, speak naturally, and get back live visual analysis, voice responses, equipment lookup, maintenance context, and work-order support.
+- A **real-time multimodal frontend** that streams camera frames and microphone audio from a phone-based PWA
+- A **FastAPI backend** that manages WebSocket sessions, media flow, confirmation state, and operational APIs
+- A **Google ADK agent** powered by Gemini 2.5 Flash Live API for native audio + vision reasoning
+- A set of **tool-using maintenance workflows** covering asset lookup, knowledge retrieval, work-order actions, inspection history, and safety protocols
+- A **human-in-the-loop confirmation layer** for critical actions such as creating or updating work orders
 
-This project was built for the **Google Gemini Live Agent Challenge** and is deployed as a working web application.
+## Tech Stack
 
-## Why This Workflow Matters
+- **AI runtime:** Google ADK, Gemini 2.5 Flash Live API
+- **Backend:** Python, FastAPI, WebSockets
+- **Data:** Firestore, Cloud Storage, JSON fallback data layer for local dev
+- **Infra:** Cloud Run, Docker, Terraform, GitHub Actions
+- **Testing:** unit, integration, API contract, security, performance, and E2E coverage
 
-Maintenance work happens in noisy, high-stakes environments where technicians are moving, inspecting, and handling tools. Traditional maintenance software assumes the user can stop, type, search, and document everything manually.
+## Architecture
 
-I wanted to explore a different interface: an AI system that can see, listen, speak, and help the technician act without forcing a context switch away from the inspection itself.
+![Maintenance-Eye architecture](https://raw.githubusercontent.com/sahaavi/Maintenance-Eye/main/docs/architecture.png)
 
-## What Is Live Today
+The system uses a persistent bidirectional WebSocket to move video frames, audio, transcripts, UI cards, and tool results between the phone client and the backend. The agent does not just answer questions: it calls domain-specific tools, grounds responses in maintenance data, and requires explicit confirmation before sensitive actions.
 
-The deployed system currently supports:
+## Proof Of Engineering Depth
 
-- live camera and microphone input from a mobile web app
-- real-time multimodal reasoning with **Gemini 2.5 Flash Live**
-- voice interaction with barge-in interruption
-- tool-based lookup across assets, work orders, inspection history, safety protocols, and knowledge-base content
-- human-in-the-loop confirmation for critical actions
-- deployment on **Google Cloud Run** with **Firestore** as the backing store
+- **Real-time multimodal interaction** with audio in, audio out, and camera-driven reasoning
+- **Nine specialized tools** for maintenance operations, not a single-prompt wrapper
+- **Human-in-the-loop safety** with confirmation cards for critical actions
+- **Operational deployment path** with Docker, Cloud Run, Firestore, and Terraform
+- **Reliability focus** through a multi-layer test suite and explicit backend/service boundaries
 
-## System Architecture
+## Why It Matters
 
-The frontend is a mobile-friendly web app that streams camera frames and microphone audio over WebSocket to a **FastAPI** backend. The backend uses **Google ADK** to manage the agent loop and pass real-time media to the **Gemini Live API**. Agent tools handle structured retrieval and work-order operations, and responses stream back as audio, text, and confirmation UI cards.
-
-## Agent Tools and Safety Controls
-
-This is not a single-prompt demo. The agent uses dedicated tools for asset lookup, inspection history, knowledge retrieval, work-order support, safety protocol access, and action confirmation.
-
-For safety-sensitive actions, the system keeps a human in the loop: the agent can propose an action, but the technician must explicitly confirm it before execution.
-
-## Technical Challenges
-
-The hardest engineering problems were not model selection. They were systems problems:
-
-- handling bidirectional real-time streaming reliably
-- making voice interaction usable with interruption
-- normalizing noisy ASR output for equipment IDs and maintenance terms
-- designing tool flows that help the user act without letting the model overstep safety boundaries
-
-## Demo and Repository
-
-- **Live Demo:** [https://maintenance-eye-swrz6daraq-uc.a.run.app](https://maintenance-eye-swrz6daraq-uc.a.run.app)
-- **Repository:** [https://github.com/sahaavi/Maintenance-Eye](https://github.com/sahaavi/Maintenance-Eye)
-
-## What I'd Improve Next
-
-Next steps would be tighter EAM integration, stronger offline behavior for low-connectivity environments, and more domain-specific agent flows by maintenance discipline.
+This project is the clearest public example of how I like to build AI systems: start from a real workflow, design around operational constraints, use models as one component in a broader system, and make deployment, interfaces, and failure boundaries part of the product rather than an afterthought.

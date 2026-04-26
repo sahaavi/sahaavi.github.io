@@ -1,23 +1,108 @@
 {{- define "main" }}
 
-<div class="hero-section">
-  <h1 class="hero-greeting">Hi, I'm Avishek Saha.</h1>
+<section class="hero-section recruiter-hero">
+  <p class="hero-eyebrow">Applied AI Engineer</p>
+  <h1 class="hero-greeting">Applied AI Engineer building multimodal agents and LLM systems for operational workflows.</h1>
   <p class="hero-bio">
-    I build applied AI systems for operational workflows, especially
-    multimodal agents, tool-using LLM applications, and Python backends.
+    I build production-minded AI systems where models are one part of a working product:
+    real-time interfaces, backend tools, retrieval, confirmations, deployment, and tests.
   </p>
   <p class="hero-bio">
-    My strongest recent project is <a href="/projects/vision-maintenance-agent/">Maintenance-Eye</a>,
-    a real-time maintenance copilot built with Google ADK, Gemini Live API,
-    FastAPI, Firestore, and Cloud Run. At BC Rapid Transit Company, I work on
-    data pipelines and prototype maintenance-focused AI workflows.
+    My strongest public proof is
+    <a href="/projects/maintenance-eye/">Maintenance-Eye</a>, a deployed maintenance copilot
+    using Google ADK, Gemini Live API, FastAPI, Firestore, and Cloud Run. GovtIntel is my
+    second current project, kept clearly in progress until the RAG demo and evaluations are complete.
   </p>
-</div>
+  <div class="hero-actions" aria-label="Primary links">
+    <a class="button-link button-primary" href="/projects/maintenance-eye/">Case Study</a>
+    <a class="button-link" href="mailto:avisheksaha123@gmail.com?subject=Resume%20request">Resume</a>
+    <a class="button-link" href="mailto:avisheksaha123@gmail.com">Contact</a>
+    <a class="button-link" href="https://github.com/sahaavi" target="_blank" rel="noopener noreferrer">GitHub</a>
+  </div>
+  <dl class="proof-strip" aria-label="Profile proof points">
+    <div>
+      <dt>Flagship</dt>
+      <dd>Maintenance-Eye</dd>
+    </div>
+    <div>
+      <dt>Current Build</dt>
+      <dd>GovtIntel RAG</dd>
+    </div>
+    <div>
+      <dt>Work Context</dt>
+      <dd>BCRTC asset data</dd>
+    </div>
+  </dl>
+</section>
+
+<section class="home-section flagship-section" aria-labelledby="flagship-title">
+  <div class="section-heading">
+    <h2 id="flagship-title" class="home-section-title">Flagship Proof</h2>
+    <a href="/projects/maintenance-eye/" class="view-all-link">Open case study &rarr;</a>
+  </div>
+  <div class="flagship-layout">
+    <a class="proof-visual" href="/projects/maintenance-eye/" aria-label="Maintenance-Eye architecture case study">
+      <img
+        src="https://raw.githubusercontent.com/sahaavi/Maintenance-Eye/main/docs/architecture.png"
+        alt="Maintenance-Eye architecture showing mobile client, FastAPI backend, Gemini Live API, Google ADK, Firestore, and Cloud Run"
+        loading="lazy"
+      />
+    </a>
+    <div class="proof-copy">
+      <p class="status-label">Shipped and deployed</p>
+      <h3>Maintenance-Eye</h3>
+      <p>
+        A real-time maintenance copilot that streams camera and microphone input from a phone
+        to a FastAPI backend, orchestrates Google ADK tools, and uses Gemini Live API for
+        native multimodal interaction.
+      </p>
+      <ul class="proof-list">
+        <li>Tool workflows for asset lookup, knowledge retrieval, safety guidance, and work-order actions.</li>
+        <li>Human-in-the-loop confirmation for critical actions.</li>
+        <li>Cloud Run, Firestore, Docker, Terraform, GitHub Actions, and multi-layer tests.</li>
+      </ul>
+      <div class="inline-links">
+        <a href="https://maintenance-eye-swrz6daraq-uc.a.run.app" target="_blank" rel="noopener noreferrer">Live demo</a>
+        <a href="https://github.com/sahaavi/Maintenance-Eye" target="_blank" rel="noopener noreferrer">Repository</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="home-section" aria-labelledby="case-studies-title">
+  <div class="section-heading">
+    <h2 id="case-studies-title" class="home-section-title">Case Studies</h2>
+    <a href="/projects/" class="view-all-link">All projects &rarr;</a>
+  </div>
+  <div class="case-study-grid">
+    <article class="case-study-card">
+      <p class="status-label">Shipped flagship</p>
+      <h3><a href="/projects/maintenance-eye/">Maintenance-Eye</a></h3>
+      <p>Multimodal maintenance copilot with live audio, camera input, backend tools, deployment, and tests.</p>
+      <p class="stack-line">Google ADK, Gemini Live API, FastAPI, Firestore, Cloud Run</p>
+    </article>
+    <article class="case-study-card">
+      <p class="status-label">In progress</p>
+      <h3><a href="/projects/govtintel/">GovtIntel</a></h3>
+      <p>Federal procurement intelligence RAG system with ingestion, retrieval, API, prompts, and evaluation scaffolding.</p>
+      <p class="stack-line">Python, FastAPI, BM25, vector retrieval, pytest</p>
+    </article>
+    <article class="case-study-card">
+      <p class="status-label">Published research</p>
+      <h3><a href="/projects/asd-prediction/">ASD Prediction</a></h3>
+      <p>Applied ML research exploring SVM and CNN approaches for ASD screening classification.</p>
+      <p class="stack-line">Scikit-learn, TensorFlow, Tableau</p>
+    </article>
+  </div>
+</section>
 
 {{- $posts := where site.RegularPages "Section" "posts" }}
 {{- if gt (len $posts) 0 }}
-<div class="home-section">
-  <h2 class="home-section-title">Recent Writing</h2>
+<section class="home-section" aria-labelledby="recent-writing-title">
+  <div class="section-heading">
+    <h2 id="recent-writing-title" class="home-section-title">Recent Writing</h2>
+    <a href="/posts/" class="view-all-link">All posts &rarr;</a>
+  </div>
   <ul class="post-list">
     {{- range $posts | first 5 }}
     <li class="post-list-item">
@@ -38,27 +123,7 @@
     </li>
     {{- end }}
   </ul>
-  {{- if gt (len (where site.RegularPages "Section" "posts")) 5 }}
-  <a href="/posts/" class="view-all-link">All posts &rarr;</a>
-  {{- end }}
-</div>
+</section>
 {{- end }}
-
-{{- $projects := sort (where site.RegularPages "Section" "projects") "Weight" "asc" }}
-<div class="home-section">
-  <h2 class="home-section-title">Featured Projects</h2>
-  <ul class="project-list">
-    {{- range $projects | first 3 }}
-    <li class="project-list-item">
-      <a href="{{ .Permalink }}" class="project-list-name">{{ .Title }}</a>
-      {{- if .Description }}
-      <span class="project-list-sep">—</span>
-      <span class="project-list-desc">{{ .Description }}</span>
-      {{- end }}
-    </li>
-    {{- end }}
-  </ul>
-  <a href="/projects/" class="view-all-link">All projects &rarr;</a>
-</div>
 
 {{- end }}{{/* end main */}}
