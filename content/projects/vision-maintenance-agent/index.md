@@ -20,15 +20,15 @@ showToc: true
 ## Links
 
 - [GitHub Repository](https://github.com/sahaavi/Maintenance-Eye)
-- [Live Demo](https://maintenance-eye-swrz6daraq-uc.a.run.app)
+- [Devpost Demo Video](https://devpost.com/software/maintenance-eye)
 
 ## Status
 
-Maintenance-Eye is the shipped flagship in my public portfolio. The live deployment, repository, architecture diagram, infrastructure files, API routes, and tests are the evidence anchors for the case study.
+Maintenance-Eye is the shipped flagship in my public portfolio. The Devpost demo video, repository, architecture diagram, infrastructure files, API routes, and tests are the evidence anchors for the case study.
 
-## Demo Fallback
+## Demo And Review Path
 
-The Cloud Run app is the primary demo. If the Firestore-backed readiness path is unavailable when someone visits, the repository documents local setup with a JSON-backed EAM fallback so the core inspection, chat, and tool-flow architecture can still be reviewed.
+The Devpost page is the primary public demo because it includes the project video. For hands-on review, the repository documents local setup with a JSON-backed EAM fallback so the core inspection, chat, and tool-flow architecture can still be reviewed.
 
 ## Problem
 
