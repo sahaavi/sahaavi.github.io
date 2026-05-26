@@ -8,11 +8,13 @@ ShowBreadCrumbs: false
 ShowShareButtons: false
 ---
 
-I'm an Applied AI engineer building multimodal agents and LLM systems for operational workflows.
+Applied AI engineer with a data science and analytics background, 4+ years of Python/SQL experience, and hands-on work building LLM applications, AI agents, and agentic workflows.
+
+I build practical systems with OpenAI API, Anthropic API, Gemini API, Google ADK, RAG, tool calling, structured outputs, evals, Langfuse tracing, FastAPI, PostgreSQL, Docker, and cloud deployment patterns.
 
 I hold a **Master of Data Science from UBC** and a **BSc in Computer Science from AIUB** (CGPA: 3.91/4.0). My strongest public project is **Maintenance-Eye**, a real-time multimodal maintenance copilot built with Google ADK, Gemini Live API, FastAPI, Firestore, and Cloud Run.
 
-Currently, I'm a Data Analyst at **BC Rapid Transit Company** where I build incident, KPI, and asset-performance data workflows while exploring AI-assisted maintenance workflows for decision support and diagnostics. **GovIntel** is my public RAG system for federal procurement intelligence, built around USAspending ingestion, hybrid retrieval, SQL analytics, citation validation, FastAPI, and Streamlit.
+Currently, I'm a Data & Applied AI Analyst at **BC Rapid Transit Company** where I build incident, KPI, maintenance, and asset-performance data workflows while mapping operational workflows into AI-ready use cases for decision support and diagnostics. **GovIntel** is my public RAG system for federal procurement intelligence, built around USAspending ingestion, hybrid retrieval, SQL analytics, citation validation, FastAPI, and Streamlit.
 
 ---
 
@@ -26,13 +28,12 @@ Currently, I'm a Data Analyst at **BC Rapid Transit Company** where I build inci
 
 ## Experience
 
-### BC Rapid Transit Company — Data Analyst
+### BC Rapid Transit Company — Data & Applied AI Analyst
 *Dec 2024 - Present | Burnaby, BC*
 
-- Building Python data pipelines integrating SQL and maintenance databases for asset reliability analysis
-- Developing dashboards and KPI tracking for maintenance planning across operations teams
-- Implementing Microsoft Fabric for analytics engineering workflows
-- Prototyping multimodal maintenance workflows that combine camera input, natural-language interaction, and structured maintenance context
+- Build Python- and SQL-based pipelines that consolidate incident, KPI, maintenance, and asset-performance records for reliability analysis and operational reporting.
+- Analyze recurring incidents, service-impact drivers, KPI movement, and asset-performance trends to support maintenance prioritization, investigation, and KPI monitoring.
+- Map maintenance and asset-performance workflows into AI-ready use cases, including triage support, asset-context retrieval, natural-language querying, and human-reviewed recommendations.
 
 ### Maintenance-Eye — Applied AI Project
 *2026 | Public project*
@@ -81,12 +82,12 @@ Currently, I'm a Data Analyst at **BC Rapid Transit Company** where I build inci
 
 ## Skills
 
-**Languages:** Python, R, SQL, Bash
+**AI Systems:** OpenAI API, Anthropic API, Gemini API, Google ADK, LangChain, LangGraph, LlamaIndex, LLM applications, AI agents, agentic workflows, RAG, embeddings, vector search, tool calling, structured outputs, human-review workflows
 
-**Applied AI:** LLM Integration, AI Agents, RAG, Tool Use, Prompt Engineering, Evaluation, Multimodal AI, NLP, Computer Vision, Classification, Clustering
+**Evals, Observability, and Feedback:** retrieval evals, citation validation, RAGAS, Langfuse, logging, tracing, latency and cost monitoring, dashboards
 
-**Frameworks & Data:** FastAPI, Django, Scikit-learn, TensorFlow, Pandas, NumPy, PostgreSQL, Microsoft Fabric
+**Backend, Data, and APIs:** Python, SQL, FastAPI, PostgreSQL, SQLAlchemy, Pydantic, pandas, NumPy, ETL pipelines, data modeling, REST APIs, WebSockets
 
-**Cloud & DevOps:** GCP (Cloud Run, Firestore, Gemini), Docker, GitHub Actions, ETL Pipelines, Feature Engineering
+**Testing, Cloud, and Delivery:** Docker, GitHub Actions, pytest, Playwright, GCP Cloud Run, Firestore, Terraform, Streamlit, Bash
 
-**Analytics:** Power BI, Tableau
+**Analytics and ML:** scikit-learn, TensorFlow, R, classification, clustering, reliability analysis, KPI analytics, Microsoft Fabric, Power BI, Tableau
