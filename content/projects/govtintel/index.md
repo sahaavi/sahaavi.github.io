@@ -18,7 +18,7 @@ showToc: true
 
 **GovIntel** is a local-first federal procurement intelligence system. It imports public USAspending contract awards, stores them in PostgreSQL, builds a Chroma-backed retrieval index, and generates citation-grounded market briefs through a FastAPI API and Streamlit UI.
 
-The project is positioned as a public applied-AI engineering system: a working RAG product surface with ingestion, retrieval, analytics, generation, citation guardrails, Dockerized local setup, CI, tests, and a walkthrough.
+I built GovIntel as a reviewable RAG application with ingestion, indexing, retrieval, analytics, generation, citation checks, Dockerized local setup, CI, tests, and a walkthrough.
 
 ## Links
 
@@ -27,17 +27,17 @@ The project is positioned as a public applied-AI engineering system: a working R
 
 ## Status
 
-GovIntel is presented as a public RAG system with a reviewable end-to-end path: seed contract data, build the retrieval index, run the FastAPI service, open the Streamlit UI, ask a procurement question, and inspect the cited award evidence.
+GovIntel provides a reviewable end-to-end path: seed contract data, build the retrieval index, run the FastAPI service, open the Streamlit UI, ask a procurement question, and inspect cited award evidence.
 
-I am careful about the claim boundary: this is a portfolio-ready RAG system and public engineering project, not a production SaaS deployment or a high-accuracy benchmark claim.
+I focused this portfolio version on engineering completeness: local setup, retrieval, generation, citation checks, tests, and a walkthrough, rather than production hosting or benchmark claims.
 
 ## Review Path
 
-The fastest review path is the public walkthrough, which shows the Streamlit UI with agency, NAICS, and time-window filters; a DHS cybersecurity market question; a generated brief; and cited contract evidence. For hands-on review, the repository documents local setup through `make db-up`, `make db-seed`, `make index`, `make run`, and `make ui`.
+The walkthrough shows agency and NAICS inputs, a 1-10 year range control, a DHS cybersecurity question, a generated brief, and cited contract evidence. For hands-on review, the repository documents local setup through `make db-up`, `make db-seed`, `make index`, `make run`, and `make ui`.
 
 ## Problem
 
-Federal procurement data is useful but hard to scan quickly. The goal of GovIntel is to turn contract records into structured intelligence briefs: contractor patterns, agency spending questions, market-entry signals, and evidence-backed answers over procurement data.
+Federal procurement data is useful but hard to scan quickly. The goal of GovIntel is to turn contract records into structured intelligence briefs: contractor patterns, agency spending questions, strategic implications from contractor rankings, quarterly spend trends, concentration, and cited award evidence.
 
 ## What I Built
 
@@ -76,19 +76,19 @@ The system flow is:
 8. Validate citations against retrieved contract evidence before returning the answer.
 9. Serve results through FastAPI and the Streamlit UI.
 
-## Proof Of Engineering Depth
+## Engineering Highlights
 
-- **End-to-end product surface** with ingestion, indexing, API, UI, and evidence inspection rather than a notebook-only prototype
-- **Guarded RAG design** that rejects unsupported citations instead of returning ungrounded contract claims
+- **End-to-end application path** with ingestion, indexing, API, Streamlit UI, evidence inspection, and regression tests
+- **Guarded RAG design** that rejects briefs whose citation list references award IDs outside the retrieved contract evidence
 - **Hybrid retrieval stack** combining lexical recall, vector retrieval, deduplication, and reranking
 - **Structured analytics layer** for contractor rankings, spend trends, and market concentration
 - **Provider boundaries** that keep external LLM use explicit and configurable
-- **Quality gates** through CI, static analysis, type checking, and a broad automated test suite
+- **Quality gates** through Ruff, strict mypy, and pytest with a 90% coverage threshold across API, retrieval, generation, ingestion, frontend, evaluation, observability, and training tests
 
-## Evaluation Boundary
+## Evaluation and Quality
 
-GovIntel includes offline evaluation utilities and persisted evaluation artifacts, but I do not use those results as a headline performance claim. The stronger public proof is the system architecture, working review path, citation guardrails, and tested engineering surface.
+GovIntel includes evaluation fixtures and an ablation harness; I use them as methodology evidence rather than headline quality claims.
 
 ## Why It Matters
 
-This project shows the text-heavy side of my applied-AI work: retrieval, structured generation, analytics, citation validation, API design, local deployment, and evaluation scaffolding. It complements Maintenance-Eye by showing that I can build both multimodal agent workflows and evidence-first RAG systems around real operational data.
+GovIntel demonstrates my RAG and data-systems work: retrieval, structured generation, analytics, citation validation, API design, local deployment, and evaluation scaffolding over real procurement data.

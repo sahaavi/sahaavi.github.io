@@ -14,7 +14,7 @@ I build practical systems with OpenAI API, Anthropic API, Gemini API, Google ADK
 
 I hold a **Master of Data Science from UBC** and a **BSc in Computer Science from AIUB** (CGPA: 3.91/4.0). My strongest public project is **Maintenance-Eye**, a real-time multimodal maintenance copilot built with Google ADK, Gemini Live API, FastAPI, Firestore, and Cloud Run.
 
-Currently, I'm a Data & Applied AI Analyst at **BC Rapid Transit Company** where I build incident, KPI, maintenance, and asset-performance data workflows while mapping operational workflows into AI-ready use cases for decision support and diagnostics. **GovIntel** is my public RAG system for federal procurement intelligence, built around USAspending ingestion, hybrid retrieval, SQL analytics, citation validation, FastAPI, and Streamlit.
+Currently, I'm a Data & Applied AI Analyst at **BC Rapid Transit Company** where I build incident, KPI, maintenance, and asset-performance data workflows while mapping operational workflows into AI-ready use cases for decision support and diagnostics. **GovIntel** is my federal-procurement RAG project, built around USAspending ingestion, hybrid retrieval, SQL analytics, citation validation, FastAPI, and Streamlit.
 
 ---
 
