@@ -16,7 +16,7 @@ showToc: true
 
 This is an earlier applied machine-learning research project on **Autism Spectrum Disorder (ASD)** screening classification using Support Vector Machines and Convolutional Neural Networks. The work was published in the International Journal of Information Technology and Computer Science (IJITCS).
 
-I keep this page as published research evidence, not as the center of my current applied-AI engineering story. My current engineering proof is Maintenance-Eye, and GovtIntel is the in-progress RAG system.
+I keep this page as published research evidence, not as the center of my current applied-AI engineering story. My current engineering proof is led by Maintenance-Eye and GovIntel.
 
 ## Publication
 

@@ -10,7 +10,7 @@
 <div class="projects-grid">
   {{- range sort .Pages "Weight" "asc" }}
   <article class="project-card">
-    {{- if .Params.cover.image }}
+    {{- if and .Params.cover.image (not .Params.cover.hiddenInList) }}
     <a href="{{ .Permalink }}">
       <div class="project-cover">
         {{- $image := .Params.cover.image }}

@@ -452,6 +452,32 @@ h6 {
   border-radius: 8px;
 }
 
+.post-single,
+.post-header,
+.post-content,
+.entry-cover,
+#toc-container {
+  max-width: 100%;
+  min-width: 0;
+}
+
+.entry-cover {
+  margin-left: 0;
+  margin-right: 0;
+  overflow: hidden;
+}
+
+.entry-cover img {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  width: 100%;
+}
+
+.post-content {
+  overflow-wrap: break-word;
+}
+
 .social-icons {
   margin-top: 0.5rem;
 }

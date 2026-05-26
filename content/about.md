@@ -12,7 +12,7 @@ I'm an Applied AI engineer building multimodal agents and LLM systems for operat
 
 I hold a **Master of Data Science from UBC** and a **BSc in Computer Science from AIUB** (CGPA: 3.91/4.0). My strongest public project is **Maintenance-Eye**, a real-time multimodal maintenance copilot built with Google ADK, Gemini Live API, FastAPI, Firestore, and Cloud Run.
 
-Currently, I'm a Data Analyst at **BC Rapid Transit Company** where I build incident, KPI, and asset-performance data workflows while exploring AI-assisted maintenance workflows for decision support and diagnostics. **GovtIntel** is my second current project, presented clearly as an in-progress RAG/procurement intelligence system until the demo and evaluations are complete.
+Currently, I'm a Data Analyst at **BC Rapid Transit Company** where I build incident, KPI, and asset-performance data workflows while exploring AI-assisted maintenance workflows for decision support and diagnostics. **GovIntel** is my public RAG system for federal procurement intelligence, built around USAspending ingestion, hybrid retrieval, SQL analytics, citation validation, FastAPI, and Streamlit.
 
 ---
 
@@ -41,12 +41,12 @@ Currently, I'm a Data Analyst at **BC Rapid Transit Company** where I build inci
 - Implemented tool-using workflows for asset lookup, knowledge retrieval, work-order actions, and human-in-the-loop confirmation
 - Added deployment and reliability scaffolding with Terraform, Docker, GitHub Actions, and a multi-layer test suite
 
-### GovtIntel — In-Progress RAG Project
-*2026 | Current project*
+### GovIntel — Federal Procurement Intelligence RAG System
+*2026 | Public project*
 
-- Building a federal procurement intelligence RAG system for contract analysis
-- Implemented early ingestion, retrieval, API, prompt, and test scaffolding
-- Keeping the public framing deliberately in progress until the full RAG pipeline, demo, and evaluation evidence exist
+- Built a local-first procurement intelligence RAG system over USAspending awards
+- Implemented async ingestion, PostgreSQL persistence, Chroma indexing, BM25/vector retrieval, hybrid deduplication, cross-encoder reranking, SQL spend analytics, and fail-closed citation validation
+- Added a FastAPI analysis endpoint, Streamlit UI, Docker Compose workflow, CI, and automated tests
 
 ### Statistics Canada — Data Scientist (Capstone)
 *Apr 2023 - Jul 2023 | Ottawa, ON*

@@ -45,4 +45,4 @@ An earlier machine-learning deployment project for house price prediction, built
 
 ## Key Takeaway
 
-This project was an early end-to-end ML deployment exercise. It is intentionally secondary to Maintenance-Eye and GovtIntel in the current public story.
+This project was an early end-to-end ML deployment exercise. It is intentionally secondary to Maintenance-Eye and GovIntel in the current public story.
