@@ -3,7 +3,7 @@ title: "Maintenance-Eye"
 slug: "maintenance-eye"
 date: 2026-03-01
 draft: false
-description: "A real-time multimodal maintenance copilot that sees, listens, speaks, and acts through tool-using workflows."
+description: "A real-time multimodal maintenance copilot using live audio, camera input, ADK tools, and technician-confirmed actions."
 tags: ["google-adk", "gemini-live-api", "multimodal", "fastapi", "applied-ai"]
 cover:
   image: ""
@@ -15,7 +15,7 @@ showToc: true
 
 ## Overview
 
-**Maintenance-Eye** is a real-time AI copilot for physical infrastructure maintenance. Built for the **Google Gemini Live Agent Challenge 2026**, it lets a technician point a phone camera at equipment, speak naturally, and get grounded assistance without switching to a separate typing workflow.
+**Maintenance-Eye** is a real-time AI copilot for physical infrastructure maintenance. Built for the **Google Gemini Live Agent Challenge 2026**, it lets a technician point a phone camera at equipment, ask by voice, review asset context, and confirm work-order actions through a camera-and-voice inspection flow.
 
 ## Links
 
@@ -24,11 +24,11 @@ showToc: true
 
 ## Status
 
-Maintenance-Eye is the shipped flagship in my public portfolio. The Devpost demo video, repository, architecture diagram, infrastructure files, API routes, and tests are the evidence anchors for the case study.
+Maintenance-Eye is a public portfolio case study backed by the Devpost demo, repository, architecture diagram, infrastructure files, API routes, and tests.
 
 ## Demo And Review Path
 
-The Devpost page is the primary public demo because it includes the project video. For hands-on review, the repository documents local setup with a JSON-backed EAM fallback so the core inspection, chat, and tool-flow architecture can still be reviewed.
+The Devpost page is the primary public demo because it includes the project video. The repository documents local setup with a JSON-backed EAM fallback, so the data, API, and tool behavior can be inspected locally; live Gemini inspection and chat require Gemini credentials.
 
 ## Problem
 
@@ -46,24 +46,24 @@ Transit and infrastructure maintenance work is physical, noisy, and time-sensiti
 
 - **AI runtime:** Google ADK, Gemini 2.5 Flash Live API
 - **Backend:** Python, FastAPI, WebSockets
-- **Data:** Firestore, Cloud Storage, JSON fallback data layer for local dev
+- **Data/artifacts:** Firestore EAM data, JSON-backed local fallback, and optional best-effort GCS storage for frame, report, and work-order artifacts
 - **Infra:** Cloud Run, Docker, Terraform, GitHub Actions
-- **Testing:** unit, integration, API contract, security, performance, and E2E coverage
+- **Testing:** unit, integration, API contract, security, performance, and Playwright E2E smoke tests
 
 ## Architecture
 
 ![Maintenance-Eye architecture](https://raw.githubusercontent.com/sahaavi/Maintenance-Eye/main/docs/architecture.png)
 
-The system uses a persistent bidirectional WebSocket to move video frames, audio, transcripts, UI cards, and tool results between the phone client and the backend. The agent does not just answer questions: it calls domain-specific tools, grounds responses in maintenance data, and requires explicit confirmation before sensitive actions.
+The system uses a persistent bidirectional WebSocket to move video frames, audio, transcripts, confirmation cards, media cards, and work-order result messages between the phone client and backend. The agent calls domain-specific tools, grounds responses in maintenance data, and requires explicit confirmation before sensitive actions.
 
-## Proof Of Engineering Depth
+## Engineering Highlights
 
 - **Real-time multimodal interaction** with audio in, audio out, and camera-driven reasoning
-- **Nine specialized tools** for maintenance operations, not a single-prompt wrapper
+- **Nine ADK tool bindings** covering search, asset lookup, inspection history, knowledge retrieval, work-order management, safety protocols, report generation, and confirmation workflows
 - **Human-in-the-loop safety** with confirmation cards for critical actions
 - **Operational deployment path** with Docker, Cloud Run, Firestore, and Terraform
-- **Reliability focus** through a multi-layer test suite and explicit backend/service boundaries
+- **Multi-layer test coverage** across unit, integration, API contract, security, performance, and Playwright E2E smoke tests
 
 ## Why It Matters
 
-This project is the clearest public example of how I like to build AI systems: start from a real workflow, design around operational constraints, use models as one component in a broader system, and make deployment, interfaces, and failure boundaries part of the product rather than an afterthought.
+This project demonstrates my approach to applied AI: model integration, backend tool orchestration, deployment, test coverage, and human-in-the-loop safeguards around operational workflows.

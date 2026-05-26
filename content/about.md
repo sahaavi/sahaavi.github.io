@@ -12,7 +12,7 @@ Applied AI engineer with a data science and analytics background, 4+ years of Py
 
 I build practical systems with OpenAI API, Anthropic API, Gemini API, Google ADK, RAG, tool calling, structured outputs, evals, Langfuse tracing, FastAPI, PostgreSQL, Docker, and cloud deployment patterns.
 
-I hold a **Master of Data Science from UBC** and a **BSc in Computer Science from AIUB** (CGPA: 3.91/4.0). My strongest public project is **Maintenance-Eye**, a real-time multimodal maintenance copilot built with Google ADK, Gemini Live API, FastAPI, Firestore, and Cloud Run.
+I hold a **Master of Data Science from UBC** and a **BSc in Computer Science from AIUB** (CGPA: 3.91/4.0). My public case studies include **Maintenance-Eye**, a real-time multimodal maintenance copilot built with Google ADK, Gemini Live API, FastAPI, Firestore, and Cloud Run.
 
 Currently, I'm a Data & Applied AI Analyst at **BC Rapid Transit Company** where I build incident, KPI, maintenance, and asset-performance data workflows while mapping operational workflows into AI-ready use cases for decision support and diagnostics. **GovIntel** is my federal-procurement RAG project, built around USAspending ingestion, hybrid retrieval, SQL analytics, citation validation, FastAPI, and Streamlit.
 
@@ -22,7 +22,7 @@ Currently, I'm a Data & Applied AI Analyst at **BC Rapid Transit Company** where
 
 - **Applied AI systems** — multimodal agents, RAG workflows, tool use, and human-in-the-loop safeguards
 - **Python backends and data workflows** — FastAPI services, ETL pipelines, structured analytics, and data modeling
-- **Operational AI prototypes** — systems shaped by real maintenance, reporting, and decision-support workflows
+- **Operational AI systems** — systems shaped by real maintenance, reporting, and decision-support workflows
 
 ---
 
@@ -40,7 +40,7 @@ Currently, I'm a Data & Applied AI Analyst at **BC Rapid Transit Company** where
 
 - Built and deployed a real-time multimodal maintenance copilot using Google ADK, Gemini 2.5 Flash Live API, FastAPI, Firestore, and Cloud Run
 - Implemented tool-using workflows for asset lookup, knowledge retrieval, work-order actions, and human-in-the-loop confirmation
-- Added deployment and reliability scaffolding with Terraform, Docker, GitHub Actions, and a multi-layer test suite
+- Added deployment and reliability support with Terraform, Docker, GitHub Actions, and a multi-layer test suite
 
 ### GovIntel — Federal Procurement Intelligence RAG System
 *2026 | Public project*
