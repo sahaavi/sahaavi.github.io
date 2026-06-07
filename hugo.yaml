@@ -18,8 +18,8 @@ minify:
 params:
   env: production
   title: "Avishek Saha"
-  description: "Applied AI Engineer building multimodal agents and LLM systems for operational workflows"
-  keywords: ["Applied AI Engineer", "Multimodal Agents", "LLM Systems", "Operational Workflows", "FastAPI", "RAG"]
+  description: "Applied AI Engineer building AI automation, RAG systems, multimodal agents, and Python/FastAPI data workflows with Azure OpenAI, Vertex AI, and SQL."
+  keywords: ["Applied AI Engineer", "AI Automation", "AI Agents", "RAG", "Source Grounding", "FastAPI", "Python", "SQL", "Azure OpenAI", "Azure AI Foundry", "Copilot Studio", "Power Platform", "Vertex AI", "Gemini API", "Google ADK", "Data Science", "MCP", "Microsoft Fabric", "RAGAS", "LangChain", "LangGraph", "LlamaIndex", "Anthropic API"]
   author: "Avishek Saha"
   images: ["/images/og-image.png"]
   DateFormat: "Jan 2, 2006"

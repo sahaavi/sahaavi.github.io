@@ -26,14 +26,40 @@ Currently, I'm a Data & Applied AI Analyst at **BC Rapid Transit Company** where
 
 ---
 
-## Experience
+## Professional Experience
 
 ### BC Rapid Transit Company — Data & Applied AI Analyst
 *Dec 2024 - Present | Burnaby, BC*
 
-- Build Python- and SQL-based pipelines that consolidate incident, KPI, maintenance, and asset-performance records for reliability analysis and operational reporting.
-- Analyze recurring incidents, service-impact drivers, KPI movement, and asset-performance trends to support maintenance prioritization, investigation, and KPI monitoring.
-- Map maintenance and asset-performance workflows into AI-ready use cases, including triage support, asset-context retrieval, natural-language querying, and human-reviewed recommendations.
+- Build Python and SQL pipelines that consolidate incident, KPI, maintenance, asset-performance, and operational records into reliability-analysis datasets for reporting, natural-language querying, and AI-assisted decision support.
+- Translate maintenance and reliability workflows into AI-ready use cases across triage support, asset-context retrieval, recurring-failure investigation, KPI interpretation, and human-reviewed recommendations.
+- Prototype and support Microsoft/Azure automation workflows using Azure OpenAI, Azure AI Foundry, Copilot Studio, Power Platform, and tool-based interfaces for source-grounded operational analysis.
+- Improved recurring asset-performance validation and reporting workflows, saving 30-40 minutes per day while increasing consistency of maintenance review processes.
+
+### Brain Station 23 — Data Scientist, Financial Analytics & AI Workflows
+*Aug 2023 - Nov 2024 | Dhaka, Bangladesh / Remote*
+
+- Built SQL, Python, and Power BI workflows for financial metrics, trend analysis, data consistency checks, recurring business reporting, and stakeholder-facing dashboards across multiple source systems.
+- Improved reporting efficiency by 21%, data consistency by 17%, and query performance by 26% through SQL optimization, ETL workflows, indexing, partitioning, Python preprocessing, and validation checks.
+- Created repeatable reporting and analysis workflows using SQL window functions, stored procedures, metric definitions, and data-quality checks to reduce manual review and improve analytical trust.
+- Contributed to financial analytics and document-intelligence workflows using Vertex AI, Cloud Functions, BigQuery, Python, SQL, and Power BI.
+
+### Statistics Canada — Data Scientist (Capstone)
+*Apr 2023 - Jul 2023 | Ottawa, ON*
+
+- Implemented clustering algorithms (K-means, hierarchical) to segment the Proximity Measure Database for urban planning
+- Conducted data profiling, exploration, and outlier detection in R
+- Delivered actionable insights through cluster profiling for urban development policy recommendations
+
+### Softology IT — Co-Founder
+*Sep 2021 - Aug 2022 | Dhaka, Bangladesh*
+
+- Co-founded a software development firm delivering Android apps, e-commerce solutions, and UI/UX design
+- Managed end-to-end project delivery across multiple concurrent client engagements
+
+---
+
+## Selected Projects
 
 ### Maintenance-Eye — Applied AI Project
 *2026 | Public project*
@@ -48,19 +74,6 @@ Currently, I'm a Data & Applied AI Analyst at **BC Rapid Transit Company** where
 - Built a local-first procurement intelligence RAG system over USAspending awards
 - Implemented async ingestion, PostgreSQL persistence, Chroma indexing, BM25/vector retrieval, hybrid deduplication, cross-encoder reranking, SQL spend analytics, and fail-closed citation validation
 - Added a FastAPI analysis endpoint, Streamlit UI, Docker Compose workflow, CI, and automated tests
-
-### Statistics Canada — Data Scientist (Capstone)
-*Apr 2023 - Jul 2023 | Ottawa, ON*
-
-- Implemented clustering algorithms (K-means, hierarchical) to segment the Proximity Measure Database for urban planning
-- Conducted data profiling, exploration, and outlier detection in R
-- Delivered actionable insights through cluster profiling for urban development policy recommendations
-
-### Softology IT — Co-Founder
-*Sep 2021 - Aug 2022 | Dhaka, Bangladesh*
-
-- Co-founded a software development firm delivering Android apps, e-commerce solutions, and UI/UX design
-- Managed end-to-end project delivery across multiple concurrent client engagements
 
 ---
 
@@ -82,12 +95,12 @@ Currently, I'm a Data & Applied AI Analyst at **BC Rapid Transit Company** where
 
 ## Skills
 
-**AI Systems:** OpenAI API, Anthropic API, Gemini API, Google ADK, LangChain, LangGraph, LlamaIndex, LLM applications, AI agents, agentic workflows, RAG, embeddings, vector search, tool calling, structured outputs, human-review workflows
+**AI Engineering and LLM Systems:** Azure OpenAI, Azure AI Foundry, Anthropic API, Google Vertex AI, Gemini API, Google ADK, LangChain, LangGraph, LlamaIndex, LLM applications, AI agents, agentic workflows, RAG, tool calling, structured outputs, source grounding, human-in-the-loop workflows, prompt engineering
 
-**Evals, Observability, and Feedback:** retrieval evals, citation validation, RAGAS, Langfuse, logging, tracing, latency and cost monitoring, dashboards
+**Automation, Evals, and Observability:** AI automation, workflow automation, Copilot Studio, Power Platform, MCP, Microsoft Fabric, RAGAS, retrieval evals, citation validation, Langfuse tracing, logging, monitoring views, UAT support, technical documentation
 
-**Backend, Data, and APIs:** Python, SQL, FastAPI, PostgreSQL, SQLAlchemy, Pydantic, pandas, NumPy, ETL pipelines, data modeling, REST APIs, WebSockets
+**Backend, Data, and APIs:** Python, SQL, FastAPI, REST APIs, WebSockets, PostgreSQL, BigQuery, SQLAlchemy, Pydantic, pandas, ETL pipelines, data-quality checks, data modeling
 
-**Testing, Cloud, and Delivery:** Docker, GitHub Actions, pytest, Playwright, GCP Cloud Run, Firestore, Terraform, Streamlit, Bash
+**Cloud, Delivery, and Testing:** Cloud Run, Cloud Functions, Firestore, Docker, Docker Compose, GitHub Actions, pytest, Playwright, Streamlit, Terraform
 
-**Analytics and ML:** scikit-learn, TensorFlow, R, classification, clustering, reliability analysis, KPI analytics, Microsoft Fabric, Power BI, Tableau
+**Analytics and ML Foundation:** Power BI, Tableau, scikit-learn, TensorFlow, R, clustering, classification, reliability analytics, KPI analytics, financial analytics
