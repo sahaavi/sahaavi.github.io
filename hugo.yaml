@@ -22,6 +22,8 @@ params:
   keywords: ["Applied AI Engineer", "AI Automation", "AI Agents", "RAG", "Source Grounding", "FastAPI", "Python", "SQL", "Azure OpenAI", "Azure AI Foundry", "Copilot Studio", "Power Platform", "Vertex AI", "Gemini API", "Google ADK", "Data Science", "MCP", "Microsoft Fabric", "RAGAS", "LangChain", "LangGraph", "LlamaIndex", "Anthropic API"]
   author: "Avishek Saha"
   images: ["/images/og-image.png"]
+  social:
+    twitter: "avisheksaha_"
   DateFormat: "Jan 2, 2006"
   defaultTheme: auto
   disableThemeToggle: false
