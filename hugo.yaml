@@ -70,18 +70,22 @@ menu:
       name: Projects
       url: /projects/
       weight: 10
+    - identifier: blog
+      name: Blog
+      url: /posts/
+      weight: 20
     - identifier: books
       name: Books
       url: /books/
-      weight: 20
+      weight: 30
     - identifier: about
       name: About
       url: /about/
-      weight: 30
+      weight: 40
     - identifier: search
       name: Search
       url: /search/
-      weight: 40
+      weight: 50
 
 outputs:
   home:
@@ -107,3 +111,4 @@ permalinks:
 taxonomies:
   tag: tags
   category: categories
+  series: series
