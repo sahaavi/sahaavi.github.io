@@ -7,22 +7,36 @@
   {{- end }}
 </header>
 
-<ul class="post-list">
+<ul class="blog-list">
   {{- range .Pages }}
-  <li class="post-list-item">
-    <span class="post-list-date">{{ .Date.Format "02 Jan 2006" }}</span>
-    <span class="post-list-sep">&middot;</span>
-    {{- if site.Params.ShowReadingTime }}
-    <span class="post-list-meta">{{ math.Round (div (countwords .Content) 200.0) }} min</span>
-    <span class="post-list-sep">&middot;</span>
-    {{- end }}
-    <a href="{{ .Permalink }}" class="post-list-title">{{ .Title }}</a>
-    {{- if .Params.tags }}
-    <span class="post-list-tags">
-      {{- range .Params.tags }}
-      <span class="post-list-tag">{{ . }}</span>
+  <li class="blog-list-item">
+    <div class="blog-list-main">
+      <a href="{{ .RelPermalink }}" class="blog-list-title">{{ .Title }}</a>
+      {{- with .Description }}
+      <p class="blog-list-description">{{ . }}</p>
       {{- end }}
-    </span>
+      <div class="blog-list-meta">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02 Jan 2006" }}</time>
+        <span>{{ .ReadingTime }} min read</span>
+        {{- with .Params.level }}
+        <span>{{ . }}</span>
+        {{- end }}
+        {{- with .Params.series }}
+          {{- range . }}
+        <a href="/series/{{ . | urlize }}/">{{ . }}</a>
+          {{- end }}
+        {{- end }}
+        {{- if and .Lastmod (gt .Lastmod .Date) }}
+        <span>Updated <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "02 Jan 2006" }}</time></span>
+        {{- end }}
+      </div>
+    </div>
+    {{- with .Params.tags }}
+    <div class="blog-list-tags" aria-label="Tags">
+      {{- range . }}
+      <a class="blog-tag" href="/tags/{{ . | urlize }}/">{{ . }}</a>
+      {{- end }}
+    </div>
     {{- end }}
   </li>
   {{- end }}
