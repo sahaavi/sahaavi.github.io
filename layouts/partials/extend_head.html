@@ -7,3 +7,30 @@
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ/ZcHGJ9w9DFlEUO8sW0wVnvq/PnFrp7u35SkVZMdsJKIOQ" crossorigin="anonymous"
     onload="renderMathInElement(document.body);"></script>
 {{ end }}
+
+{{ if hugo.IsProduction | or (eq site.Params.env "production") }}
+<script>
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+
+    if (params.get("analytics") === "off") {
+      localStorage.setItem("ga-disable-G-LR37NJ4SN1", "true");
+    }
+
+    if (params.get("analytics") === "on") {
+      localStorage.removeItem("ga-disable-G-LR37NJ4SN1");
+    }
+
+    window["ga-disable-G-LR37NJ4SN1"] = localStorage.getItem("ga-disable-G-LR37NJ4SN1") === "true";
+  })();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LR37NJ4SN1"></script>
+<script>
+  if (!window["ga-disable-G-LR37NJ4SN1"]) {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-LR37NJ4SN1");
+  }
+</script>
+{{ end }}
