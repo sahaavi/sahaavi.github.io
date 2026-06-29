@@ -5,9 +5,13 @@
 {{- $toc := .TableOfContents -}}
 {{- $desktopToc := $toc -}}
 {{- $mobileToc := replace $toc "id=\"TableOfContents\"" "id=\"MobileTableOfContents\"" -}}
+{{- $seriesTerms := $.GetTerms "series" -}}
+{{- $tagTaxonomy := .Language.Params.Taxonomies.tag | default "tags" -}}
+{{- $tagTerms := $.GetTerms $tagTaxonomy -}}
+{{- $hasLastmod := and .Lastmod (gt .Lastmod .Date) -}}
 
 <article class="blog-shell">
-  {{- with $.GetTerms "series" }}
+  {{- with $seriesTerms }}
   <aside class="blog-sidebar blog-series-nav" aria-label="Series navigation">
     <h2>Series</h2>
     <nav>
@@ -44,6 +48,30 @@
         {{- partial "edit_post.html" . -}}
         {{- partial "post_canonical.html" . -}}
       </div>
+      {{- if or $hasLastmod .Params.level $seriesTerms $tagTerms }}
+      <div class="blog-meta blog-meta-extra" aria-label="Post details">
+        {{- if $hasLastmod }}
+        <span>Updated <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "02 Jan 2006" }}</time></span>
+        {{- end }}
+        {{- with .Params.level }}
+        <span>{{ . }}</span>
+        {{- end }}
+        {{- with $seriesTerms }}
+        <span class="blog-meta-links"><span>Series:</span>
+          {{- range . }}
+          <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+          {{- end }}
+        </span>
+        {{- end }}
+        {{- with $tagTerms }}
+        <nav class="blog-header-tags" aria-label="Tags">
+          {{- range . }}
+          <a class="blog-tag" href="{{ .RelPermalink }}">{{ .Data.Term | default .LinkTitle }}</a>
+          {{- end }}
+        </nav>
+        {{- end }}
+      </div>
+      {{- end }}
       {{- end }}
     </header>
 
@@ -68,12 +96,10 @@
     {{- end }}
 
     <footer class="post-footer">
-      {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
-      {{- $terms := $.GetTerms $tags }}
-      {{- with $terms }}
+      {{- with $tagTerms }}
       <nav class="blog-tags" aria-label="Tags">
         {{- range . }}
-        <a class="blog-tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+        <a class="blog-tag" href="{{ .RelPermalink }}">{{ .Data.Term | default .LinkTitle }}</a>
         {{- end }}
       </nav>
       {{- end }}

@@ -285,6 +285,26 @@ h6 {
   padding: 0;
 }
 
+.blog-empty {
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--secondary);
+  line-height: 1.6;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+.blog-empty strong {
+  color: var(--content);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.blog-empty p {
+  margin: 0;
+}
+
 .blog-list-item {
   border-bottom: 1px solid var(--border);
   display: grid;
@@ -423,6 +443,46 @@ h6 {
   gap: 0.35rem;
   line-height: 1.5;
   min-width: 0;
+}
+
+.blog-meta > * {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.blog-meta a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.blog-meta a:hover {
+  text-decoration: underline;
+}
+
+.blog-meta-extra {
+  gap: 0.45rem 0.7rem;
+  margin-top: 0.35rem;
+}
+
+.blog-meta-links {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.blog-header-tags {
+  align-items: center;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.blog-meta .blog-tag {
+  color: var(--secondary);
+}
+
+.blog-meta .blog-tag:hover {
+  text-decoration: none;
 }
 
 .blog-sidebar {

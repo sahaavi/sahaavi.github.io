@@ -5,6 +5,8 @@ draft: true
 description: "How I built a multimodal AI agent for equipment diagnostics using Google Gemini's vision and language capabilities."
 tags: ["computer-vision", "google-gemini", "ai-agents", "python"]
 categories: ["AI Engineering"]
+series: ["AI agent builds"]
+level: "intermediate"
 cover:
   image: ""
   alt: "Vision Maintenance AI Agent"

@@ -7,8 +7,10 @@
   {{- end }}
 </header>
 
+{{- $pages := .Pages }}
+{{- if $pages }}
 <ul class="blog-list">
-  {{- range .Pages }}
+  {{- range $pages }}
   <li class="blog-list-item">
     <div class="blog-list-main">
       <a href="{{ .RelPermalink }}" class="blog-list-title">{{ .Title }}</a>
@@ -34,12 +36,18 @@
     {{- with .GetTerms "tags" }}
     <div class="blog-list-tags" aria-label="Tags">
       {{- range . }}
-      <a class="blog-tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+      <a class="blog-tag" href="{{ .RelPermalink }}">{{ .Data.Term | default .LinkTitle }}</a>
       {{- end }}
     </div>
     {{- end }}
   </li>
   {{- end }}
 </ul>
+{{- else }}
+<section class="blog-empty" aria-label="No published posts">
+  <strong>No public posts yet.</strong>
+  <p>Long-form notes on applied AI, research engineering, and build notes will appear here soon.</p>
+</section>
+{{- end }}
 
 {{- end }}{{/* end main */}}
