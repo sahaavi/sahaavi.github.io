@@ -21,9 +21,9 @@
         {{- with .Params.level }}
         <span>{{ . }}</span>
         {{- end }}
-        {{- with .Params.series }}
+        {{- with .GetTerms "series" }}
           {{- range . }}
-        <a href="/series/{{ . | urlize }}/">{{ . }}</a>
+        <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
           {{- end }}
         {{- end }}
         {{- if and .Lastmod (gt .Lastmod .Date) }}
@@ -31,10 +31,10 @@
         {{- end }}
       </div>
     </div>
-    {{- with .Params.tags }}
+    {{- with .GetTerms "tags" }}
     <div class="blog-list-tags" aria-label="Tags">
       {{- range . }}
-      <a class="blog-tag" href="/tags/{{ . | urlize }}/">{{ . }}</a>
+      <a class="blog-tag" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
       {{- end }}
     </div>
     {{- end }}

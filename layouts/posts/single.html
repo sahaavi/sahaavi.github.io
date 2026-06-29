@@ -1,18 +1,24 @@
 {{- define "main" }}
 
+{{- $headers := findRE "<h[1-6].*?>(.|\n])+?</h[1-6]>" .Content -}}
+{{- $hasToc := and (.Param "ShowToc") (gt (len $headers) 0) -}}
+{{- $toc := .TableOfContents -}}
+{{- $desktopToc := replace $toc "<nav id=\"TableOfContents\"" "<nav data-toc-id='id=\"TableOfContents\"' id=\"TableOfContents\"" -}}
+{{- $mobileToc := replace $toc "<nav id=\"TableOfContents\"" "<nav data-toc-id='id=\"MobileTableOfContents\"' id=\"MobileTableOfContents\"" -}}
+
 <article class="blog-shell">
-  {{- with .Params.series }}
+  {{- with $.GetTerms "series" }}
   <aside class="blog-sidebar blog-series-nav" aria-label="Series navigation">
     <h2>Series</h2>
     <nav>
       {{- range . }}
-      <a href="/series/{{ . | urlize }}/">{{ . }}</a>
+      <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
       {{- end }}
     </nav>
   </aside>
   {{- end }}
 
-  <main class="blog-article">
+  <div class="blog-article">
     <header class="post-header">
       {{ partial "breadcrumbs.html" . }}
       <h1 class="post-title entry-hint-parent">
@@ -44,11 +50,11 @@
     {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false }}
     {{- partial "cover.html" (dict "cxt" . "IsSingle" true "isHidden" $isHidden) }}
 
-    {{- if (.Param "ShowToc") }}
+    {{- if $hasToc }}
     <details class="blog-mobile-toc">
       <summary>{{- i18n "toc" | default "Table of Contents" -}}</summary>
       <div class="blog-mobile-toc-inner">
-        {{- .TableOfContents -}}
+        {{- $mobileToc | safeHTML -}}
       </div>
     </details>
     {{- end }}
@@ -72,7 +78,7 @@
       </nav>
       {{- end }}
 
-      {{- if or .PrevInSection .NextInSection }}
+      {{- if and (.Param "ShowPostNavLinks") (or .PrevInSection .NextInSection) }}
       <nav class="blog-post-nav" aria-label="Post navigation">
         {{- with .PrevInSection }}
         <a class="blog-post-nav-link blog-post-nav-prev" href="{{ .RelPermalink }}">
@@ -97,12 +103,12 @@
     {{- if (.Param "comments") }}
     {{- partial "comments.html" . }}
     {{- end }}
-  </main>
+  </div>
 
-  {{- if (.Param "ShowToc") }}
+  {{- if $hasToc }}
   <aside class="blog-sidebar blog-toc" aria-label="Table of contents">
     <h2>{{- i18n "toc" | default "Table of Contents" -}}</h2>
-    {{- .TableOfContents -}}
+    {{- $desktopToc | safeHTML -}}
   </aside>
   {{- end }}
 </article>
