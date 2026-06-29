@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="AS circuit node favicon">
+  <rect width="512" height="512" rx="96" fill="#101418"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M124 360 206 152 288 360" stroke="#67b7dc" stroke-width="42"/>
+    <path d="M164 270h86" stroke="#7dd3b0" stroke-width="36"/>
+    <path d="M380 160c-26-28-98-24-106 22-11 65 120 45 108 112-8 47-83 56-124 20" stroke="#f0b84a" stroke-width="42"/>
+    <path d="M288 160h42M270 314h-44" stroke="#7dd3b0" stroke-width="26"/>
+  </g>
+  <g>
+    <circle cx="206" cy="152" r="31" fill="#67b7dc"/>
+    <circle cx="124" cy="360" r="27" fill="#67b7dc"/>
+    <circle cx="288" cy="360" r="27" fill="#67b7dc"/>
+    <circle cx="164" cy="270" r="23" fill="#7dd3b0"/>
+    <circle cx="250" cy="270" r="23" fill="#7dd3b0"/>
+    <circle cx="330" cy="160" r="25" fill="#7dd3b0"/>
+    <circle cx="226" cy="314" r="21" fill="#7dd3b0"/>
+    <circle cx="380" cy="160" r="29" fill="#f0b84a"/>
+    <circle cx="258" cy="314" r="27" fill="#f0b84a"/>
+    <circle cx="382" cy="294" r="29" fill="#f0b84a"/>
+  </g>
+</svg>
