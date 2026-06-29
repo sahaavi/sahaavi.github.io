@@ -3,8 +3,8 @@
 {{- $headers := findRE "<h[1-6].*?>(.|\n])+?</h[1-6]>" .Content -}}
 {{- $hasToc := and (.Param "ShowToc") (gt (len $headers) 0) -}}
 {{- $toc := .TableOfContents -}}
-{{- $desktopToc := replace $toc "<nav id=\"TableOfContents\"" "<nav data-toc-id='id=\"TableOfContents\"' id=\"TableOfContents\"" -}}
-{{- $mobileToc := replace $toc "<nav id=\"TableOfContents\"" "<nav data-toc-id='id=\"MobileTableOfContents\"' id=\"MobileTableOfContents\"" -}}
+{{- $desktopToc := $toc -}}
+{{- $mobileToc := replace $toc "id=\"TableOfContents\"" "id=\"MobileTableOfContents\"" -}}
 
 <article class="blog-shell">
   {{- with $.GetTerms "series" }}
