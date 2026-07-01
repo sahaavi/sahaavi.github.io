@@ -16,7 +16,11 @@ Thumbs.db
 # Local git worktrees
 .worktrees/
 .superpowers/
+docs/superpowers/
 
 # Environment
 .env
 .env.*
+
+# Browser/download metadata
+*:Zone.Identifier
