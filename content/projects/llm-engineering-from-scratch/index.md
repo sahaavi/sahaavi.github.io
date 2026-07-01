@@ -15,9 +15,9 @@ showToc: true
 
 ## Overview
 
-**LLM Engineering From Scratch** is a public learning series where I rebuild core LLM mechanics one project at a time. Each project follows the same loop: build the smallest useful version, plot its behavior, break one assumption, explain the surprise, and ship a reproducible artifact.
+**LLM Engineering From Scratch** is a public learning series that rebuilds core LLM mechanics one project at a time. Each project pairs a small runnable implementation with plots, stress cases, explanations, and a reproducible artifact.
 
-The series is inspired by Ahmad Osman's "Step-By-Step LLM Engineering Projects (2026 Edition)" roadmap, but the implementations, experiments, traces, demos, and writeups are my own.
+Roadmap inspiration: [Ahmad Osman](https://x.com/TheAhmadOsman) ([@TheAhmadOsman](https://x.com/TheAhmadOsman)) and his article, ["Step-By-Step LLM Engineering Projects (2026 Edition)"](https://x.com/TheAhmadOsman/article/2058745340895870985). The repository uses the article as a roadmap reference; the implementations, experiments, traces, demos, and writeups are independent.
 
 ## Links
 
@@ -27,7 +27,7 @@ The series is inspired by Ahmad Osman's "Step-By-Step LLM Engineering Projects (
 
 ## Status
 
-The first project, **Tokenizer From Scratch**, is implemented with a byte-level BPE tokenizer, deterministic artifacts, and an interactive static demo. The next projects will continue through embeddings, positional methods, attention, Transformer blocks, training loops, and objectives.
+The first project, **Tokenizer From Scratch**, is implemented with a byte-level BPE tokenizer, deterministic artifacts, and an interactive static demo. The planned sequence continues through embeddings, positional methods, attention, Transformer blocks, training loops, and objectives.
 
 ## Series Pattern
 
@@ -37,13 +37,13 @@ Each project ships five kinds of evidence:
 2. **Notebook** - a runnable experiment and explanation path.
 3. **Plots** - charts that show behavior instead of only claiming it.
 4. **Failure gallery** - examples where the implementation gets stressed.
-5. **Writeup/demo** - a portfolio post with an interactive or visual artifact.
+5. **Article/demo** - a technical post with an interactive or visual artifact.
 
-## First Wave
+## Roadmap
 
 | # | Project | Hard concept | Status |
 |---:|---|---|---|
-| 1 | Tokenizer from scratch | Tokenization is a learned compression tradeoff. | Shipped first build |
+| 1 | Tokenizer from scratch | Tokenization is a learned compression tradeoff. | Implemented |
 | 2 | One-hot vectors and learned embeddings | IDs gain meaning through learned vector geometry. | Planned |
 | 3 | Positional methods | Attention needs order. | Planned |
 | 4 | Scaled dot-product attention | Attention is weighted retrieval from context. | Planned |
@@ -54,4 +54,4 @@ Each project ships five kinds of evidence:
 
 ## Why It Matters
 
-Frameworks are useful, but they can hide the mechanisms that make LLM systems work or fail. This series is my way of making those mechanisms visible: code, plots, traces, failure cases, and short explanations that compound into a deeper engineering foundation.
+Frameworks are useful, but they can hide the mechanisms that make LLM systems work or fail. This series makes those mechanisms visible through code, plots, traces, failure cases, and short explanations that compound into a deeper engineering foundation.

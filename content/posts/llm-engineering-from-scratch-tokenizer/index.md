@@ -4,7 +4,7 @@ slug: "llm-engineering-from-scratch-tokenizer"
 date: 2026-06-30
 lastmod: 2026-06-30
 draft: false
-description: "I built a byte-level BPE tokenizer from scratch, plotted how vocabulary size changes compression, broke it on weird inputs, and shipped an interactive merge microscope."
+description: "A byte-level BPE tokenizer from scratch with plots, stress cases, and an interactive merge microscope for inspecting every learned merge."
 summary: "A from-scratch byte-level BPE tokenizer with runnable Python, failure cases, charts, and an interactive trace that shows every merge step."
 tags: ["tokenization", "bpe", "llm-engineering", "python", "from-scratch"]
 categories: ["AI Engineering"]
@@ -26,7 +26,7 @@ math: false
 
 Before a model can learn from text, the text has to become symbols. That symbol-making step is not neutral. It changes context length, rare-word behavior, code formatting, multilingual text, emojis, latency, and eventually model quality.
 
-For this first project in **LLM Engineering From Scratch**, I built a tiny byte-level BPE tokenizer by hand. The goal was not to beat production tokenizers. The goal was to make the mechanism visible.
+This first project in **LLM Engineering From Scratch** implements a tiny byte-level BPE tokenizer by hand. The goal is not to beat production tokenizers. The goal is to make the mechanism visible.
 
 ## Mental Model
 
@@ -40,7 +40,7 @@ Then it merges that pair into a new token. After enough merges, common fragments
 
 That is the important mental shift: BPE is not "splitting words." It is learning reusable compression shortcuts from neighboring symbols.
 
-## Build It
+## Implementation
 
 The scratch implementation has four core steps:
 
@@ -77,7 +77,7 @@ This demo replays the BPE training trace. Scrub the slider to see which pair was
 
 The demo uses a static `data.json` trace exported by the Python implementation. There is no server hiding behind it.
 
-## Plot It
+## Results
 
 The first chart compares how many tokens the larger BPE vocabulary used per character across several input types.
 
@@ -87,11 +87,11 @@ The second chart looks at token-piece byte lengths after encoding the stress exa
 
 ![Token length distribution](https://raw.githubusercontent.com/sahaavi/llm-engineering-from-scratch/main/projects/01-tokenizer-from-scratch/artifacts/token_length_distribution.png)
 
-These charts are intentionally simple. The point is not visual polish yet; the point is that every project must produce evidence.
+These charts are intentionally simple. The point is evidence: tokenization changes can be measured, compared, and inspected.
 
-## Break It
+## Stress Cases
 
-I stressed the tokenizer with:
+Stress cases covered:
 
 - rare and invented words
 - Python code with indentation
@@ -103,24 +103,24 @@ The tokenizer round-tripped every example, but compression quality varied sharpl
 
 That is the tradeoff in one sentence: **byte-level BPE is robust because it can represent anything, but it only compresses patterns it has learned.**
 
-## What Surprised Me
+## Key Lesson
 
 Unicode made the key lesson click. Some individual token pieces are not clean human-readable strings because a byte-level tokenizer can split inside a multi-byte UTF-8 character.
 
 That looks ugly in a token-piece display, but it does not mean decoding failed. The original bytes are still preserved, so the full text round-trips exactly.
 
-This separates two ideas I used to blur together:
+This separates two ideas that are easy to blur together:
 
 - **Reversibility:** can the tokenizer recover the original text?
 - **Readability:** do the intermediate pieces look nice to a human?
 
 Byte-level tokenization optimizes for reversibility first.
 
-## What I Would Try Next
+## Next Experiments
 
-Next I would compare this BPE implementation with a unigram/SentencePiece-style tokenizer on the same corpus, then repeat the experiment with a larger and more diverse dataset.
+A useful next experiment is comparing this BPE implementation with a unigram/SentencePiece-style tokenizer on the same corpus, then repeating the experiment with a larger and more diverse dataset.
 
-I would also measure encode latency and context usage as vocabulary size grows. That would make the engineering tradeoff more concrete: fewer tokens can help context length, but training and encoding choices still matter.
+Another useful measurement is encode latency and context usage as vocabulary size grows. That makes the engineering tradeoff more concrete: fewer tokens can help context length, but training and encoding choices still matter.
 
 ## Links
 
