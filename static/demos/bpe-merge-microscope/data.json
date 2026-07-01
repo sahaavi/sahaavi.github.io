@@ -1,0 +1,9661 @@
+{
+  "metadata": {
+    "project": "01-tokenizer-from-scratch",
+    "title": "BPE Merge Microscope",
+    "corpus": [
+      "low lower lowest",
+      "low low lower",
+      "token token tokenization"
+    ],
+    "initial_vocab_size": 256,
+    "final_vocab_size": 272
+  },
+  "steps": [
+    {
+      "step": 1,
+      "selected_pair": [
+        {
+          "bytes": [
+            108
+          ],
+          "text": "l"
+        },
+        {
+          "bytes": [
+            111
+          ],
+          "text": "o"
+        }
+      ],
+      "merged_token": {
+        "bytes": [
+          108,
+          111
+        ],
+        "text": "lo"
+      },
+      "frequency": 6,
+      "top_pairs": [
+        {
+          "left": {
+            "bytes": [
+              108
+            ],
+            "text": "l"
+          },
+          "right": {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          "count": 6
+        },
+        {
+          "left": {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          "right": {
+            "bytes": [
+              119
+            ],
+            "text": "w"
+          },
+          "count": 6
+        },
+        {
+          "left": {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          "right": {
+            "bytes": [
+              108
+            ],
+            "text": "l"
+          },
+          "count": 4
+        },
+        {
+          "left": {
+            "bytes": [
+              119
+            ],
+            "text": "w"
+          },
+          "right": {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              119
+            ],
+            "text": "w"
+          },
+          "right": {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          "right": {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          "right": {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          "right": {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          "count": 3
+        }
+      ],
+      "before_sequences": [
+        [
+          {
+            "bytes": [
+              108
+            ],
+            "text": "l"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              119
+            ],
+            "text": "w"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              108
+            ],
+            "text": "l"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              119
+            ],
+            "text": "w"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              108
+            ],
+            "text": "l"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              119
+            ],
+            "text": "w"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108
+            ],
+            "text": "l"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              119
+            ],
+            "text": "w"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              108
+            ],
+            "text": "l"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              119
+            ],
+            "text": "w"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              108
+            ],
+            "text": "l"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              119
+            ],
+            "text": "w"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "after_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111
+            ],
+            "text": "lo"
+          },
+          {
+            "bytes": [
+              119
+            ],
+            "text": "w"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              108,
+              111
+            ],
+            "text": "lo"
+          },
+          {
+            "bytes": [
+              119
+            ],
+            "text": "w"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              108,
+              111
+            ],
+            "text": "lo"
+          },
+          {
+            "bytes": [
+              119
+            ],
+            "text": "w"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111
+            ],
+            "text": "lo"
+          },
+          {
+            "bytes": [
+              119
+            ],
+            "text": "w"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              108,
+              111
+            ],
+            "text": "lo"
+          },
+          {
+            "bytes": [
+              119
+            ],
+            "text": "w"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              108,
+              111
+            ],
+            "text": "lo"
+          },
+          {
+            "bytes": [
+              119
+            ],
+            "text": "w"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "metrics": {
+        "vocab_size": 257,
+        "learned_merges": 1,
+        "total_tokens": 47,
+        "compression_ratio": 0.8868
+      }
+    },
+    {
+      "step": 2,
+      "selected_pair": [
+        {
+          "bytes": [
+            108,
+            111
+          ],
+          "text": "lo"
+        },
+        {
+          "bytes": [
+            119
+          ],
+          "text": "w"
+        }
+      ],
+      "merged_token": {
+        "bytes": [
+          108,
+          111,
+          119
+        ],
+        "text": "low"
+      },
+      "frequency": 6,
+      "top_pairs": [
+        {
+          "left": {
+            "bytes": [
+              108,
+              111
+            ],
+            "text": "lo"
+          },
+          "right": {
+            "bytes": [
+              119
+            ],
+            "text": "w"
+          },
+          "count": 6
+        },
+        {
+          "left": {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          "right": {
+            "bytes": [
+              108,
+              111
+            ],
+            "text": "lo"
+          },
+          "count": 4
+        },
+        {
+          "left": {
+            "bytes": [
+              119
+            ],
+            "text": "w"
+          },
+          "right": {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              119
+            ],
+            "text": "w"
+          },
+          "right": {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          "right": {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          "right": {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          "right": {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          "right": {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          "count": 3
+        }
+      ],
+      "before_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111
+            ],
+            "text": "lo"
+          },
+          {
+            "bytes": [
+              119
+            ],
+            "text": "w"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              108,
+              111
+            ],
+            "text": "lo"
+          },
+          {
+            "bytes": [
+              119
+            ],
+            "text": "w"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              108,
+              111
+            ],
+            "text": "lo"
+          },
+          {
+            "bytes": [
+              119
+            ],
+            "text": "w"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111
+            ],
+            "text": "lo"
+          },
+          {
+            "bytes": [
+              119
+            ],
+            "text": "w"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              108,
+              111
+            ],
+            "text": "lo"
+          },
+          {
+            "bytes": [
+              119
+            ],
+            "text": "w"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              108,
+              111
+            ],
+            "text": "lo"
+          },
+          {
+            "bytes": [
+              119
+            ],
+            "text": "w"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "after_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "metrics": {
+        "vocab_size": 258,
+        "learned_merges": 2,
+        "total_tokens": 41,
+        "compression_ratio": 0.7736
+      }
+    },
+    {
+      "step": 3,
+      "selected_pair": [
+        {
+          "bytes": [
+            32
+          ],
+          "text": "␠"
+        },
+        {
+          "bytes": [
+            108,
+            111,
+            119
+          ],
+          "text": "low"
+        }
+      ],
+      "merged_token": {
+        "bytes": [
+          32,
+          108,
+          111,
+          119
+        ],
+        "text": "␠low"
+      },
+      "frequency": 4,
+      "top_pairs": [
+        {
+          "left": {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          "right": {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          "count": 4
+        },
+        {
+          "left": {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          "right": {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          "right": {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          "right": {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          "right": {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          "right": {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          "right": {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          "right": {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          "count": 2
+        }
+      ],
+      "before_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "after_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "metrics": {
+        "vocab_size": 259,
+        "learned_merges": 3,
+        "total_tokens": 37,
+        "compression_ratio": 0.6981
+      }
+    },
+    {
+      "step": 4,
+      "selected_pair": [
+        {
+          "bytes": [
+            32,
+            108,
+            111,
+            119
+          ],
+          "text": "␠low"
+        },
+        {
+          "bytes": [
+            101
+          ],
+          "text": "e"
+        }
+      ],
+      "merged_token": {
+        "bytes": [
+          32,
+          108,
+          111,
+          119,
+          101
+        ],
+        "text": "␠lowe"
+      },
+      "frequency": 3,
+      "top_pairs": [
+        {
+          "left": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          "right": {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          "right": {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          "right": {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          "right": {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          "right": {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          "count": 2
+        },
+        {
+          "left": {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          "right": {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          "count": 2
+        },
+        {
+          "left": {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          "right": {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          "count": 2
+        }
+      ],
+      "before_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "after_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "metrics": {
+        "vocab_size": 260,
+        "learned_merges": 4,
+        "total_tokens": 34,
+        "compression_ratio": 0.6415
+      }
+    },
+    {
+      "step": 5,
+      "selected_pair": [
+        {
+          "bytes": [
+            116
+          ],
+          "text": "t"
+        },
+        {
+          "bytes": [
+            111
+          ],
+          "text": "o"
+        }
+      ],
+      "merged_token": {
+        "bytes": [
+          116,
+          111
+        ],
+        "text": "to"
+      },
+      "frequency": 3,
+      "top_pairs": [
+        {
+          "left": {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          "right": {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          "right": {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          "right": {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          "right": {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          "right": {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          "count": 2
+        },
+        {
+          "left": {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          "right": {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          "count": 2
+        },
+        {
+          "left": {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          "right": {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          "count": 2
+        },
+        {
+          "left": {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          "count": 1
+        }
+      ],
+      "before_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "after_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116,
+              111
+            ],
+            "text": "to"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116,
+              111
+            ],
+            "text": "to"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116,
+              111
+            ],
+            "text": "to"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "metrics": {
+        "vocab_size": 261,
+        "learned_merges": 5,
+        "total_tokens": 31,
+        "compression_ratio": 0.5849
+      }
+    },
+    {
+      "step": 6,
+      "selected_pair": [
+        {
+          "bytes": [
+            116,
+            111
+          ],
+          "text": "to"
+        },
+        {
+          "bytes": [
+            107
+          ],
+          "text": "k"
+        }
+      ],
+      "merged_token": {
+        "bytes": [
+          116,
+          111,
+          107
+        ],
+        "text": "tok"
+      },
+      "frequency": 3,
+      "top_pairs": [
+        {
+          "left": {
+            "bytes": [
+              116,
+              111
+            ],
+            "text": "to"
+          },
+          "right": {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          "right": {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          "right": {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          "right": {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          "count": 2
+        },
+        {
+          "left": {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          "right": {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          "count": 2
+        },
+        {
+          "left": {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          "right": {
+            "bytes": [
+              116,
+              111
+            ],
+            "text": "to"
+          },
+          "count": 2
+        },
+        {
+          "left": {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          "count": 1
+        }
+      ],
+      "before_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116,
+              111
+            ],
+            "text": "to"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116,
+              111
+            ],
+            "text": "to"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116,
+              111
+            ],
+            "text": "to"
+          },
+          {
+            "bytes": [
+              107
+            ],
+            "text": "k"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "after_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116,
+              111,
+              107
+            ],
+            "text": "tok"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107
+            ],
+            "text": "tok"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107
+            ],
+            "text": "tok"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "metrics": {
+        "vocab_size": 262,
+        "learned_merges": 6,
+        "total_tokens": 28,
+        "compression_ratio": 0.5283
+      }
+    },
+    {
+      "step": 7,
+      "selected_pair": [
+        {
+          "bytes": [
+            116,
+            111,
+            107
+          ],
+          "text": "tok"
+        },
+        {
+          "bytes": [
+            101
+          ],
+          "text": "e"
+        }
+      ],
+      "merged_token": {
+        "bytes": [
+          116,
+          111,
+          107,
+          101
+        ],
+        "text": "toke"
+      },
+      "frequency": 3,
+      "top_pairs": [
+        {
+          "left": {
+            "bytes": [
+              116,
+              111,
+              107
+            ],
+            "text": "tok"
+          },
+          "right": {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          "right": {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          "right": {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          "count": 2
+        },
+        {
+          "left": {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          "right": {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          "count": 2
+        },
+        {
+          "left": {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          "right": {
+            "bytes": [
+              116,
+              111,
+              107
+            ],
+            "text": "tok"
+          },
+          "count": 2
+        },
+        {
+          "left": {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          "right": {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          "count": 1
+        }
+      ],
+      "before_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116,
+              111,
+              107
+            ],
+            "text": "tok"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107
+            ],
+            "text": "tok"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107
+            ],
+            "text": "tok"
+          },
+          {
+            "bytes": [
+              101
+            ],
+            "text": "e"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "after_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101
+            ],
+            "text": "toke"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101
+            ],
+            "text": "toke"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101
+            ],
+            "text": "toke"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "metrics": {
+        "vocab_size": 263,
+        "learned_merges": 7,
+        "total_tokens": 25,
+        "compression_ratio": 0.4717
+      }
+    },
+    {
+      "step": 8,
+      "selected_pair": [
+        {
+          "bytes": [
+            116,
+            111,
+            107,
+            101
+          ],
+          "text": "toke"
+        },
+        {
+          "bytes": [
+            110
+          ],
+          "text": "n"
+        }
+      ],
+      "merged_token": {
+        "bytes": [
+          116,
+          111,
+          107,
+          101,
+          110
+        ],
+        "text": "token"
+      },
+      "frequency": 3,
+      "top_pairs": [
+        {
+          "left": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101
+            ],
+            "text": "toke"
+          },
+          "right": {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          "count": 3
+        },
+        {
+          "left": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          "right": {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          "count": 2
+        },
+        {
+          "left": {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          "right": {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          "count": 2
+        },
+        {
+          "left": {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          "right": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101
+            ],
+            "text": "toke"
+          },
+          "count": 2
+        },
+        {
+          "left": {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          "right": {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          "right": {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          "count": 1
+        }
+      ],
+      "before_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101
+            ],
+            "text": "toke"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101
+            ],
+            "text": "toke"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101
+            ],
+            "text": "toke"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "after_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "metrics": {
+        "vocab_size": 264,
+        "learned_merges": 8,
+        "total_tokens": 22,
+        "compression_ratio": 0.4151
+      }
+    },
+    {
+      "step": 9,
+      "selected_pair": [
+        {
+          "bytes": [
+            32,
+            108,
+            111,
+            119,
+            101
+          ],
+          "text": "␠lowe"
+        },
+        {
+          "bytes": [
+            114
+          ],
+          "text": "r"
+        }
+      ],
+      "merged_token": {
+        "bytes": [
+          32,
+          108,
+          111,
+          119,
+          101,
+          114
+        ],
+        "text": "␠lower"
+      },
+      "frequency": 2,
+      "top_pairs": [
+        {
+          "left": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          "right": {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          "count": 2
+        },
+        {
+          "left": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          "right": {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          "count": 2
+        },
+        {
+          "left": {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          "right": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          "count": 2
+        },
+        {
+          "left": {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          "right": {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          "right": {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          "count": 1
+        }
+      ],
+      "before_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              114
+            ],
+            "text": "r"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "after_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "metrics": {
+        "vocab_size": 265,
+        "learned_merges": 9,
+        "total_tokens": 20,
+        "compression_ratio": 0.3774
+      }
+    },
+    {
+      "step": 10,
+      "selected_pair": [
+        {
+          "bytes": [
+            116,
+            111,
+            107,
+            101,
+            110
+          ],
+          "text": "token"
+        },
+        {
+          "bytes": [
+            32
+          ],
+          "text": "␠"
+        }
+      ],
+      "merged_token": {
+        "bytes": [
+          116,
+          111,
+          107,
+          101,
+          110,
+          32
+        ],
+        "text": "token␠"
+      },
+      "frequency": 2,
+      "top_pairs": [
+        {
+          "left": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          "right": {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          "count": 2
+        },
+        {
+          "left": {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          "right": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          "count": 2
+        },
+        {
+          "left": {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          "right": {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          "right": {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          },
+          "count": 1
+        }
+      ],
+      "before_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          {
+            "bytes": [
+              32
+            ],
+            "text": "␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "after_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "metrics": {
+        "vocab_size": 266,
+        "learned_merges": 10,
+        "total_tokens": 18,
+        "compression_ratio": 0.3396
+      }
+    },
+    {
+      "step": 11,
+      "selected_pair": [
+        {
+          "bytes": [
+            108,
+            111,
+            119
+          ],
+          "text": "low"
+        },
+        {
+          "bytes": [
+            32,
+            108,
+            111,
+            119,
+            101,
+            114
+          ],
+          "text": "␠lower"
+        }
+      ],
+      "merged_token": {
+        "bytes": [
+          108,
+          111,
+          119,
+          32,
+          108,
+          111,
+          119,
+          101,
+          114
+        ],
+        "text": "low␠lower"
+      },
+      "frequency": 1,
+      "top_pairs": [
+        {
+          "left": {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          "right": {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          "right": {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          "right": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          "right": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          "count": 1
+        }
+      ],
+      "before_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "after_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119,
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "low␠lower"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "metrics": {
+        "vocab_size": 267,
+        "learned_merges": 11,
+        "total_tokens": 17,
+        "compression_ratio": 0.3208
+      }
+    },
+    {
+      "step": 12,
+      "selected_pair": [
+        {
+          "bytes": [
+            108,
+            111,
+            119,
+            32,
+            108,
+            111,
+            119,
+            101,
+            114
+          ],
+          "text": "low␠lower"
+        },
+        {
+          "bytes": [
+            32,
+            108,
+            111,
+            119,
+            101
+          ],
+          "text": "␠lowe"
+        }
+      ],
+      "merged_token": {
+        "bytes": [
+          108,
+          111,
+          119,
+          32,
+          108,
+          111,
+          119,
+          101,
+          114,
+          32,
+          108,
+          111,
+          119,
+          101
+        ],
+        "text": "low␠lower␠lowe"
+      },
+      "frequency": 1,
+      "top_pairs": [
+        {
+          "left": {
+            "bytes": [
+              108,
+              111,
+              119,
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "low␠lower"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          "right": {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          "right": {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          "right": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          "right": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          "right": {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          "count": 1
+        }
+      ],
+      "before_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119,
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "low␠lower"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "␠lowe"
+          },
+          {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "after_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119,
+              32,
+              108,
+              111,
+              119,
+              101,
+              114,
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "low␠lower␠lowe"
+          },
+          {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "metrics": {
+        "vocab_size": 268,
+        "learned_merges": 12,
+        "total_tokens": 16,
+        "compression_ratio": 0.3019
+      }
+    },
+    {
+      "step": 13,
+      "selected_pair": [
+        {
+          "bytes": [
+            108,
+            111,
+            119,
+            32,
+            108,
+            111,
+            119,
+            101,
+            114,
+            32,
+            108,
+            111,
+            119,
+            101
+          ],
+          "text": "low␠lower␠lowe"
+        },
+        {
+          "bytes": [
+            115
+          ],
+          "text": "s"
+        }
+      ],
+      "merged_token": {
+        "bytes": [
+          108,
+          111,
+          119,
+          32,
+          108,
+          111,
+          119,
+          101,
+          114,
+          32,
+          108,
+          111,
+          119,
+          101,
+          115
+        ],
+        "text": "low␠lower␠lowes"
+      },
+      "frequency": 1,
+      "top_pairs": [
+        {
+          "left": {
+            "bytes": [
+              108,
+              111,
+              119,
+              32,
+              108,
+              111,
+              119,
+              101,
+              114,
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "low␠lower␠lowe"
+          },
+          "right": {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          "right": {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          "right": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          "right": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          "right": {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          "right": {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          "count": 1
+        }
+      ],
+      "before_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119,
+              32,
+              108,
+              111,
+              119,
+              101,
+              114,
+              32,
+              108,
+              111,
+              119,
+              101
+            ],
+            "text": "low␠lower␠lowe"
+          },
+          {
+            "bytes": [
+              115
+            ],
+            "text": "s"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "after_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119,
+              32,
+              108,
+              111,
+              119,
+              101,
+              114,
+              32,
+              108,
+              111,
+              119,
+              101,
+              115
+            ],
+            "text": "low␠lower␠lowes"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "metrics": {
+        "vocab_size": 269,
+        "learned_merges": 13,
+        "total_tokens": 15,
+        "compression_ratio": 0.283
+      }
+    },
+    {
+      "step": 14,
+      "selected_pair": [
+        {
+          "bytes": [
+            108,
+            111,
+            119,
+            32,
+            108,
+            111,
+            119,
+            101,
+            114,
+            32,
+            108,
+            111,
+            119,
+            101,
+            115
+          ],
+          "text": "low␠lower␠lowes"
+        },
+        {
+          "bytes": [
+            116
+          ],
+          "text": "t"
+        }
+      ],
+      "merged_token": {
+        "bytes": [
+          108,
+          111,
+          119,
+          32,
+          108,
+          111,
+          119,
+          101,
+          114,
+          32,
+          108,
+          111,
+          119,
+          101,
+          115,
+          116
+        ],
+        "text": "low␠lower␠lowest"
+      },
+      "frequency": 1,
+      "top_pairs": [
+        {
+          "left": {
+            "bytes": [
+              108,
+              111,
+              119,
+              32,
+              108,
+              111,
+              119,
+              101,
+              114,
+              32,
+              108,
+              111,
+              119,
+              101,
+              115
+            ],
+            "text": "low␠lower␠lowes"
+          },
+          "right": {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          "right": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          "right": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          "right": {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          "right": {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          "right": {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          "count": 1
+        }
+      ],
+      "before_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119,
+              32,
+              108,
+              111,
+              119,
+              101,
+              114,
+              32,
+              108,
+              111,
+              119,
+              101,
+              115
+            ],
+            "text": "low␠lower␠lowes"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "after_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119,
+              32,
+              108,
+              111,
+              119,
+              101,
+              114,
+              32,
+              108,
+              111,
+              119,
+              101,
+              115,
+              116
+            ],
+            "text": "low␠lower␠lowest"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "metrics": {
+        "vocab_size": 270,
+        "learned_merges": 14,
+        "total_tokens": 14,
+        "compression_ratio": 0.2642
+      }
+    },
+    {
+      "step": 15,
+      "selected_pair": [
+        {
+          "bytes": [
+            108,
+            111,
+            119
+          ],
+          "text": "low"
+        },
+        {
+          "bytes": [
+            32,
+            108,
+            111,
+            119
+          ],
+          "text": "␠low"
+        }
+      ],
+      "merged_token": {
+        "bytes": [
+          108,
+          111,
+          119,
+          32,
+          108,
+          111,
+          119
+        ],
+        "text": "low␠low"
+      },
+      "frequency": 1,
+      "top_pairs": [
+        {
+          "left": {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          "right": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          "right": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          "right": {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          "right": {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          "right": {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          "right": {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          "count": 1
+        }
+      ],
+      "before_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119,
+              32,
+              108,
+              111,
+              119,
+              101,
+              114,
+              32,
+              108,
+              111,
+              119,
+              101,
+              115,
+              116
+            ],
+            "text": "low␠lower␠lowest"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119
+            ],
+            "text": "low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "␠low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "after_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119,
+              32,
+              108,
+              111,
+              119,
+              101,
+              114,
+              32,
+              108,
+              111,
+              119,
+              101,
+              115,
+              116
+            ],
+            "text": "low␠lower␠lowest"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119,
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "low␠low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "metrics": {
+        "vocab_size": 271,
+        "learned_merges": 15,
+        "total_tokens": 13,
+        "compression_ratio": 0.2453
+      }
+    },
+    {
+      "step": 16,
+      "selected_pair": [
+        {
+          "bytes": [
+            108,
+            111,
+            119,
+            32,
+            108,
+            111,
+            119
+          ],
+          "text": "low␠low"
+        },
+        {
+          "bytes": [
+            32,
+            108,
+            111,
+            119,
+            101,
+            114
+          ],
+          "text": "␠lower"
+        }
+      ],
+      "merged_token": {
+        "bytes": [
+          108,
+          111,
+          119,
+          32,
+          108,
+          111,
+          119,
+          32,
+          108,
+          111,
+          119,
+          101,
+          114
+        ],
+        "text": "low␠low␠lower"
+      },
+      "frequency": 1,
+      "top_pairs": [
+        {
+          "left": {
+            "bytes": [
+              108,
+              111,
+              119,
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "low␠low"
+          },
+          "right": {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          "right": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          "right": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          "right": {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          "right": {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          "right": {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          "right": {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          "count": 1
+        },
+        {
+          "left": {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          "right": {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          "count": 1
+        }
+      ],
+      "before_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119,
+              32,
+              108,
+              111,
+              119,
+              101,
+              114,
+              32,
+              108,
+              111,
+              119,
+              101,
+              115,
+              116
+            ],
+            "text": "low␠lower␠lowest"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119,
+              32,
+              108,
+              111,
+              119
+            ],
+            "text": "low␠low"
+          },
+          {
+            "bytes": [
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "␠lower"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "after_sequences": [
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119,
+              32,
+              108,
+              111,
+              119,
+              101,
+              114,
+              32,
+              108,
+              111,
+              119,
+              101,
+              115,
+              116
+            ],
+            "text": "low␠lower␠lowest"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              108,
+              111,
+              119,
+              32,
+              108,
+              111,
+              119,
+              32,
+              108,
+              111,
+              119,
+              101,
+              114
+            ],
+            "text": "low␠low␠lower"
+          }
+        ],
+        [
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110,
+              32
+            ],
+            "text": "token␠"
+          },
+          {
+            "bytes": [
+              116,
+              111,
+              107,
+              101,
+              110
+            ],
+            "text": "token"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              122
+            ],
+            "text": "z"
+          },
+          {
+            "bytes": [
+              97
+            ],
+            "text": "a"
+          },
+          {
+            "bytes": [
+              116
+            ],
+            "text": "t"
+          },
+          {
+            "bytes": [
+              105
+            ],
+            "text": "i"
+          },
+          {
+            "bytes": [
+              111
+            ],
+            "text": "o"
+          },
+          {
+            "bytes": [
+              110
+            ],
+            "text": "n"
+          }
+        ]
+      ],
+      "metrics": {
+        "vocab_size": 272,
+        "learned_merges": 16,
+        "total_tokens": 12,
+        "compression_ratio": 0.2264
+      }
+    }
+  ],
+  "merges": [
+    {
+      "id": 256,
+      "left": {
+        "bytes": [
+          108
+        ],
+        "text": "l"
+      },
+      "right": {
+        "bytes": [
+          111
+        ],
+        "text": "o"
+      },
+      "token": {
+        "bytes": [
+          108,
+          111
+        ],
+        "text": "lo"
+      }
+    },
+    {
+      "id": 257,
+      "left": {
+        "bytes": [
+          108,
+          111
+        ],
+        "text": "lo"
+      },
+      "right": {
+        "bytes": [
+          119
+        ],
+        "text": "w"
+      },
+      "token": {
+        "bytes": [
+          108,
+          111,
+          119
+        ],
+        "text": "low"
+      }
+    },
+    {
+      "id": 258,
+      "left": {
+        "bytes": [
+          32
+        ],
+        "text": "␠"
+      },
+      "right": {
+        "bytes": [
+          108,
+          111,
+          119
+        ],
+        "text": "low"
+      },
+      "token": {
+        "bytes": [
+          32,
+          108,
+          111,
+          119
+        ],
+        "text": "␠low"
+      }
+    },
+    {
+      "id": 259,
+      "left": {
+        "bytes": [
+          32,
+          108,
+          111,
+          119
+        ],
+        "text": "␠low"
+      },
+      "right": {
+        "bytes": [
+          101
+        ],
+        "text": "e"
+      },
+      "token": {
+        "bytes": [
+          32,
+          108,
+          111,
+          119,
+          101
+        ],
+        "text": "␠lowe"
+      }
+    },
+    {
+      "id": 260,
+      "left": {
+        "bytes": [
+          116
+        ],
+        "text": "t"
+      },
+      "right": {
+        "bytes": [
+          111
+        ],
+        "text": "o"
+      },
+      "token": {
+        "bytes": [
+          116,
+          111
+        ],
+        "text": "to"
+      }
+    },
+    {
+      "id": 261,
+      "left": {
+        "bytes": [
+          116,
+          111
+        ],
+        "text": "to"
+      },
+      "right": {
+        "bytes": [
+          107
+        ],
+        "text": "k"
+      },
+      "token": {
+        "bytes": [
+          116,
+          111,
+          107
+        ],
+        "text": "tok"
+      }
+    },
+    {
+      "id": 262,
+      "left": {
+        "bytes": [
+          116,
+          111,
+          107
+        ],
+        "text": "tok"
+      },
+      "right": {
+        "bytes": [
+          101
+        ],
+        "text": "e"
+      },
+      "token": {
+        "bytes": [
+          116,
+          111,
+          107,
+          101
+        ],
+        "text": "toke"
+      }
+    },
+    {
+      "id": 263,
+      "left": {
+        "bytes": [
+          116,
+          111,
+          107,
+          101
+        ],
+        "text": "toke"
+      },
+      "right": {
+        "bytes": [
+          110
+        ],
+        "text": "n"
+      },
+      "token": {
+        "bytes": [
+          116,
+          111,
+          107,
+          101,
+          110
+        ],
+        "text": "token"
+      }
+    },
+    {
+      "id": 264,
+      "left": {
+        "bytes": [
+          32,
+          108,
+          111,
+          119,
+          101
+        ],
+        "text": "␠lowe"
+      },
+      "right": {
+        "bytes": [
+          114
+        ],
+        "text": "r"
+      },
+      "token": {
+        "bytes": [
+          32,
+          108,
+          111,
+          119,
+          101,
+          114
+        ],
+        "text": "␠lower"
+      }
+    },
+    {
+      "id": 265,
+      "left": {
+        "bytes": [
+          116,
+          111,
+          107,
+          101,
+          110
+        ],
+        "text": "token"
+      },
+      "right": {
+        "bytes": [
+          32
+        ],
+        "text": "␠"
+      },
+      "token": {
+        "bytes": [
+          116,
+          111,
+          107,
+          101,
+          110,
+          32
+        ],
+        "text": "token␠"
+      }
+    },
+    {
+      "id": 266,
+      "left": {
+        "bytes": [
+          108,
+          111,
+          119
+        ],
+        "text": "low"
+      },
+      "right": {
+        "bytes": [
+          32,
+          108,
+          111,
+          119,
+          101,
+          114
+        ],
+        "text": "␠lower"
+      },
+      "token": {
+        "bytes": [
+          108,
+          111,
+          119,
+          32,
+          108,
+          111,
+          119,
+          101,
+          114
+        ],
+        "text": "low␠lower"
+      }
+    },
+    {
+      "id": 267,
+      "left": {
+        "bytes": [
+          108,
+          111,
+          119,
+          32,
+          108,
+          111,
+          119,
+          101,
+          114
+        ],
+        "text": "low␠lower"
+      },
+      "right": {
+        "bytes": [
+          32,
+          108,
+          111,
+          119,
+          101
+        ],
+        "text": "␠lowe"
+      },
+      "token": {
+        "bytes": [
+          108,
+          111,
+          119,
+          32,
+          108,
+          111,
+          119,
+          101,
+          114,
+          32,
+          108,
+          111,
+          119,
+          101
+        ],
+        "text": "low␠lower␠lowe"
+      }
+    },
+    {
+      "id": 268,
+      "left": {
+        "bytes": [
+          108,
+          111,
+          119,
+          32,
+          108,
+          111,
+          119,
+          101,
+          114,
+          32,
+          108,
+          111,
+          119,
+          101
+        ],
+        "text": "low␠lower␠lowe"
+      },
+      "right": {
+        "bytes": [
+          115
+        ],
+        "text": "s"
+      },
+      "token": {
+        "bytes": [
+          108,
+          111,
+          119,
+          32,
+          108,
+          111,
+          119,
+          101,
+          114,
+          32,
+          108,
+          111,
+          119,
+          101,
+          115
+        ],
+        "text": "low␠lower␠lowes"
+      }
+    },
+    {
+      "id": 269,
+      "left": {
+        "bytes": [
+          108,
+          111,
+          119,
+          32,
+          108,
+          111,
+          119,
+          101,
+          114,
+          32,
+          108,
+          111,
+          119,
+          101,
+          115
+        ],
+        "text": "low␠lower␠lowes"
+      },
+      "right": {
+        "bytes": [
+          116
+        ],
+        "text": "t"
+      },
+      "token": {
+        "bytes": [
+          108,
+          111,
+          119,
+          32,
+          108,
+          111,
+          119,
+          101,
+          114,
+          32,
+          108,
+          111,
+          119,
+          101,
+          115,
+          116
+        ],
+        "text": "low␠lower␠lowest"
+      }
+    },
+    {
+      "id": 270,
+      "left": {
+        "bytes": [
+          108,
+          111,
+          119
+        ],
+        "text": "low"
+      },
+      "right": {
+        "bytes": [
+          32,
+          108,
+          111,
+          119
+        ],
+        "text": "␠low"
+      },
+      "token": {
+        "bytes": [
+          108,
+          111,
+          119,
+          32,
+          108,
+          111,
+          119
+        ],
+        "text": "low␠low"
+      }
+    },
+    {
+      "id": 271,
+      "left": {
+        "bytes": [
+          108,
+          111,
+          119,
+          32,
+          108,
+          111,
+          119
+        ],
+        "text": "low␠low"
+      },
+      "right": {
+        "bytes": [
+          32,
+          108,
+          111,
+          119,
+          101,
+          114
+        ],
+        "text": "␠lower"
+      },
+      "token": {
+        "bytes": [
+          108,
+          111,
+          119,
+          32,
+          108,
+          111,
+          119,
+          32,
+          108,
+          111,
+          119,
+          101,
+          114
+        ],
+        "text": "low␠low␠lower"
+      }
+    }
+  ],
+  "examples": [
+    {
+      "label": "common",
+      "text": "tokenization turns text into token ids."
+    },
+    {
+      "label": "rare",
+      "text": "hypermicrotokenization antidisestablishmentarian-ish words"
+    },
+    {
+      "label": "code",
+      "text": "def tokenize(text):\n    return text.encode('utf-8')\n"
+    },
+    {
+      "label": "math",
+      "text": "f(x) = x^2 + 2*x + 1; sum_i p_i log(p_i)"
+    },
+    {
+      "label": "emoji",
+      "text": "I like clean tokenizers ✨ café 👋🏽"
+    },
+    {
+      "label": "multilingual",
+      "text": "Hello नमस्ते こんにちは مرحبا Привет"
+    }
+  ]
+}

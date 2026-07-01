@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BPE Merge Microscope</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="bpe-widget">
+      <header class="widget-header">
+        <div>
+          <p class="eyebrow">Interactive trace</p>
+          <h1>BPE Merge Microscope</h1>
+        </div>
+        <div class="metric-row" aria-label="Current metrics">
+          <span><strong id="vocab-size">256</strong> vocab</span>
+          <span><strong id="total-tokens">0</strong> tokens</span>
+          <span><strong id="compression">1.00</strong> ratio</span>
+        </div>
+      </header>
+
+      <section class="controls" aria-label="Trace controls">
+        <label for="step-slider">Merge step</label>
+        <input id="step-slider" type="range" min="0" max="0" value="0" />
+        <span id="step-label">step 0</span>
+      </section>
+
+      <section class="selected-pair" aria-live="polite">
+        <span>Selected pair</span>
+        <strong id="selected-pair">loading...</strong>
+      </section>
+
+      <section class="sequence-grid">
+        <div>
+          <h2>Before</h2>
+          <div id="before-sequences" class="sequence-panel"></div>
+        </div>
+        <div>
+          <h2>After</h2>
+          <div id="after-sequences" class="sequence-panel"></div>
+        </div>
+      </section>
+
+      <section class="details-grid">
+        <div>
+          <h2>Top Pair Counts</h2>
+          <ol id="pair-counts" class="pair-list"></ol>
+        </div>
+        <div>
+          <h2>Try Encoding</h2>
+          <textarea id="try-text" rows="3">hypermicrotokenization café ✨</textarea>
+          <div id="encoded-output" class="encoded-output"></div>
+        </div>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
