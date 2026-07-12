@@ -1,7 +1,7 @@
 # AI/ML Engineer Portfolio Redesign
 
 **Date:** 2026-07-12  
-**Status:** Approved visual direction; specification awaiting final user review  
+**Status:** Approved for implementation<br>
 **Approved direction:** Engineer Dossier  
 **Visual reference:** `/home/avisaha/.gstack/projects/sahaavi-sahaavi.github.io/designs/engineer-dossier-20260712/homepage-preview.html`
 
@@ -39,7 +39,7 @@ The redesign targets recruiters and hiring managers evaluating candidates for:
 
 ### Hero-copy requirements
 
-The final hero statement remains user-editable and requires explicit user approval before implementation. It must:
+The approved implementation baseline is `Building AI products and ML systems with measurable impact.` Store it in `data/profile.yaml` so the user can revise it without editing templates. Any revision must:
 
 - Lead with AI and machine learning engineering
 - Reflect experience building systems and producing outcomes
