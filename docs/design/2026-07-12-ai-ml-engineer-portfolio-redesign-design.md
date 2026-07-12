@@ -37,22 +37,29 @@ The redesign targets recruiters and hiring managers evaluating candidates for:
 
 **Applied AI & ML Engineer**
 
-### Hero statement
+### Hero-copy requirements
 
-> Turning AI and machine learning into dependable software.
+The final hero statement remains user-editable and requires explicit user approval before implementation. It must:
+
+- Lead with AI and machine learning engineering
+- Reflect experience building systems and producing outcomes
+- Remain concise enough to scan in two or three lines
+- Avoid leading with years of experience, Python, SQL, BCRTC, an operational domain, or a single project
+- Avoid generic claims that are not supported by the experience and evidence sections
 
 ### Supporting statement
 
-> I connect LLMs, retrieval, predictive models, data pipelines, APIs, evaluation, and cloud delivery into systems that teams can use and trust.
+Working direction:
 
-### Proof line
+> My experience spans source-grounded LLM workflows, predictive models, evaluation systems, data and feature pipelines, APIs, and cloud delivery, with measured improvements in quality, efficiency, review effort, and decision support.
 
-- 4+ years using Python and SQL
-- UBC Master of Data Science
-- AI, ML, data, and backend systems
-- Vancouver, British Columbia
+### Hero evidence line
 
-The four-year statement applies only to Python and SQL. It must not imply four years of AI, ML, or ML-engineering experience.
+- LLM systems, RAG, and evaluation
+- Predictive ML and human review
+- Measured quality and efficiency gains
+
+Do not use a years-of-Python-or-SQL statement in the hero. Python and SQL remain supporting technical evidence in the engineering-range and experience sections. Exact quantified hero metrics may render only after explicit website-public approval; otherwise the hero uses the evidence-safe non-numeric signals above.
 
 ## 4. Audience and Questions Answered
 
@@ -131,10 +138,10 @@ The hero uses an asymmetric two-column layout.
 The left column contains:
 
 - Role and location eyebrow
-- Hero statement
-- Supporting statement
+- User-approved AI/ML hero statement
+- Experience-and-impact supporting statement
 - `Explore experience`, `Selected work`, and `Contact` actions
-- Three compact proof points
+- Three compact AI/ML evidence and impact signals
 
 The right column contains an experience signal panel rather than a project image. It shows:
 
@@ -322,7 +329,7 @@ Use Hugo data or page front matter instead of duplicating copy in templates.
 
 Recommended data boundaries:
 
-- `data/profile.yaml`: homepage identity, location, proof points, and external links
+- `data/profile.yaml`: homepage identity, location, AI/ML evidence signals, and external links
 - `data/experience.yaml`: homepage-visible roles and evidence-safe summaries
 - Project front matter: status, role, category, year, repository, case-study metadata, system-map labels, and featured order
 - Existing Markdown: long-form project and writing content
@@ -466,6 +473,8 @@ The redesign is complete when:
 10. Light and dark themes pass accessibility and responsive checks.
 11. Visible claims pass evidence review.
 12. The page has no horizontal overflow or browser-console errors at supported widths.
+13. The hero contains no years-of-Python-or-SQL statement.
+14. The hero evidence line foregrounds AI/ML work and impact rather than generic tenure or tool familiarity.
 
 ## 16. Explicit Non-Goals
 
