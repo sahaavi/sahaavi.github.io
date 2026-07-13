@@ -1,0 +1,93 @@
+{{/* layouts/partials/home/experience.html */}}
+{{- $roles := site.Data.experience.roles -}}
+{{- $rolesValid := true -}}
+{{- if ne (len $roles) 4 }}
+  {{- errorf "data/experience.yaml must define exactly four roles" -}}
+  {{- $rolesValid = false -}}
+{{- end -}}
+{{- range $roles -}}
+  {{- if ne (printf "%T" .current) "bool" }}
+    {{- errorf "experience role current must be boolean" -}}
+    {{- $rolesValid = false -}}
+  {{- end -}}
+  {{- if or (not .id) (not (strings.TrimSpace .id)) (not .employer) (not (strings.TrimSpace .employer)) (not .title) (not (strings.TrimSpace .title)) (not .period) (not (strings.TrimSpace .period)) (not .short_period) (not (strings.TrimSpace .short_period)) (not .location) (not (strings.TrimSpace .location)) (not .homepage_summary) (not (strings.TrimSpace .homepage_summary)) }}
+    {{- errorf "experience roles must define id, employer, title, period, short_period, location, and homepage_summary" -}}
+    {{- $rolesValid = false -}}
+  {{- end -}}
+  {{- with .metrics -}}
+    {{- range . -}}
+      {{- if or (not .value) (not (strings.TrimSpace .value)) (not .label) (not (strings.TrimSpace .label)) }}
+        {{- errorf "experience metrics must define value and label" -}}
+        {{- $rolesValid = false -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if $rolesValid -}}
+  {{- $currentRoles := where $roles "current" true -}}
+  {{- if ne (len $currentRoles) 1 -}}
+    {{- errorf "data/experience.yaml must define exactly one current role" -}}
+  {{- else -}}
+    {{- $current := index $currentRoles 0 -}}
+    {{- $previous := where $roles "current" false -}}
+    {{- $experienceValid := true -}}
+    {{- if ne (len $previous) 3 }}
+      {{- errorf "data/experience.yaml must define exactly three previous roles" -}}
+      {{- $experienceValid = false -}}
+    {{- end -}}
+    {{- if not $current.evidence -}}
+      {{- errorf "current role evidence must contain exactly three items" -}}
+      {{- $experienceValid = false -}}
+    {{- else -}}
+      {{- if ne (len $current.evidence) 3 }}
+        {{- errorf "current role evidence must contain exactly three items" -}}
+        {{- $experienceValid = false -}}
+      {{- end -}}
+      {{- range $current.evidence -}}
+        {{- if or (not .label) (not (strings.TrimSpace .label)) (not .text) (not (strings.TrimSpace .text)) }}
+          {{- errorf "current role evidence items must define label and text" -}}
+          {{- $experienceValid = false -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if $experienceValid -}}
+<section id="experience" class="portfolio-section" aria-labelledby="experience-title">
+  <div class="portfolio-section-head">
+    <p class="portfolio-label">01 · Experience</p>
+    <div>
+      <h2 id="experience-title">AI and ML engineering grounded in professional delivery.</h2>
+      <p>Applied AI evaluation, predictive ML, software and data delivery, financial technology, and public-sector research provide the professional foundation for the engineering work.</p>
+    </div>
+  </div>
+  <article class="portfolio-experience-primary">
+    <div>
+      <p class="portfolio-label">Current role</p>
+      <h3>{{ $current.title }}</h3>
+      <p class="portfolio-meta">{{ $current.employer }} · {{ $current.period }} · {{ $current.location }}</p>
+      <p>{{ $current.homepage_summary }}</p>
+    </div>
+    <ul class="portfolio-evidence-list">
+      {{- range $current.evidence }}
+      <li><strong>{{ .label }}</strong><span>{{ .text }}</span></li>
+      {{- end }}
+    </ul>
+  </article>
+  <div class="portfolio-experience-grid">
+    {{- range $previous }}
+    <article class="portfolio-experience-card">
+      <p class="portfolio-label">{{ .short_period }}</p>
+      <h3>{{ .employer }}</h3>
+      <p class="portfolio-meta">{{ .title }}</p>
+      <p>{{ .homepage_summary }}</p>
+      {{- with .metrics }}
+      <dl class="portfolio-metric-row">
+        {{- range . }}<div><dt>{{ .value }}</dt><dd>{{ .label }}</dd></div>{{ end }}
+      </dl>
+      {{- end }}
+    </article>
+    {{- end }}
+  </div>
+</section>
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

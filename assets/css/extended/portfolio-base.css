@@ -55,3 +55,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 640px) {
   .main { padding-inline: 14px; }
 }
+
+@media (max-width: 480px) {
+  .top-link { display: none; }
+}
