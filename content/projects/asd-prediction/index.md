@@ -11,6 +11,13 @@ cover:
   relative: true
 weight: 4
 showToc: true
+portfolio_group: "research"
+portfolio_status: "Published research"
+portfolio_category: "Machine learning"
+portfolio_role: "Research contributor"
+portfolio_year: 2021
+repository_url: ""
+home_featured: false
 ---
 
 ## Overview

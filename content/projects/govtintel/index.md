@@ -6,10 +6,10 @@ draft: false
 description: "A local-first federal procurement intelligence RAG system that turns USAspending contract awards into citation-grounded market briefs."
 tags: ["rag", "retrieval", "fastapi", "streamlit", "python"]
 cover:
-  image: "https://raw.githubusercontent.com/sahaavi/GovtIntel/main/docs/assets/govintel-ui.png"
+  image: "govintel-ui.png"
   alt: "GovIntel Streamlit UI showing a generated procurement intelligence brief"
-  relative: false
-  hiddenInList: true
+  relative: true
+  hiddenInList: false
 weight: 2
 showToc: true
 home_featured: true

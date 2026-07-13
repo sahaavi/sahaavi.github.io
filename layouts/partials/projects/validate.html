@@ -1,0 +1,197 @@
+{{- $page := . -}}
+{{- $path := $page.File.Path -}}
+{{- $params := $page.Params -}}
+{{- $valid := true -}}
+
+{{- if not (isset $params "title") -}}
+  {{- errorf "%s: project title must be a nonblank string" $path -}}
+  {{- $valid = false -}}
+{{- else -}}
+  {{- $title := index $params "title" -}}
+  {{- if or (ne (printf "%T" $title) "string") (not (strings.TrimSpace $title)) -}}
+    {{- errorf "%s: project title must be a nonblank string" $path -}}
+    {{- $valid = false -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if not (isset $params "description") -}}
+  {{- errorf "%s: project description must be a nonblank string" $path -}}
+  {{- $valid = false -}}
+{{- else -}}
+  {{- $description := index $params "description" -}}
+  {{- if or (ne (printf "%T" $description) "string") (not (strings.TrimSpace $description)) -}}
+    {{- errorf "%s: project description must be a nonblank string" $path -}}
+    {{- $valid = false -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $allowedGroups := slice "featured-ai" "ml-labs" "research" -}}
+{{- if not (isset $params "portfolio_group") -}}
+  {{- errorf "%s: portfolio_group must be one of featured-ai, ml-labs, or research" $path -}}
+  {{- $valid = false -}}
+{{- else -}}
+  {{- $group := index $params "portfolio_group" -}}
+  {{- if or (ne (printf "%T" $group) "string") (not (in $allowedGroups $group)) -}}
+    {{- errorf "%s: portfolio_group must be one of featured-ai, ml-labs, or research" $path -}}
+    {{- $valid = false -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $projectStringsValid := true -}}
+{{- range slice "portfolio_status" "portfolio_category" "portfolio_role" -}}
+  {{- if not (isset $params .) -}}
+    {{- $projectStringsValid = false -}}
+  {{- else -}}
+    {{- $value := index $params . -}}
+    {{- if ne (printf "%T" $value) "string" -}}
+      {{- $projectStringsValid = false -}}
+    {{- else if not (strings.TrimSpace $value) -}}
+      {{- $projectStringsValid = false -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $projectStringsValid -}}
+  {{- errorf "%s: portfolio_status, portfolio_category, and portfolio_role must be nonblank strings" $path -}}
+  {{- $valid = false -}}
+{{- end -}}
+
+{{- if not (isset $params "portfolio_year") -}}
+  {{- errorf "%s: portfolio_year must be an integer from 2000 through 2100" $path -}}
+  {{- $valid = false -}}
+{{- else -}}
+  {{- $year := index $params "portfolio_year" -}}
+  {{- if ne (printf "%T" $year) "int" -}}
+    {{- errorf "%s: portfolio_year must be an integer from 2000 through 2100" $path -}}
+    {{- $valid = false -}}
+  {{- else if or (lt $year 2000) (gt $year 2100) -}}
+    {{- errorf "%s: portfolio_year must be an integer from 2000 through 2100" $path -}}
+    {{- $valid = false -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if not (isset $params "home_featured") -}}
+  {{- errorf "%s: home_featured must be boolean" $path -}}
+  {{- $valid = false -}}
+{{- else if ne (printf "%T" (index $params "home_featured")) "bool" -}}
+  {{- errorf "%s: home_featured must be boolean" $path -}}
+  {{- $valid = false -}}
+{{- end -}}
+
+{{- if isset $params "repository_url" -}}
+  {{- $repositoryURL := index $params "repository_url" -}}
+  {{- if ne (printf "%T" $repositoryURL) "string" -}}
+    {{- errorf "%s: repository_url must be a string" $path -}}
+    {{- $valid = false -}}
+  {{- else -}}
+    {{- $repositoryURLValid := true -}}
+    {{- $trimmedRepositoryURL := strings.TrimSpace $repositoryURL -}}
+    {{- if ne $trimmedRepositoryURL $repositoryURL -}}
+      {{- $repositoryURLValid = false -}}
+    {{- else if $repositoryURL -}}
+      {{- $repositoryPattern := `^https://[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?)+(/[A-Za-z0-9._~:/?#@!$&'()*+,;=%-]*)?$` -}}
+      {{- if ne (len (findRE $repositoryPattern $repositoryURL)) 1 -}}
+        {{- $repositoryURLValid = false -}}
+      {{- else -}}
+        {{- $parsedRepositoryURL := urls.Parse $repositoryURL -}}
+        {{- if or (ne $parsedRepositoryURL.Scheme "https") (not $parsedRepositoryURL.Host) -}}
+          {{- $repositoryURLValid = false -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if not $repositoryURLValid -}}
+      {{- errorf "%s: repository_url must be blank or an absolute HTTPS URL with a valid host and no port" $path -}}
+      {{- $valid = false -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if not (isset $params "cover") -}}
+  {{- errorf "%s: project cover must be a map" $path -}}
+  {{- $valid = false -}}
+{{- else -}}
+  {{- $cover := index $params "cover" -}}
+  {{- if not (reflect.IsMap $cover) -}}
+    {{- errorf "%s: project cover must be a map" $path -}}
+    {{- $valid = false -}}
+  {{- else -}}
+    {{- $coverTypesValid := true -}}
+    {{- range slice "image" "alt" "relative" -}}
+      {{- if not (isset $cover .) -}}
+        {{- $coverTypesValid = false -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if $coverTypesValid -}}
+      {{- if ne (printf "%T" (index $cover "image")) "string" -}}
+        {{- $coverTypesValid = false -}}
+      {{- end -}}
+      {{- if ne (printf "%T" (index $cover "alt")) "string" -}}
+        {{- $coverTypesValid = false -}}
+      {{- end -}}
+      {{- if ne (printf "%T" (index $cover "relative")) "bool" -}}
+        {{- $coverTypesValid = false -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if not $coverTypesValid -}}
+      {{- errorf "%s: cover image and alt must be strings and relative must be boolean" $path -}}
+      {{- $valid = false -}}
+    {{- else -}}
+      {{- $image := index $cover "image" -}}
+      {{- $trimmedImage := strings.TrimSpace $image -}}
+      {{- $alt := strings.TrimSpace (index $cover "alt") -}}
+      {{- $relative := index $cover "relative" -}}
+      {{- if not $relative -}}
+        {{- errorf "%s: cover image must be a local relative page resource" $path -}}
+        {{- $valid = false -}}
+      {{- end -}}
+      {{- if ne $trimmedImage $image -}}
+        {{- errorf "%s: cover image path must not have surrounding whitespace" $path -}}
+        {{- $valid = false -}}
+      {{- else if $image -}}
+        {{- if not $alt -}}
+          {{- errorf "%s: local cover images must define nonblank alt text" $path -}}
+          {{- $valid = false -}}
+        {{- end -}}
+        {{- $imagePathValid := true -}}
+        {{- if or (hasPrefix $image "/") (findRE `(?i)^[a-z][a-z0-9+.-]*:` $image) (in (split $image "/") "..") -}}
+          {{- $imagePathValid = false -}}
+        {{- end -}}
+        {{- if not $imagePathValid -}}
+          {{- errorf "%s: cover image must be a local relative page resource" $path -}}
+          {{- $valid = false -}}
+        {{- else -}}
+          {{- $coverResource := $page.Resources.GetMatch $image -}}
+          {{- if not $coverResource -}}
+            {{- errorf "%s: cover image %s does not match a page resource" $path $image -}}
+            {{- $valid = false -}}
+          {{- else if ne $coverResource.ResourceType "image" -}}
+            {{- errorf "%s: cover image %s must be an image resource" $path $image -}}
+            {{- $valid = false -}}
+          {{- else -}}
+            {{- $supportedRasterExtensions := slice ".png" ".jpg" ".jpeg" ".webp" ".gif" ".tif" ".tiff" ".bmp" -}}
+            {{- $imageExtension := lower (path.Ext $image) -}}
+            {{- if not (in $supportedRasterExtensions $imageExtension) -}}
+              {{- errorf "%s: cover image %s must use a supported raster image format" $path $image -}}
+              {{- $valid = false -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+
+    {{- if isset $cover "hiddeninlist" -}}
+      {{- if ne (printf "%T" (index $cover "hiddeninlist")) "bool" -}}
+        {{- errorf "%s: cover hiddenInList must be boolean when provided" $path -}}
+        {{- $valid = false -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if isset $cover "fit" -}}
+      {{- $fit := index $cover "fit" -}}
+      {{- if or (ne (printf "%T" $fit) "string") (not (in (slice "contain" "cover") $fit)) -}}
+        {{- errorf "%s: cover fit must be contain or cover when provided" $path -}}
+        {{- $valid = false -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- return $valid -}}

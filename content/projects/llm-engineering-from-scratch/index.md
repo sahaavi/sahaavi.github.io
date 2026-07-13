@@ -3,7 +3,7 @@ title: "LLM Engineering From Scratch"
 slug: "llm-engineering-from-scratch"
 date: 2026-06-30
 draft: false
-description: "A project-first learning series that rebuilds LLM mechanics from tokenization to evaluation with runnable code, plots, failures, and interactive demos."
+description: "An expanding LLM engineering lab, currently featuring a runnable byte-level BPE tokenizer, failure analysis, and an interactive demo, with later model components on the roadmap."
 tags: ["llm-engineering", "machine-learning", "python", "from-scratch", "ai-engineering"]
 cover:
   image: "cover.png"
@@ -11,11 +11,18 @@ cover:
   relative: true
 weight: 3
 showToc: true
+portfolio_group: "ml-labs"
+portfolio_status: "In-progress lab series"
+portfolio_category: "LLM engineering"
+portfolio_role: "Builder and writer"
+portfolio_year: 2026
+repository_url: "https://github.com/sahaavi/llm-engineering-from-scratch"
+home_featured: false
 ---
 
 ## Overview
 
-**LLM Engineering From Scratch** is a public learning series that rebuilds core LLM mechanics one project at a time. Each project pairs a small runnable implementation with plots, stress cases, explanations, and a reproducible artifact.
+**LLM Engineering From Scratch** is an expanding public lab. The implemented work currently centers on a byte-level BPE tokenizer with deterministic artifacts, stress cases, failure analysis, explanations, and an interactive merge demo. Later model components remain roadmap items.
 
 Roadmap inspiration: [Ahmad Osman](https://x.com/TheAhmadOsman) ([@TheAhmadOsman](https://x.com/TheAhmadOsman)) and his article, ["Step-By-Step LLM Engineering Projects (2026 Edition)"](https://x.com/TheAhmadOsman/article/2058745340895870985). The repository uses the article as a roadmap reference; the implementations, experiments, traces, demos, and writeups are independent.
 
@@ -31,7 +38,7 @@ The first project, **Tokenizer From Scratch**, is implemented with a byte-level 
 
 ## Series Pattern
 
-Each project ships five kinds of evidence:
+Each implemented project is intended to ship five kinds of evidence:
 
 1. **Implementation** - readable Python from scratch.
 2. **Notebook** - a runnable experiment and explanation path.
@@ -54,4 +61,4 @@ Each project ships five kinds of evidence:
 
 ## Why It Matters
 
-Frameworks are useful, but they can hide the mechanisms that make LLM systems work or fail. This series makes those mechanisms visible through code, plots, traces, failure cases, and short explanations that compound into a deeper engineering foundation.
+Frameworks are useful, but they can hide the mechanisms that make LLM systems work or fail. The implemented tokenizer makes its compression tradeoffs visible through code, plots, traces, failure cases, and a short interactive explanation. The roadmap applies the same evidence-first approach to later model components as they are built.

@@ -145,11 +145,6 @@
       {{- $projectOrder := index .Params "home_order" -}}
       {{- $headingID := printf "work-project-%d-title" $projectOrder -}}
       {{- $systemMap := index .Params "system_map" -}}
-      {{- $systemLabels := slice -}}
-      {{- range $systemMap -}}
-        {{- $systemLabels = $systemLabels | append (index . "label") -}}
-      {{- end -}}
-      {{- $systemLabel := printf "%s system components: %s" .Title (delimit $systemLabels ", ") -}}
     <article class="portfolio-work-row" aria-labelledby="{{ $headingID }}">
       <div class="portfolio-work-meta">
         <strong>{{ index .Params "portfolio_status" }}</strong>
@@ -165,11 +160,7 @@
           <a href="{{ index .Params "case_study_url" }}" aria-label="{{ .Title }} case study">Case study</a>
         </div>
       </div>
-      <div class="portfolio-system-map" role="img" aria-label="{{ $systemLabel }}">
-        {{- range $systemMap -}}
-        <span{{ if and (isset . "accent") (index . "accent") }} class="is-accent"{{ end }}>{{ index . "label" }}</span>
-        {{- end -}}
-      </div>
+      {{- partial "system-map.html" (dict "title" .Title "items" $systemMap "class" "portfolio-system-map") }}
     </article>
     {{- end -}}
   </div>

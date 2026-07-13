@@ -1,0 +1,11 @@
+{{- $items := .items -}}
+{{- $labels := slice -}}
+{{- range $items -}}
+  {{- $labels = $labels | append (index . "label") -}}
+{{- end -}}
+{{- $accessibleName := printf "%s system components: %s" .title (delimit $labels ", ") -}}
+<div class="{{ .class }}" role="img" aria-label="{{ $accessibleName }}">
+  {{- range $items }}
+  <span aria-hidden="true"{{ if and (isset . "accent") (index . "accent") }} class="is-accent"{{ end }}>{{ index . "label" }}</span>
+  {{- end }}
+</div>

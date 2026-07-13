@@ -1,0 +1,217 @@
+.portfolio-work-header {
+  max-width: 760px;
+  margin: 20px 0 58px;
+}
+
+.portfolio-work-header h1 {
+  margin: 10px 0 14px;
+  font-size: clamp(42px, 7vw, 76px);
+  line-height: 0.98;
+}
+
+.portfolio-work-header > p:last-child {
+  color: var(--portfolio-ink-soft);
+  font-size: 1.08rem;
+}
+
+.portfolio-project-group {
+  margin: 0 0 72px;
+}
+
+.portfolio-project-group > h2 {
+  margin: 0 0 24px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--portfolio-line-strong);
+  font: 500 0.76rem/1.4 "IBM Plex Mono", monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.portfolio-project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  align-items: stretch;
+}
+
+.portfolio-project-card {
+  min-width: 0;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--portfolio-line);
+  border-radius: var(--portfolio-radius-md);
+  background: var(--portfolio-surface);
+  box-shadow: var(--portfolio-shadow);
+}
+
+.portfolio-project-content {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.portfolio-project-card h3 {
+  margin: 8px 0 10px;
+  font-size: clamp(22px, 2.5vw, 30px);
+}
+
+.portfolio-project-card h3 a,
+.portfolio-project-cta {
+  color: var(--portfolio-ink);
+  text-decoration: none;
+}
+
+.portfolio-project-cta {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 10px;
+  color: var(--portfolio-blue);
+  font-size: 0.86rem;
+  font-weight: 650;
+}
+
+.portfolio-project-card p:not(.portfolio-project-meta) {
+  color: var(--portfolio-ink-soft);
+}
+
+.portfolio-project-cover {
+  display: block;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-bottom: 1px solid var(--portfolio-line);
+  background: var(--portfolio-surface-soft);
+}
+
+.portfolio-project-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.portfolio-project-cover.is-contain img {
+  object-fit: contain;
+}
+
+.portfolio-project-system-map {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: clamp(5px, 1vw, 8px);
+  padding: clamp(12px, 2vw, 22px);
+}
+
+.portfolio-project-system-map span {
+  min-width: 0;
+  display: grid;
+  place-items: center;
+  padding: 5px;
+  border: 1px solid var(--portfolio-line-strong);
+  border-radius: 6px;
+  color: var(--portfolio-ink-soft);
+  background: var(--portfolio-surface);
+  font: 500 clamp(9px, 1.1vw, 11px)/1.25 "IBM Plex Mono", monospace;
+  text-align: center;
+  overflow-wrap: break-word;
+}
+
+.portfolio-project-system-map .is-accent {
+  color: var(--portfolio-blue);
+  border-color: var(--portfolio-blue);
+  background: var(--portfolio-blue-soft);
+}
+
+.portfolio-project-cover--text {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  color: var(--portfolio-ink-soft);
+}
+
+.portfolio-project-cover--text span {
+  font: 500 0.7rem/1.4 "IBM Plex Mono", monospace;
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.portfolio-project-meta {
+  margin: 0;
+  color: var(--portfolio-green);
+  font: 500 0.68rem/1.6 "IBM Plex Mono", monospace;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.portfolio-project-single,
+.portfolio-project-single .post-content,
+.portfolio-project-single .entry-cover,
+.portfolio-project-single #toc-container {
+  max-width: 100%;
+  min-width: 0;
+}
+
+.portfolio-project-single .post-header > .portfolio-project-meta {
+  margin-bottom: 12px;
+}
+
+.portfolio-project-single .entry-cover {
+  overflow: hidden;
+}
+
+.portfolio-project-single .entry-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.portfolio-project-single .entry-cover.is-contain img {
+  object-fit: contain;
+}
+
+.portfolio-project-single .post-content {
+  overflow-wrap: anywhere;
+}
+
+.portfolio-project-evidence {
+  margin: 28px 0;
+}
+
+.portfolio-project-evidence img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+.portfolio-project-evidence figcaption {
+  margin-top: 10px;
+  color: var(--portfolio-ink-soft);
+  font-size: 0.82rem;
+}
+
+.portfolio-project-single .paginav a {
+  min-height: 44px;
+  overflow-wrap: anywhere;
+}
+
+.portfolio-project-single .paginav a:only-child {
+  width: 100%;
+}
+
+@media (max-width: 720px) {
+  .portfolio-work-header { margin-bottom: 42px; }
+  .portfolio-project-group { margin-bottom: 52px; }
+  .portfolio-project-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .portfolio-project-content { padding: 20px; }
+}

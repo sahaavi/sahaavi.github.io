@@ -1,0 +1,25 @@
+{{- $items := . -}}
+{{- $valid := false -}}
+{{- if reflect.IsSlice $items -}}
+  {{- if eq (len $items) 6 -}}
+    {{- $valid = true -}}
+    {{- range $items -}}
+      {{- if not (reflect.IsMap .) -}}
+        {{- $valid = false -}}
+      {{- else if not (isset . "label") -}}
+        {{- $valid = false -}}
+      {{- else -}}
+        {{- $label := index . "label" -}}
+        {{- if or (ne (printf "%T" $label) "string") (not (strings.TrimSpace $label)) -}}
+          {{- $valid = false -}}
+        {{- end -}}
+        {{- if isset . "accent" -}}
+          {{- if ne (printf "%T" (index . "accent")) "bool" -}}
+            {{- $valid = false -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $valid -}}

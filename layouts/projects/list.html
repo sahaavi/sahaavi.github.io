@@ -1,45 +1,63 @@
 {{- define "main" }}
-
-<header class="page-header">
+<header class="page-header portfolio-work-header">
+  <p class="portfolio-label">Selected work</p>
   <h1>{{ .Title }}</h1>
-  {{- if .Description }}
-  <p class="page-description">{{ .Description }}</p>
-  {{- end }}
+  <p>{{ .Description }}</p>
 </header>
 
-<div class="projects-grid">
-  {{- range sort .Pages "Weight" "asc" }}
-  <article class="project-card">
-    {{- if and .Params.cover.image (not .Params.cover.hiddenInList) }}
-    <a href="{{ .Permalink }}">
-      <div class="project-cover">
-        {{- $image := .Params.cover.image }}
-        {{- if .Params.cover.relative }}
-        <img src="{{ .Permalink }}{{ $image }}" alt="{{ .Params.cover.alt | default .Title }}" loading="lazy" />
+{{- $groups := slice
+  (dict "key" "featured-ai" "title" "Featured AI Systems")
+  (dict "key" "ml-labs" "title" "ML Systems & Labs")
+  (dict "key" "research" "title" "Research & Foundations")
+-}}
+{{- $section := . -}}
+{{- $projectsValid := true -}}
+{{- range $section.Pages -}}
+  {{- if not (partial "projects/validate.html" .) -}}
+    {{- $projectsValid = false -}}
+  {{- end -}}
+{{- end -}}
+{{- if $projectsValid -}}
+{{- range $groups }}
+  {{- $group := . -}}
+  {{- $pages := where $section.Pages "Params.portfolio_group" $group.key -}}
+  {{- if gt (len $pages) 0 }}
+<section class="portfolio-project-group" aria-labelledby="group-{{ $group.key }}">
+  <h2 id="group-{{ $group.key }}">{{ $group.title }}</h2>
+  <div class="portfolio-project-grid">
+    {{- range sort $pages "Weight" "asc" }}
+      {{- $page := . -}}
+      {{- $headingID := printf "project-%s-title" ($page.File.ContentBaseName | anchorize) -}}
+      {{- $cover := $page.Params.cover -}}
+      {{- $coverImage := index $cover "image" -}}
+      {{- $coverResource := cond (and $coverImage (not (index $cover "hiddeninlist"))) ($page.Resources.GetMatch $coverImage) nil -}}
+      {{- $systemMap := $page.Params.system_map -}}
+      {{- $systemMapValid := partial "system-map-valid.html" $systemMap -}}
+<article class="portfolio-project-card" aria-labelledby="{{ $headingID }}">
+      {{- with $coverResource }}
+  <a href="{{ $page.RelPermalink }}" class="portfolio-project-cover{{ if eq (index $cover "fit") "contain" }} is-contain{{ end }}" aria-label="Open {{ $page.Title }} case study image">
+    <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="{{ index $cover "alt" }}" loading="lazy">
+  </a>
+      {{- else }}
+        {{- if $systemMapValid }}
+        {{- partial "system-map.html" (dict "title" $page.Title "items" $systemMap "class" "portfolio-project-cover portfolio-project-system-map") }}
         {{- else }}
-        <img src="{{ $image }}" alt="{{ .Params.cover.alt | default .Title }}" loading="lazy" />
+  <div class="portfolio-project-cover portfolio-project-cover--text" aria-hidden="true">
+    <span>{{ $page.Params.portfolio_category }}</span>
+  </div>
         {{- end }}
-      </div>
-    </a>
+      {{- end }}
+  <div class="portfolio-project-content">
+    <p class="portfolio-project-meta">{{ $page.Params.portfolio_status }} · {{ $page.Params.portfolio_role }} · {{ $page.Params.portfolio_year }}</p>
+    <h3 id="{{ $headingID }}"><a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a></h3>
+    <p>{{ $page.Description }}</p>
+    <a class="portfolio-project-cta" href="{{ $page.RelPermalink }}" aria-label="Open {{ $page.Title }} case study">Open case study →</a>
+  </div>
+</article>
     {{- end }}
-    <div class="project-content">
-      <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-      {{- if .Description }}
-      <p class="project-description">{{ .Description }}</p>
-      {{- end }}
-      {{- if .Params.tags }}
-      <div class="project-tags">
-        {{- range .Params.tags }}
-        <span class="project-tag">{{ . }}</span>
-        {{- end }}
-      </div>
-      {{- end }}
-      <div class="project-links">
-        <a href="{{ .Permalink }}" class="project-link">Read More &rarr;</a>
-      </div>
-    </div>
-  </article>
+  </div>
+</section>
   {{- end }}
-</div>
-
-{{- end }}{{/* end main */}}
+{{- end }}
+{{- end }}
+{{- end }}

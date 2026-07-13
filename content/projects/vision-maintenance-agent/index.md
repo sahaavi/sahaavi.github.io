@@ -7,7 +7,7 @@ description: "A real-time multimodal maintenance copilot using live audio, camer
 tags: ["google-adk", "gemini-live-api", "multimodal", "fastapi", "applied-ai"]
 cover:
   image: ""
-  alt: "Maintenance-Eye"
+  alt: ""
   relative: true
 weight: 1
 showToc: true
@@ -71,7 +71,7 @@ Transit and infrastructure maintenance work is physical, noisy, and time-sensiti
 
 ## Architecture
 
-![Maintenance-Eye architecture](https://raw.githubusercontent.com/sahaavi/Maintenance-Eye/main/docs/architecture.png)
+{{< project-image src="architecture.png" alt="Maintenance-Eye architecture diagram showing the multimodal client, AI agent, backend services, and deployment components" link_label="View full-resolution architecture diagram" >}}
 
 The system uses a persistent bidirectional WebSocket to move video frames, audio, transcripts, confirmation cards, media cards, and work-order result messages between the phone client and backend. The agent calls domain-specific tools, grounds responses in maintenance data, and requires explicit confirmation before sensitive actions.
 

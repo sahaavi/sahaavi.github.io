@@ -1,0 +1,33 @@
+{{- $pagePath := .Page.File.Path -}}
+{{- $source := strings.TrimSpace (.Get "src") -}}
+{{- $alt := strings.TrimSpace (.Get "alt") -}}
+{{- $linkLabel := strings.TrimSpace (.Get "link_label") -}}
+{{- if or (not $source) (not $alt) -}}
+  {{- errorf "%s: project-image requires nonblank src and alt values" $pagePath -}}
+{{- else -}}
+  {{- $supportedRasterExtensions := slice ".png" ".jpg" ".jpeg" ".webp" ".gif" ".tif" ".tiff" ".bmp" -}}
+  {{- $extension := lower (path.Ext $source) -}}
+  {{- if not (in $supportedRasterExtensions $extension) -}}
+    {{- errorf "%s: project-image source %s must use a supported raster image format" $pagePath $source -}}
+  {{- else -}}
+    {{- with .Page.Resources.GetMatch $source -}}
+      {{- if ne .ResourceType "image" -}}
+        {{- errorf "%s: project-image source %s must be an image resource" $pagePath $source -}}
+      {{- else -}}
+        {{- $original := . -}}
+        {{- $preview := $original -}}
+        {{- if gt $original.Width 2360 -}}
+          {{- $preview = $original.Resize "2360x webp q85" -}}
+        {{- end -}}
+<figure class="portfolio-project-evidence">
+  <img src="{{ $preview.RelPermalink }}" width="{{ $preview.Width }}" height="{{ $preview.Height }}" alt="{{ $alt }}" loading="lazy" decoding="async">
+        {{- if ne $preview.RelPermalink $original.RelPermalink }}
+  <figcaption><a href="{{ $original.RelPermalink }}">{{ $linkLabel | default "View full-resolution image" }}</a></figcaption>
+        {{- end }}
+</figure>
+      {{- end -}}
+    {{- else -}}
+      {{- errorf "%s: project-image source %s does not match a page resource" $pagePath $source -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}

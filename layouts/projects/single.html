@@ -1,7 +1,13 @@
 {{- define "main" }}
+{{- $projectValid := partial "projects/validate.html" . -}}
+{{- if $projectValid -}}
+{{- $cover := .Params.cover -}}
+{{- $coverImage := index $cover "image" -}}
+{{- $coverResource := cond $coverImage (.Resources.GetMatch $coverImage) nil -}}
 
-<article class="post-single">
+<article class="post-single portfolio-project-single">
   <header class="post-header">
+    <p class="portfolio-project-meta">{{ .Params.portfolio_status }} · {{ .Params.portfolio_role }} · {{ .Params.portfolio_year }}</p>
     <h1 class="post-title">{{ .Title }}</h1>
     {{- if .Description }}
     <div class="post-description">{{ .Description }}</div>
@@ -17,16 +23,11 @@
     </div>
   </header>
 
-  {{- if .Params.cover.image }}
-  <figure class="entry-cover">
-    {{- $image := .Params.cover.image }}
-    {{- if .Params.cover.relative }}
-    <img src="{{ .Permalink }}{{ $image }}" alt="{{ .Params.cover.alt | default .Title }}" loading="lazy" />
-    {{- else }}
-    <img src="{{ $image }}" alt="{{ .Params.cover.alt | default .Title }}" loading="lazy" />
-    {{- end }}
-    {{- if .Params.cover.caption }}
-    <p>{{ .Params.cover.caption | markdownify }}</p>
+  {{- with $coverResource }}
+  <figure class="entry-cover{{ if eq (index $cover "fit") "contain" }} is-contain{{ end }}">
+    <img src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="{{ index $cover "alt" }}" loading="eager" fetchpriority="high" decoding="async">
+    {{- with (index $cover "caption") }}
+    <p>{{ . | markdownify }}</p>
     {{- end }}
   </figure>
   {{- end }}
@@ -46,22 +47,16 @@
     {{ .Content }}
   </div>
 
-  {{- if .PrevInSection }}
-  <nav class="paginav">
-    <a class="prev" href="{{ .PrevInSection.Permalink }}">
-      <span class="title">&larr; Previous Project</span>
-      <br>
-      <span>{{ .PrevInSection.Title }}</span>
-    </a>
-    {{- if .NextInSection }}
-    <a class="next" href="{{ .NextInSection.Permalink }}">
-      <span class="title">Next Project &rarr;</span>
-      <br>
-      <span>{{ .NextInSection.Title }}</span>
-    </a>
+  {{- if or .PrevInSection .NextInSection }}
+  <nav class="paginav" aria-label="Project navigation">
+    {{- with .PrevInSection }}
+    <a class="prev" href="{{ .RelPermalink }}" aria-label="Previous project: {{ .Title }}"><span class="title">← Previous Project</span><br><span>{{ .Title }}</span></a>
+    {{- end }}
+    {{- with .NextInSection }}
+    <a class="next" href="{{ .RelPermalink }}" aria-label="Next project: {{ .Title }}"><span class="title">Next Project →</span><br><span>{{ .Title }}</span></a>
     {{- end }}
   </nav>
   {{- end }}
 </article>
-
-{{- end }}{{/* end main */}}
+{{- end }}
+{{- end }}
