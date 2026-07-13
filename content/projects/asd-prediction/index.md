@@ -18,6 +18,23 @@ portfolio_role: "Research contributor"
 portfolio_year: 2021
 repository_url: ""
 home_featured: false
+publication:
+  title: "Development of an Interactive Dashboard for Analyzing Autism Spectrum Disorder (ASD) Data using Machine Learning"
+  authors:
+    - "Avishek Saha"
+    - "Dibakar Barua"
+    - "Mahbub C. Mishu"
+    - "Ziad Mohib"
+    - "Sumaya Binte Zilani Choya"
+  journal: "International Journal of Information Technology and Computer Science (IJITCS)"
+  date_published: "2022-08-08"
+  volume: "14"
+  issue: "4"
+  pages: "14-24"
+  page_start: 14
+  page_end: 24
+  doi_url: "https://doi.org/10.5815/ijitcs.2022.04.02"
+  record_url: "https://www.mecs-press.org/ijitcs/ijitcs-v14-n4/v14n4-2.html"
 ---
 
 ## Overview

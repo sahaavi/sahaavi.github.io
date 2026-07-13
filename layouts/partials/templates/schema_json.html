@@ -1,0 +1,168 @@
+{{- $authorName := site.Params.author | default "Avishek Saha" -}}
+{{- $authorRole := "Applied AI & ML Engineer" -}}
+{{- if isset site.Data "profile" -}}
+  {{- $profile := index site.Data "profile" -}}
+  {{- if reflect.IsMap $profile -}}
+    {{- if isset $profile "name" -}}
+      {{- $name := index $profile "name" -}}
+      {{- if and (eq (printf "%T" $name) "string") (strings.TrimSpace $name) -}}
+        {{- $authorName = $name -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if isset $profile "role" -}}
+      {{- $role := index $profile "role" -}}
+      {{- if and (eq (printf "%T" $role) "string") (strings.TrimSpace $role) -}}
+        {{- $authorRole = $role -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $author := dict
+  "@type" "Person"
+  "name" $authorName
+  "url" site.Home.Permalink
+  "jobTitle" $authorRole
+  "image" ("/images/og-image.png" | absURL)
+  "sameAs" (site.Params.schema.sameAs | default (slice))
+-}}
+{{- $description := .Description | default .Summary | default site.Params.description | plainify | htmlUnescape -}}
+
+{{- if .IsHome -}}
+  {{- $schema := dict
+    "@context" "https://schema.org"
+    "@type" "ProfilePage"
+    "name" site.Params.title
+    "url" site.Home.Permalink
+    "description" (site.Params.description | plainify | htmlUnescape)
+    "mainEntity" $author
+  -}}
+<script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
+
+{{- else if and .IsPage (eq .Layout "experience") -}}
+  {{- $schema := dict
+    "@context" "https://schema.org"
+    "@type" "ProfilePage"
+    "name" .Title
+    "description" $description
+    "url" .Permalink
+    "mainEntity" $author
+  -}}
+<script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
+
+{{- else if and .IsPage (eq .Section "projects") -}}
+  {{- if eq .Params.portfolio_group "research" -}}
+    {{- $publicationValid := partial "projects/publication-validate.html" . -}}
+    {{- if $publicationValid -}}
+      {{- $publication := .Params.publication -}}
+      {{- $articleAuthors := slice -}}
+      {{- range $publication.authors -}}
+        {{- $articleAuthors = $articleAuthors | append (dict "@type" "Person" "name" (strings.TrimSpace .)) -}}
+      {{- end -}}
+      {{- $journal := dict
+        "@type" "Periodical"
+        "name" (strings.TrimSpace $publication.journal)
+      -}}
+      {{- $volume := dict
+        "@type" "PublicationVolume"
+        "volumeNumber" (strings.TrimSpace $publication.volume)
+        "isPartOf" $journal
+      -}}
+      {{- $issue := dict
+        "@type" "PublicationIssue"
+        "issueNumber" (strings.TrimSpace $publication.issue)
+        "isPartOf" $volume
+      -}}
+      {{- $article := dict
+        "@type" "ScholarlyArticle"
+        "name" (strings.TrimSpace $publication.title)
+        "headline" (strings.TrimSpace $publication.title)
+        "author" $articleAuthors
+        "datePublished" $publication.date_published
+        "pagination" $publication.pages
+        "pageStart" $publication.page_start
+        "pageEnd" $publication.page_end
+        "identifier" $publication.doi_url
+        "url" $publication.doi_url
+        "sameAs" $publication.record_url
+        "isPartOf" $issue
+      -}}
+      {{- $schema := dict
+        "@context" "https://schema.org"
+        "@type" "WebPage"
+        "name" .Title
+        "description" $description
+        "url" .Permalink
+        "author" $author
+        "keywords" (.Params.tags | default (slice))
+        "about" $article
+      -}}
+<script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
+    {{- end -}}
+  {{- else -}}
+    {{- $schema := dict
+      "@context" "https://schema.org"
+      "@type" "SoftwareSourceCode"
+      "name" .Title
+      "description" $description
+      "url" .Permalink
+      "author" $author
+      "keywords" (.Params.tags | default (slice))
+    -}}
+    {{- with .Params.repository_url -}}
+      {{- if strings.TrimSpace . -}}
+        {{- $schema = merge $schema (dict "codeRepository" .) -}}
+      {{- end -}}
+    {{- end -}}
+<script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
+  {{- end -}}
+
+{{- else if and .IsPage (eq .Section "posts") -}}
+  {{- $schema := dict
+    "@context" "https://schema.org"
+    "@type" "BlogPosting"
+    "headline" .Title
+    "name" .Title
+    "description" $description
+    "url" .Permalink
+    "author" $author
+    "keywords" (.Params.tags | default (slice))
+    "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+  -}}
+  {{- if not .PublishDate.IsZero -}}
+    {{- $schema = merge $schema (dict "datePublished" .PublishDate) -}}
+  {{- end -}}
+  {{- if not .Lastmod.IsZero -}}
+    {{- $schema = merge $schema (dict "dateModified" .Lastmod) -}}
+  {{- end -}}
+<script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
+
+{{- else if and .IsPage (eq .Layout "archives") -}}
+  {{- $schema := dict
+    "@context" "https://schema.org"
+    "@type" "CollectionPage"
+    "name" .Title
+    "description" $description
+    "url" .Permalink
+  -}}
+<script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
+
+{{- else if .IsPage -}}
+  {{- $schema := dict
+    "@context" "https://schema.org"
+    "@type" "WebPage"
+    "name" .Title
+    "description" $description
+    "url" .Permalink
+  -}}
+<script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
+
+{{- else if .IsSection -}}
+  {{- $schema := dict
+    "@context" "https://schema.org"
+    "@type" "CollectionPage"
+    "name" .Title
+    "description" $description
+    "url" .Permalink
+  -}}
+<script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
+{{- end -}}

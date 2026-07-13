@@ -1,5 +1,5 @@
 baseURL: "https://avisheksaha.com/"
-title: "Avishek Saha"
+title: "Avishek Saha | Applied AI & ML Engineer"
 pagination:
   pagerSize: 10
 theme: ["PaperMod"]
@@ -20,11 +20,16 @@ minify:
 
 params:
   env: production
-  title: "Avishek Saha"
-  description: "Applied AI Engineer building AI automation, RAG systems, multimodal agents, and Python/FastAPI data workflows with Azure OpenAI, Vertex AI, and SQL."
-  keywords: ["Applied AI Engineer", "AI Automation", "AI Agents", "RAG", "Source Grounding", "FastAPI", "Python", "SQL", "Azure OpenAI", "Azure AI Foundry", "Copilot Studio", "Power Platform", "Vertex AI", "Gemini API", "Google ADK", "Data Science", "MCP", "Microsoft Fabric", "RAGAS", "LangChain", "LangGraph", "LlamaIndex", "Anthropic API"]
+  title: "Avishek Saha | Applied AI & ML Engineer"
+  description: "Applied AI and machine learning engineer with experience across LLM applications, RAG and evaluation, predictive ML, APIs, data systems, and cloud delivery."
+  keywords: ["Applied AI Engineer", "Machine Learning Engineer", "LLM Evaluation", "RAG", "Predictive Machine Learning", "FastAPI", "Python", "MLOps"]
   author: "Avishek Saha"
   images: ["/images/og-image.png"]
+  schema:
+    publisherType: "Person"
+    sameAs:
+      - "https://github.com/sahaavi"
+      - "https://linkedin.com/in/sahaavi"
   social:
     twitter: "avisheksaha_"
   DateFormat: "Jan 2, 2006"

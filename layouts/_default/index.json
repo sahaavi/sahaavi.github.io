@@ -1,0 +1,89 @@
+{{- $index := slice -}}
+{{- range site.RegularPages -}}
+  {{- if and (not .Params.searchHidden) (ne .Layout "archives") (ne .Layout "search") -}}
+    {{- $content := .Plain -}}
+    {{- if eq .Layout "experience" -}}
+      {{- $parts := slice -}}
+      {{- if isset site.Data "experience" -}}
+        {{- $experience := index site.Data "experience" -}}
+        {{- if and (reflect.IsMap $experience) (isset $experience "roles") -}}
+          {{- $roles := index $experience "roles" -}}
+          {{- if reflect.IsSlice $roles -}}
+            {{- range $roles -}}
+              {{- if reflect.IsMap . -}}
+                {{- $role := . -}}
+                {{- range slice "title" "employer" "homepage_summary" -}}
+                  {{- if isset $role . -}}
+                    {{- $value := index $role . -}}
+                    {{- if and (eq (printf "%T" $value) "string") (strings.TrimSpace $value) -}}
+                      {{- $parts = $parts | append $value -}}
+                    {{- end -}}
+                  {{- end -}}
+                {{- end -}}
+                {{- if isset $role "evidence" -}}
+                  {{- $evidence := index $role "evidence" -}}
+                  {{- if reflect.IsSlice $evidence -}}
+                    {{- range $evidence -}}
+                      {{- if reflect.IsMap . -}}
+                        {{- $item := . -}}
+                        {{- range slice "label" "text" -}}
+                          {{- if isset $item . -}}
+                            {{- $value := index $item . -}}
+                            {{- if and (eq (printf "%T" $value) "string") (strings.TrimSpace $value) -}}
+                              {{- $parts = $parts | append $value -}}
+                            {{- end -}}
+                          {{- end -}}
+                        {{- end -}}
+                      {{- end -}}
+                    {{- end -}}
+                  {{- end -}}
+                {{- end -}}
+                {{- if isset $role "details" -}}
+                  {{- $details := index $role "details" -}}
+                  {{- if reflect.IsSlice $details -}}
+                    {{- range $details -}}
+                      {{- if and (eq (printf "%T" .) "string") (strings.TrimSpace .) -}}
+                        {{- $parts = $parts | append . -}}
+                      {{- end -}}
+                    {{- end -}}
+                  {{- end -}}
+                {{- end -}}
+              {{- end -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+      {{- if isset site.Data "expertise" -}}
+        {{- $expertise := index site.Data "expertise" -}}
+        {{- if and (reflect.IsMap $expertise) (isset $expertise "groups") -}}
+          {{- $groups := index $expertise "groups" -}}
+          {{- if reflect.IsSlice $groups -}}
+            {{- range $groups -}}
+              {{- if reflect.IsMap . -}}
+                {{- $group := . -}}
+                {{- range slice "title" "summary" -}}
+                  {{- if isset $group . -}}
+                    {{- $value := index $group . -}}
+                    {{- if and (eq (printf "%T" $value) "string") (strings.TrimSpace $value) -}}
+                      {{- $parts = $parts | append $value -}}
+                    {{- end -}}
+                  {{- end -}}
+                {{- end -}}
+              {{- end -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+      {{- if gt (len $parts) 0 -}}
+        {{- $content = delimit $parts " " -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $index = $index | append (dict
+      "title" .Title
+      "content" $content
+      "permalink" .Permalink
+      "summary" .Summary
+    ) -}}
+  {{- end -}}
+{{- end -}}
+{{- $index | jsonify -}}

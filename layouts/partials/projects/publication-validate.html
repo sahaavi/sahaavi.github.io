@@ -1,0 +1,206 @@
+{{- $page := . -}}
+{{- $path := $page.File.Path -}}
+{{- $params := $page.Params -}}
+{{- $valid := true -}}
+{{- $publication := dict -}}
+{{- $publicationIsMap := false -}}
+
+{{- if not (isset $params "publication") -}}
+  {{- errorf "%s: publication must be a map" $path -}}
+  {{- $valid = false -}}
+{{- else -}}
+  {{- $candidate := index $params "publication" -}}
+  {{- if not (reflect.IsMap $candidate) -}}
+    {{- errorf "%s: publication must be a map" $path -}}
+    {{- $valid = false -}}
+  {{- else -}}
+    {{- $publication = $candidate -}}
+    {{- $publicationIsMap = true -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if $publicationIsMap -}}
+  {{- range slice "title" "journal" "date_published" "volume" "issue" "pages" "doi_url" "record_url" -}}
+    {{- $field := . -}}
+    {{- $fieldValid := true -}}
+    {{- if not (isset $publication $field) -}}
+      {{- $fieldValid = false -}}
+    {{- else -}}
+      {{- $value := index $publication $field -}}
+      {{- if ne (printf "%T" $value) "string" -}}
+        {{- $fieldValid = false -}}
+      {{- else if not (strings.TrimSpace $value) -}}
+        {{- $fieldValid = false -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if not $fieldValid -}}
+      {{- errorf "%s: publication.%s must be a nonblank string" $path $field -}}
+      {{- $valid = false -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- if not (isset $publication "authors") -}}
+    {{- errorf "%s: publication.authors must be a nonempty list" $path -}}
+    {{- $valid = false -}}
+  {{- else -}}
+    {{- $authors := index $publication "authors" -}}
+    {{- if not (reflect.IsSlice $authors) -}}
+      {{- errorf "%s: publication.authors must be a nonempty list" $path -}}
+      {{- $valid = false -}}
+    {{- else if eq (len $authors) 0 -}}
+      {{- errorf "%s: publication.authors must be a nonempty list" $path -}}
+      {{- $valid = false -}}
+    {{- else -}}
+      {{- range $authors -}}
+        {{- if ne (printf "%T" .) "string" -}}
+          {{- errorf "%s: publication.authors items must be nonblank strings" $path -}}
+          {{- $valid = false -}}
+        {{- else if not (strings.TrimSpace .) -}}
+          {{- errorf "%s: publication.authors items must be nonblank strings" $path -}}
+          {{- $valid = false -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- if isset $publication "date_published" -}}
+    {{- $date := index $publication "date_published" -}}
+    {{- if and (eq (printf "%T" $date) "string") (strings.TrimSpace $date) -}}
+      {{- $dateValid := eq (len (findRE `^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$` $date)) 1 -}}
+      {{- if $dateValid -}}
+        {{- $year := int (strings.Substr $date 0 4) -}}
+        {{- $month := int (strings.TrimPrefix "0" (strings.Substr $date 5 2)) -}}
+        {{- $day := int (strings.TrimPrefix "0" (strings.Substr $date 8 2)) -}}
+        {{- $maxDay := 31 -}}
+        {{- if in (slice 4 6 9 11) $month -}}
+          {{- $maxDay = 30 -}}
+        {{- else if eq $month 2 -}}
+          {{- $leapYear := or (eq (mod $year 400) 0) (and (eq (mod $year 4) 0) (ne (mod $year 100) 0)) -}}
+          {{- if $leapYear -}}
+            {{- $maxDay = 29 -}}
+          {{- else -}}
+            {{- $maxDay = 28 -}}
+          {{- end -}}
+        {{- end -}}
+        {{- if gt $day $maxDay -}}
+          {{- $dateValid = false -}}
+        {{- end -}}
+      {{- end -}}
+      {{- if not $dateValid -}}
+        {{- errorf "%s: publication.date_published must be a valid ISO YYYY-MM-DD date" $path -}}
+        {{- $valid = false -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- $absoluteHTTPSPattern := `^https://[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?)+(/[A-Za-z0-9._~:/?#@!$&'()*+,;=%-]*)?$` -}}
+  {{- $doiResolverPattern := `^https://doi[.]org/10[.][0-9]{4,9}/[A-Za-z0-9._~!$&'()*+,;=:@/%<>-]+$` -}}
+  {{- $doiEncodedUTF8Pattern := `(?i)(%[0-7][0-9a-f]|%c[2-9a-f]%[89ab][0-9a-f]|%d[0-9a-f]%[89ab][0-9a-f]|%e0%[ab][0-9a-f]%[89ab][0-9a-f]|%e[1-9a-c]%[89ab][0-9a-f]%[89ab][0-9a-f]|%ed%[89][0-9a-f]%[89ab][0-9a-f]|%e[ef]%[89ab][0-9a-f]%[89ab][0-9a-f]|%f0%[9ab][0-9a-f]%[89ab][0-9a-f]%[89ab][0-9a-f]|%f[1-3]%[89ab][0-9a-f]%[89ab][0-9a-f]%[89ab][0-9a-f]|%f4%8[0-9a-f]%[89ab][0-9a-f]%[89ab][0-9a-f])` -}}
+  {{- range slice "doi_url" "record_url" -}}
+    {{- $field := . -}}
+    {{- if isset $publication $field -}}
+      {{- $url := index $publication $field -}}
+      {{- if and (eq (printf "%T" $url) "string") (strings.TrimSpace $url) -}}
+        {{- $urlShapePattern := $absoluteHTTPSPattern -}}
+        {{- if eq $field "doi_url" -}}
+          {{- $urlShapePattern = $doiResolverPattern -}}
+        {{- end -}}
+        {{- $urlValid := and (eq (strings.TrimSpace $url) $url) (eq (len (findRE $urlShapePattern $url)) 1) -}}
+        {{- if $urlValid -}}
+          {{- $urlWithoutEncodedBytes := replaceRE `%[0-9A-Fa-f]{2}` "" $url -}}
+          {{- if in $urlWithoutEncodedBytes "%" -}}
+            {{- $urlValid = false -}}
+          {{- end -}}
+        {{- end -}}
+        {{- if and $urlValid (eq $field "doi_url") -}}
+          {{- $doiPathValid := eq (len (findRE $doiResolverPattern $url)) 1 -}}
+          {{- if $doiPathValid -}}
+            {{- $doiSuffix := replaceRE `^https://doi[.]org/10[.][0-9]{4,9}/` "" $url -}}
+            {{- $suffixWithoutSlashes := replaceRE `/` "" $doiSuffix -}}
+            {{- if not $suffixWithoutSlashes -}}
+              {{- $doiPathValid = false -}}
+            {{- end -}}
+            {{- $suffixWithoutValidEncodedUTF8 := replaceRE $doiEncodedUTF8Pattern "" $doiSuffix -}}
+            {{- if in $suffixWithoutValidEncodedUTF8 "%" -}}
+              {{- $doiPathValid = false -}}
+            {{- end -}}
+          {{- end -}}
+          {{- if not $doiPathValid -}}
+            {{- $urlValid = false -}}
+          {{- end -}}
+        {{- end -}}
+        {{- if $urlValid -}}
+          {{- $parsedURL := urls.Parse $url -}}
+          {{- if or (ne $parsedURL.Scheme "https") (not $parsedURL.Host) -}}
+            {{- $urlValid = false -}}
+          {{- end -}}
+          {{- if and $urlValid (eq $field "doi_url") -}}
+            {{- $decodedDOISuffix := replaceRE `^/10[.][0-9]{4,9}/` "" $parsedURL.Path -}}
+            {{- $decodedWithoutSlashes := replaceRE `/` "" $decodedDOISuffix -}}
+            {{- $decodedHasSeparator := gt (len (findRE `\p{Z}` $decodedDOISuffix)) 0 -}}
+            {{- $decodedHasOther := gt (len (findRE `\p{C}` $decodedDOISuffix)) 0 -}}
+            {{- if or (not $decodedWithoutSlashes) (or $decodedHasSeparator $decodedHasOther) -}}
+              {{- $urlValid = false -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+        {{- if not $urlValid -}}
+          {{- if eq $field "doi_url" -}}
+            {{- errorf "%s: publication.doi_url must be an absolute https://doi.org/ URL using 10.<registrant>/<encoded suffix>, with no userinfo, port, query, or fragment" $path -}}
+          {{- else -}}
+            {{- errorf "%s: publication.record_url must be an absolute HTTPS URL with a valid host and no userinfo or port" $path -}}
+          {{- end -}}
+          {{- $valid = false -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- $pageStartValid := true -}}
+  {{- $pageEndValid := true -}}
+  {{- $pageStart := 0 -}}
+  {{- $pageEnd := 0 -}}
+  {{- if not (isset $publication "page_start") -}}
+    {{- $pageStartValid = false -}}
+  {{- else -}}
+    {{- $pageStart = index $publication "page_start" -}}
+    {{- if or (ne (printf "%T" $pageStart) "int") (le $pageStart 0) -}}
+      {{- $pageStartValid = false -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if not $pageStartValid -}}
+    {{- errorf "%s: publication.page_start must be a positive integer" $path -}}
+    {{- $valid = false -}}
+  {{- end -}}
+
+  {{- if not (isset $publication "page_end") -}}
+    {{- $pageEndValid = false -}}
+  {{- else -}}
+    {{- $pageEnd = index $publication "page_end" -}}
+    {{- if or (ne (printf "%T" $pageEnd) "int") (le $pageEnd 0) -}}
+      {{- $pageEndValid = false -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if not $pageEndValid -}}
+    {{- errorf "%s: publication.page_end must be a positive integer" $path -}}
+    {{- $valid = false -}}
+  {{- end -}}
+
+  {{- if and $pageStartValid $pageEndValid -}}
+    {{- if gt $pageStart $pageEnd -}}
+      {{- errorf "%s: publication.page_start must be less than or equal to publication.page_end" $path -}}
+      {{- $valid = false -}}
+    {{- end -}}
+    {{- if isset $publication "pages" -}}
+      {{- $pages := index $publication "pages" -}}
+      {{- if and (eq (printf "%T" $pages) "string") (strings.TrimSpace $pages) -}}
+        {{- if ne $pages (printf "%d-%d" $pageStart $pageEnd) -}}
+          {{- errorf "%s: publication.pages must match publication.page_start-publication.page_end" $path -}}
+          {{- $valid = false -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- return $valid -}}
