@@ -143,11 +143,15 @@ button#theme-toggle.portfolio-theme-toggle svg { width: 18px; height: 18px; }
   .portfolio-system-map { grid-column: 2; }
 }
 
-@media (max-width: 820px) {
-  #menu.portfolio-menu { display: none; }
+@media (min-width: 641px) and (max-width: 899px) {
+  .portfolio-nav { gap: 12px; }
+  .portfolio-nav-actions { gap: 8px; }
+  #menu.portfolio-menu { gap: clamp(4px, 1vw, 10px); }
+  #menu.portfolio-menu a { font-size: 12px; }
 }
 
 @media (max-width: 640px) {
+  #menu.portfolio-menu { display: none; }
   .portfolio-nav { width: calc(100% - 28px); min-height: 66px; }
   .portfolio-hero { padding: 62px 0 58px; }
   .portfolio-hero h1 { font-size: clamp(43px, 14.5vw, 64px); }
