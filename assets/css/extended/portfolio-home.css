@@ -173,3 +173,8 @@ button#theme-toggle.portfolio-theme-toggle svg { width: 18px; height: 18px; }
 @media (max-width: 480px) {
   .portfolio-evidence-list li { grid-template-columns: 1fr; gap: 6px; }
 }
+
+@media (max-width: 253px) {
+  .portfolio-nav { gap: 8px; }
+  .portfolio-monogram { display: none; }
+}

@@ -1,3 +1,4 @@
+import re
 import shutil
 import subprocess
 import tempfile
@@ -195,6 +196,25 @@ class HomepageContractTests(HugoSiteTestCase):
             'themeToggle.setAttribute("aria-pressed"',
         ):
             self.assertIn(behavior, footer)
+
+    def test_header_compacts_before_intrinsic_width_overflows(self) -> None:
+        css = (ROOT / "assets/css/extended/portfolio-home.css").read_text(
+            encoding="utf-8"
+        )
+        compact_header = re.search(
+            r"@media \(max-width: (?P<width>\d+)px\) \{\s*"
+            r"\.portfolio-nav \{ gap: 8px; \}\s*"
+            r"\.portfolio-monogram \{ display: none; \}\s*\}",
+            css,
+        )
+        self.assertIsNotNone(compact_header)
+
+        # Chromium renders the self-hosted font/header footprint without overflow
+        # from 254px onward; the compact layout must cover the 253px boundary.
+        last_overflowing_css_width = 253
+        self.assertGreaterEqual(
+            int(compact_header.group("width")), last_overflowing_css_width
+        )
 
     def test_hero_leads_with_ai_ml_and_not_a_project(self) -> None:
         html = self.page_html("/")
