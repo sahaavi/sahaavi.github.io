@@ -91,6 +91,69 @@ class HomepageContractTests(HugoSiteTestCase):
                 text=True,
             )
 
+    def build_with_profile_fixture(
+        self,
+        transform: Callable[[str], str],
+        *,
+        footer_only: bool = False,
+        writing_only: bool = False,
+        capture_home: bool = False,
+    ) -> tuple[subprocess.CompletedProcess[str], str | None]:
+        with tempfile.TemporaryDirectory(prefix="portfolio-profile-invalid-") as temp:
+            source = Path(temp) / "site"
+            shutil.copytree(
+                ROOT,
+                source,
+                ignore=shutil.ignore_patterns(
+                    ".git",
+                    ".gstack",
+                    ".hugo_build.lock",
+                    "__pycache__",
+                    "public",
+                    "resources",
+                ),
+            )
+            profile_path = source / "data/profile.yaml"
+            original = profile_path.read_text(encoding="utf-8")
+            transformed = transform(original)
+            self.assertNotEqual(transformed, original, "Fixture did not modify profile")
+            profile_path.write_text(transformed, encoding="utf-8")
+            if footer_only:
+                (source / "layouts/index.html").write_text(
+                    '{{ define "main" }}<p>Footer validation fixture</p>{{ end }}\n',
+                    encoding="utf-8",
+                )
+                (source / "content/_index.md").write_text(
+                    "---\nhideFooter: true\n---\n",
+                    encoding="utf-8",
+                )
+            elif writing_only:
+                (source / "layouts/index.html").write_text(
+                    '{{ define "main" }}{{ partial "home/writing-education.html" . }}{{ end }}\n',
+                    encoding="utf-8",
+                )
+            result = subprocess.run(
+                [
+                    "hugo",
+                    "--gc",
+                    "--minify",
+                    "--enableGitInfo=false",
+                    "--cleanDestinationDir",
+                    "--destination",
+                    str(source / "public"),
+                ],
+                cwd=source,
+                check=False,
+                capture_output=True,
+                text=True,
+            )
+            rendered_home = None
+            if capture_home and result.returncode == 0:
+                rendered_home = (source / "public/index.html").read_text(
+                    encoding="utf-8"
+                )
+            return result, rendered_home
+
     def test_header_prioritizes_experience_and_work(self) -> None:
         html = self.page_html("/")
         for label in ("Experience", "Expertise", "Selected Work", "Writing", "Contact"):
@@ -881,3 +944,424 @@ class HomepageContractTests(HugoSiteTestCase):
                 self.assertIn(expected_error.lower(), output)
                 for generic_error in generic_errors:
                     self.assertNotIn(generic_error, output)
+
+    def test_homepage_closes_with_writing_education_and_contact(self) -> None:
+        raw_html = self.page_html("/")
+        html = unescape(raw_html)
+        for text in (
+            "Writing & research",
+            "Data science and computer science foundations",
+            "Master of Data Science",
+            "BSc Computer Science & Engineering",
+            "LLM Engineering From Scratch",
+            "Tokenizer From Scratch",
+            "Published ASD research",
+            "Start a conversation",
+        ):
+            self.assertIn(text, html)
+
+        section_ids = (
+            'id="portfolio-hero"',
+            'id="experience"',
+            'id="expertise"',
+            'id="work"',
+            'id="writing"',
+            'id="contact"',
+        )
+        section_positions = [raw_html.index(section_id) for section_id in section_ids]
+        self.assertEqual(section_positions, sorted(section_positions))
+        self.assertLess(section_positions[-1], raw_html.index("</main>"))
+        self.assertLess(raw_html.index("</main>"), raw_html.index("<footer"))
+
+        writing = raw_html.split('id="writing"', 1)[1].split("</section>", 1)[0]
+        semantic_writing = unescape(writing)
+        self.assertIn('aria-label="Writing, research, and education"', writing)
+        self.assertEqual(writing.count("<article"), 2)
+        evidence = writing.split('class="portfolio-evidence-links"', 1)[1].split(
+            "</ul>", 1
+        )[0]
+        self.assertEqual(evidence.count("<li>"), 3)
+        expected_links = {
+            "/projects/llm-engineering-from-scratch/": "LLM Engineering From Scratch",
+            "/posts/llm-engineering-from-scratch-tokenizer/": "Tokenizer From Scratch",
+            "/projects/autism-spectrum-disorder-prediction/": "Published ASD research",
+        }
+        for route, label in expected_links.items():
+            self.assertIn(f'href="{route}"', evidence)
+            self.assertIn(label, semantic_writing)
+            self.assertTrue(self.page_path(route).is_file(), route)
+        self.assertIn("Learning lab and implementation series", semantic_writing)
+        self.assertNotIn("%", semantic_writing)
+        self.assertIn('href="/posts/"', writing)
+        self.assertIn('href="/experience/"', writing)
+        self.assertEqual(writing.count('class="portfolio-education-entry"'), 2)
+        for canonical_entry in (
+            "Master of Data Science</strong>, University of British Columbia",
+            "BSc Computer Science & Engineering</strong>, "
+            "American International University-Bangladesh · CGPA 3.91/4.00",
+        ):
+            self.assertIn(canonical_entry, semantic_writing)
+
+        contact = raw_html.split('id="contact"', 1)[1].split("</section>", 1)[0]
+        semantic_contact = unescape(contact)
+        self.assertIn('aria-labelledby="contact-title"', contact)
+        self.assertIn(
+            "Building AI or ML systems that need engineering depth?",
+            semantic_contact,
+        )
+        self.assertIn(
+            'href="mailto:avisheksaha123@gmail.com"', contact
+        )
+        self.assertNotIn("<form", contact.lower())
+        self.assertNotIn("chatbot", semantic_contact.lower())
+
+    def test_homepage_has_no_resume_or_download_control(self) -> None:
+        html = self.page_html("/")
+        main = html.split("<main", 1)[1].split("</main>", 1)[0]
+        footer = html.split("<footer", 1)[1].split("</footer>", 1)[0]
+        public_closure = main + footer
+        for forbidden in (
+            ">Resume<",
+            "downloadable resume",
+            "download pdf",
+            "resume",
+            ".pdf",
+            "application/pdf",
+            "download=",
+            "<form",
+            "chatbot",
+            "tel:",
+            ">X<",
+        ):
+            self.assertNotIn(forbidden.lower(), public_closure.lower())
+
+        for label in ("GitHub", "LinkedIn", "Email"):
+            self.assertEqual(footer.count(f">{label}</a>"), 1)
+        self.assertIn(
+            'href="https://github.com/sahaavi" target="_blank" '
+            'rel="noopener noreferrer me" '
+            'aria-label="GitHub profile, opens in a new tab"',
+            footer,
+        )
+        self.assertIn(
+            'href="https://linkedin.com/in/sahaavi" target="_blank" '
+            'rel="noopener noreferrer me" '
+            'aria-label="LinkedIn profile, opens in a new tab"',
+            footer,
+        )
+        self.assertIn(
+            'href="mailto:avisheksaha123@gmail.com" '
+            'aria-label="Email Avishek Saha"',
+            footer,
+        )
+        self.assertEqual(footer.count("opens in a new tab"), 2)
+
+        article = self.page_html("/posts/llm-engineering-from-scratch-tokenizer/")
+        self.assertIn('class="top-link"', article)
+        self.assertIn("copy-code", article)
+        self.assertIn(">GitHub</a>", article)
+        self.assertNotIn(">X</a>", article)
+
+    def test_closing_sections_and_footer_preserve_accessible_behavior(self) -> None:
+        writing_source = (
+            ROOT / "layouts/partials/home/writing-education.html"
+        ).read_text(encoding="utf-8")
+        contact_source = (ROOT / "layouts/partials/home/contact.html").read_text(
+            encoding="utf-8"
+        )
+        footer_source = (ROOT / "layouts/partials/footer.html").read_text(
+            encoding="utf-8"
+        )
+        index_source = (ROOT / "layouts/index.html").read_text(encoding="utf-8")
+
+        expected_partial_order = (
+            'partial "home/hero.html"',
+            'partial "home/experience.html"',
+            'partial "home/expertise.html"',
+            'partial "home/selected-work.html"',
+            'partial "home/writing-education.html"',
+            'partial "home/contact.html"',
+        )
+        positions = [index_source.index(partial) for partial in expected_partial_order]
+        self.assertEqual(positions, sorted(positions))
+        self.assertEqual(index_source.count('partial "home/'), 6)
+
+        for validation in (
+            "data/profile.yaml is required",
+            "data/profile.yaml must be a map",
+            "profile.education must be a list of exactly two items",
+            "profile.education items must be maps",
+            "profile.education items must define nonblank string degree and institution",
+            "profile.education detail must be a string",
+        ):
+            self.assertIn(validation, writing_source)
+
+        shared_profile_validations = (
+            "data/profile.yaml is required",
+            "data/profile.yaml must be a map",
+            "profile.name must be a nonblank string",
+            "profile.social must be a map",
+            "profile.social must define nonblank string github, linkedin, and email",
+            "profile.social.github and profile.social.linkedin must be absolute HTTPS public URLs",
+            "profile.social.email must be a valid mailto address",
+        )
+        for source in (contact_source, footer_source):
+            for validation in shared_profile_validations:
+                self.assertIn(validation, source)
+
+        for preserved_behavior in (
+            "menu-scroll-position",
+            "partial \"extend_footer.html\"",
+            "document.querySelectorAll('a[href^=\"#\"]')",
+            "decodeURIComponent(this.getAttribute(\"href\").slice(1))",
+            "if (!target) return",
+            "prefers-reduced-motion: reduce",
+            'target.focus({ preventScroll: true })',
+            'history.replaceState(null, "", window.location.pathname + window.location.search)',
+            'history.pushState(null, "", `#${id}`)',
+            "const html = document.documentElement",
+            "localStorage.setItem(\"pref-theme\", nextTheme)",
+            'themeToggle.setAttribute("aria-pressed"',
+            "copy-code",
+        ):
+            self.assertIn(preserved_behavior, footer_source)
+
+        home_css = (ROOT / "assets/css/extended/portfolio-home.css").read_text(
+            encoding="utf-8"
+        )
+        base_css = (ROOT / "assets/css/extended/portfolio-base.css").read_text(
+            encoding="utf-8"
+        )
+        footer_css = base_css.split(".portfolio-footer {", 1)[1].split("}", 1)[0]
+        self.assertIn(
+            "max-width: calc(var(--portfolio-max) + 40px)", footer_css
+        )
+        closing_css = home_css.split(".portfolio-closing-grid {", 1)[1].split(
+            "}", 1
+        )[0]
+        self.assertIn("grid-template-columns: 1fr 1fr", closing_css)
+        contact_css = home_css.split(".portfolio-contact-band {", 1)[1].split(
+            "}", 1
+        )[0]
+        self.assertIn("grid-template-columns: 1fr auto", contact_css)
+        self.assertIn("clip-path: inset(0 -100vmax)", contact_css)
+        mobile_css = home_css.split("@media (max-width: 640px)", 1)[1]
+        self.assertIn(
+            ".portfolio-closing-grid, .portfolio-contact-band { grid-template-columns: 1fr; }",
+            mobile_css,
+        )
+        text_link_css = home_css.split(".portfolio-text-link {", 1)[1].split(
+            "}", 1
+        )[0]
+        self.assertIn("min-height: 44px", text_link_css)
+        self.assertIn("display: inline-flex", text_link_css)
+        self.assertIn(
+            ".portfolio-contact-band .portfolio-label { color: var(--portfolio-paper); }",
+            home_css,
+        )
+        self.assertIn(
+            ".portfolio-contact-band :focus-visible { outline-color: var(--portfolio-paper); }",
+            home_css,
+        )
+        footer_link_css = base_css.split(".portfolio-footer-links a {", 1)[1].split(
+            "}", 1
+        )[0]
+        self.assertIn("min-width: 44px", footer_link_css)
+        self.assertIn("min-height: 44px", footer_link_css)
+        self.assertIn("display: inline-flex", footer_link_css)
+        copyright_css = base_css.split(".portfolio-footer > span {", 1)[1].split(
+            "}", 1
+        )[0]
+        self.assertIn("min-height: 44px", copyright_css)
+        self.assertIn("align-items: center", copyright_css)
+        self.assertIn("margin-inline: 0", copyright_css)
+        home_link_css = base_css.split(".portfolio-footer > span a {", 1)[1].split(
+            "}", 1
+        )[0]
+        self.assertIn("min-height: 44px", home_link_css)
+        self.assertIn("display: inline-flex", home_link_css)
+        self.assertIn("align-items: center", home_link_css)
+
+    def test_malformed_education_fails_with_deliberate_errors(self) -> None:
+        first_item = (
+            '  - institution: "University of British Columbia"\n'
+            '    degree: "Master of Data Science"\n'
+            '    period: "Sep 2022 to Jun 2023"\n'
+            '    short_period: "2022 · 2023"\n'
+            '    hero_signal: true\n'
+            '    hero_order: 3\n'
+        )
+        cases = (
+            (
+                "null education",
+                lambda content: content.replace(
+                    "education:\n", "education: null\nunused_education:\n", 1
+                ),
+                "profile.education must be a list of exactly two items",
+            ),
+            (
+                "scalar education",
+                lambda content: content.replace(
+                    "education:\n", "education: invalid\nunused_education:\n", 1
+                ),
+                "profile.education must be a list of exactly two items",
+            ),
+            (
+                "null education item",
+                lambda content: content.replace(first_item, "  - null\n", 1),
+                "profile.education items must be maps",
+            ),
+            (
+                "scalar education item",
+                lambda content: content.replace(first_item, "  - invalid\n", 1),
+                "profile.education items must be maps",
+            ),
+            (
+                "blank degree",
+                lambda content: content.replace(
+                    '    degree: "Master of Data Science"\n',
+                    '    degree: "   "\n',
+                    1,
+                ),
+                "profile.education items must define nonblank string degree and institution",
+            ),
+            (
+                "blank institution",
+                lambda content: content.replace(
+                    '  - institution: "University of British Columbia"\n',
+                    '  - institution: "   "\n',
+                    1,
+                ),
+                "profile.education items must define nonblank string degree and institution",
+            ),
+            (
+                "non-string optional detail",
+                lambda content: content.replace(
+                    '    detail: "CGPA 3.91/4.00"\n', "    detail: 3.91\n", 1
+                ),
+                "profile.education detail must be a string",
+            ),
+        )
+        generic_errors = (
+            "reflect:",
+            "range can't iterate",
+            "can't evaluate field",
+            "error calling isset",
+            "error calling len",
+        )
+        for name, transform, expected_error in cases:
+            with self.subTest(name=name):
+                result, _ = self.build_with_profile_fixture(
+                    transform, writing_only=True
+                )
+                output = (result.stdout + result.stderr).lower()
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn(expected_error.lower(), output)
+                for generic_error in generic_errors:
+                    self.assertNotIn(generic_error, output)
+
+    def test_blank_optional_education_detail_has_no_separator(self) -> None:
+        for name, detail in (("blank", ""), ("whitespace", "   ")):
+            with self.subTest(name=name):
+                result, html = self.build_with_profile_fixture(
+                    lambda content, value=detail: content.replace(
+                        '    detail: "CGPA 3.91/4.00"\n',
+                        f'    detail: "{value}"\n',
+                        1,
+                    ),
+                    writing_only=True,
+                    capture_home=True,
+                )
+                self.assertEqual(
+                    result.returncode,
+                    0,
+                    result.stdout + "\n" + result.stderr,
+                )
+                self.assertIsNotNone(html)
+                writing = unescape(
+                    html.split('id="writing"', 1)[1].split("</section>", 1)[0]
+                )
+                education_entry = writing.split(
+                    "BSc Computer Science & Engineering", 1
+                )[1].split("</p>", 1)[0]
+                self.assertNotIn("·", education_entry)
+
+    def test_malformed_profile_identity_and_social_fail_on_home_and_footer(self) -> None:
+        social_block = (
+            'social:\n'
+            '  github: "https://github.com/sahaavi"\n'
+            '  linkedin: "https://linkedin.com/in/sahaavi"\n'
+            '  email: "mailto:avisheksaha123@gmail.com"\n'
+        )
+        cases = (
+            (
+                "missing name",
+                lambda content: content.replace('name: "Avishek Saha"\n', "", 1),
+                "profile.name must be a nonblank string",
+            ),
+            (
+                "non-string name",
+                lambda content: content.replace(
+                    'name: "Avishek Saha"\n', "name: true\n", 1
+                ),
+                "profile.name must be a nonblank string",
+            ),
+            (
+                "missing social",
+                lambda content: content.replace(social_block, "", 1),
+                "profile.social must be a map",
+            ),
+            (
+                "scalar social",
+                lambda content: content.replace(
+                    "social:\n", "social: invalid\nunused_social:\n", 1
+                ),
+                "profile.social must be a map",
+            ),
+            (
+                "missing github",
+                lambda content: content.replace(
+                    '  github: "https://github.com/sahaavi"\n', "", 1
+                ),
+                "profile.social must define nonblank string github, linkedin, and email",
+            ),
+            (
+                "non-https linkedin",
+                lambda content: content.replace(
+                    '  linkedin: "https://linkedin.com/in/sahaavi"\n',
+                    '  linkedin: "http://linkedin.com/in/sahaavi"\n',
+                    1,
+                ),
+                "profile.social.github and profile.social.linkedin must be absolute HTTPS public URLs",
+            ),
+            (
+                "malformed mailto",
+                lambda content: content.replace(
+                    '  email: "mailto:avisheksaha123@gmail.com"\n',
+                    '  email: "avisheksaha123@gmail.com"\n',
+                    1,
+                ),
+                "profile.social.email must be a valid mailto address",
+            ),
+        )
+        generic_errors = (
+            "reflect:",
+            "range can't iterate",
+            "can't evaluate field",
+            "error calling isset",
+            "error calling len",
+            "error calling parse",
+        )
+        for footer_only in (False, True):
+            for name, transform, expected_error in cases:
+                with self.subTest(
+                    renderer="footer" if footer_only else "homepage", name=name
+                ):
+                    result, _ = self.build_with_profile_fixture(
+                        transform, footer_only=footer_only
+                    )
+                    output = (result.stdout + result.stderr).lower()
+                    self.assertNotEqual(result.returncode, 0)
+                    self.assertIn(expected_error.lower(), output)
+                    for generic_error in generic_errors:
+                        self.assertNotIn(generic_error, output)

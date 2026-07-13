@@ -1,41 +1,96 @@
-{{- if not (.Param "hideFooter") }}
-<footer class="footer">
-    {{- if not site.Params.footer.hideCopyright }}
-        {{- if site.Copyright }}
-        <span>{{ site.Copyright | markdownify }}</span>
-        {{- else }}
-        <span>&copy; {{ now.Year }} <a href="{{ "" | absLangURL }}">{{ site.Title }}</a></span>
-        {{- end }}
-    {{- end }}
-
-    {{- with site.Params.footer.text }}
-        {{- print " · "}}
-        {{ . | markdownify }}
-    {{- end }}
-
-    <div class="social-icons">
-        <a href="https://github.com/sahaavi" target="_blank" rel="noopener noreferrer me" title="GitHub">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-            </svg>
-        </a>
-        <a href="https://linkedin.com/in/sahaavi" target="_blank" rel="noopener noreferrer me" title="LinkedIn">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                <rect x="2" y="9" width="4" height="12" />
-                <circle cx="4" cy="4" r="2" />
-            </svg>
-        </a>
-        <a href="https://x.com/avisheksaha_" target="_blank" rel="noopener noreferrer me" title="X">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-            </svg>
-        </a>
-    </div>
+{{- if not (.Param "hideFooter") -}}
+{{- $profile := dict -}}
+{{- $social := dict -}}
+{{- $profileName := "" -}}
+{{- $profileValid := true -}}
+{{- if not (isset site.Data "profile") -}}
+  {{- errorf "data/profile.yaml is required" -}}
+  {{- $profileValid = false -}}
+{{- else -}}
+  {{- $profileCandidate := index site.Data "profile" -}}
+  {{- if not (reflect.IsMap $profileCandidate) -}}
+    {{- errorf "data/profile.yaml must be a map" -}}
+    {{- $profileValid = false -}}
+  {{- else -}}
+    {{- $profile = $profileCandidate -}}
+    {{- $nameValid := true -}}
+    {{- if not (isset $profile "name") -}}
+      {{- $nameValid = false -}}
+    {{- else -}}
+      {{- $name := index $profile "name" -}}
+      {{- if ne (printf "%T" $name) "string" -}}
+        {{- $nameValid = false -}}
+      {{- else if not (strings.TrimSpace $name) -}}
+        {{- $nameValid = false -}}
+      {{- else -}}
+        {{- $profileName = $name -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if not $nameValid -}}
+      {{- errorf "profile.name must be a nonblank string" -}}
+      {{- $profileValid = false -}}
+    {{- end -}}
+    {{- if not (isset $profile "social") -}}
+      {{- errorf "profile.social must be a map" -}}
+      {{- $profileValid = false -}}
+    {{- else -}}
+      {{- $socialCandidate := index $profile "social" -}}
+      {{- if not (reflect.IsMap $socialCandidate) -}}
+        {{- errorf "profile.social must be a map" -}}
+        {{- $profileValid = false -}}
+      {{- else -}}
+        {{- $social = $socialCandidate -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $socialStringsValid := true -}}
+{{- range slice "github" "linkedin" "email" -}}
+  {{- if not (isset $social .) -}}
+    {{- $socialStringsValid = false -}}
+  {{- else -}}
+    {{- $value := index $social . -}}
+    {{- if ne (printf "%T" $value) "string" -}}
+      {{- $socialStringsValid = false -}}
+    {{- else if not (strings.TrimSpace $value) -}}
+      {{- $socialStringsValid = false -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $socialStringsValid -}}
+  {{- errorf "profile.social must define nonblank string github, linkedin, and email" -}}
+  {{- $profileValid = false -}}
+{{- else -}}
+  {{- $publicURLPattern := `(?i)^https://[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?)+(/[A-Za-z0-9._~:/?#@!$&'()*+,;=-]*)?$` -}}
+  {{- $publicURLsValid := true -}}
+  {{- range slice "github" "linkedin" -}}
+    {{- $value := index $social . -}}
+    {{- if or (ne $value (strings.TrimSpace $value)) (ne (len (findRE $publicURLPattern $value)) 1) -}}
+      {{- $publicURLsValid = false -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if not $publicURLsValid -}}
+    {{- errorf "profile.social.github and profile.social.linkedin must be absolute HTTPS public URLs" -}}
+    {{- $profileValid = false -}}
+  {{- end -}}
+  {{- $email := index $social "email" -}}
+  {{- $mailtoPattern := `(?i)^mailto:[^[:space:]@]+@[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?)+$` -}}
+  {{- if or (ne $email (strings.TrimSpace $email)) (ne (len (findRE $mailtoPattern $email)) 1) -}}
+    {{- errorf "profile.social.email must be a valid mailto address" -}}
+    {{- $profileValid = false -}}
+  {{- end -}}
+{{- end -}}
+{{- if $profileValid -}}
+<footer class="footer portfolio-footer">
+  <span>&copy; {{ now.Year }} <a href="{{ site.Home.RelPermalink }}">{{ $profileName }}</a></span>
+  <nav class="portfolio-footer-links" aria-label="Professional links">
+    <a href="{{ index $social "github" }}" target="_blank" rel="noopener noreferrer me" aria-label="GitHub profile, opens in a new tab">GitHub</a>
+    <a href="{{ index $social "linkedin" }}" target="_blank" rel="noopener noreferrer me" aria-label="LinkedIn profile, opens in a new tab">LinkedIn</a>
+    <a href="{{ index $social "email" }}" aria-label="Email {{ $profileName }}">Email</a>
+  </nav>
 </footer>
-{{- end }}
+{{- end -}}
+{{- end -}}
 
 {{- if (not site.Params.disableScrollToTop) }}
 <a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
@@ -61,26 +116,21 @@
     }
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            const id = this.getAttribute("href").slice(1);
-            const target = document.getElementById(decodeURIComponent(id));
-            if (!target) {
-                return;
-            }
-
-            e.preventDefault();
-            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        anchor.addEventListener("click", function (event) {
+            const id = decodeURIComponent(this.getAttribute("href").slice(1));
+            const target = document.getElementById(id);
+            if (!target) return;
+            event.preventDefault();
             target.scrollIntoView({
-                behavior: prefersReducedMotion ? "auto" : "smooth"
+                behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? "auto" : "smooth"
             });
             if (this.classList.contains("portfolio-skip-link")) {
                 target.focus({ preventScroll: true });
             }
-
             if (id === "top") {
-                history.replaceState(null, null, " ");
+                history.replaceState(null, "", window.location.pathname + window.location.search);
             } else {
-                history.pushState(null, null, `#${id}`);
+                history.pushState(null, "", `#${id}`);
             }
         });
     });
@@ -106,21 +156,15 @@
 {{- if (not site.Params.disableThemeToggle) }}
 <script>
     const themeToggle = document.getElementById("theme-toggle");
-    const html = document.querySelector("html");
-
+    const html = document.documentElement;
     const syncThemeState = () => {
         themeToggle.setAttribute("aria-pressed", String(html.dataset.theme === "dark"));
     };
-
     syncThemeState();
     themeToggle.addEventListener("click", () => {
-        if (html.dataset.theme === "dark") {
-            html.dataset.theme = 'light';
-            localStorage.setItem("pref-theme", 'light');
-        } else {
-            html.dataset.theme = 'dark';
-            localStorage.setItem("pref-theme", 'dark');
-        }
+        const nextTheme = html.dataset.theme === "dark" ? "light" : "dark";
+        html.dataset.theme = nextTheme;
+        localStorage.setItem("pref-theme", nextTheme);
         syncThemeState();
     });
 

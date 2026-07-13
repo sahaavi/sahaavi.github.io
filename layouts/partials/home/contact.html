@@ -1,0 +1,88 @@
+{{/* layouts/partials/home/contact.html */}}
+{{- $profile := dict -}}
+{{- $social := dict -}}
+{{- $profileValid := true -}}
+{{- if not (isset site.Data "profile") -}}
+  {{- errorf "data/profile.yaml is required" -}}
+  {{- $profileValid = false -}}
+{{- else -}}
+  {{- $profileCandidate := index site.Data "profile" -}}
+  {{- if not (reflect.IsMap $profileCandidate) -}}
+    {{- errorf "data/profile.yaml must be a map" -}}
+    {{- $profileValid = false -}}
+  {{- else -}}
+    {{- $profile = $profileCandidate -}}
+    {{- $nameValid := true -}}
+    {{- if not (isset $profile "name") -}}
+      {{- $nameValid = false -}}
+    {{- else -}}
+      {{- $name := index $profile "name" -}}
+      {{- if ne (printf "%T" $name) "string" -}}
+        {{- $nameValid = false -}}
+      {{- else if not (strings.TrimSpace $name) -}}
+        {{- $nameValid = false -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if not $nameValid -}}
+      {{- errorf "profile.name must be a nonblank string" -}}
+      {{- $profileValid = false -}}
+    {{- end -}}
+    {{- if not (isset $profile "social") -}}
+      {{- errorf "profile.social must be a map" -}}
+      {{- $profileValid = false -}}
+    {{- else -}}
+      {{- $socialCandidate := index $profile "social" -}}
+      {{- if not (reflect.IsMap $socialCandidate) -}}
+        {{- errorf "profile.social must be a map" -}}
+        {{- $profileValid = false -}}
+      {{- else -}}
+        {{- $social = $socialCandidate -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $socialStringsValid := true -}}
+{{- range slice "github" "linkedin" "email" -}}
+  {{- if not (isset $social .) -}}
+    {{- $socialStringsValid = false -}}
+  {{- else -}}
+    {{- $value := index $social . -}}
+    {{- if ne (printf "%T" $value) "string" -}}
+      {{- $socialStringsValid = false -}}
+    {{- else if not (strings.TrimSpace $value) -}}
+      {{- $socialStringsValid = false -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $socialStringsValid -}}
+  {{- errorf "profile.social must define nonblank string github, linkedin, and email" -}}
+  {{- $profileValid = false -}}
+{{- else -}}
+  {{- $publicURLPattern := `(?i)^https://[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?)+(/[A-Za-z0-9._~:/?#@!$&'()*+,;=-]*)?$` -}}
+  {{- $publicURLsValid := true -}}
+  {{- range slice "github" "linkedin" -}}
+    {{- $value := index $social . -}}
+    {{- if or (ne $value (strings.TrimSpace $value)) (ne (len (findRE $publicURLPattern $value)) 1) -}}
+      {{- $publicURLsValid = false -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if not $publicURLsValid -}}
+    {{- errorf "profile.social.github and profile.social.linkedin must be absolute HTTPS public URLs" -}}
+    {{- $profileValid = false -}}
+  {{- end -}}
+  {{- $email := index $social "email" -}}
+  {{- $mailtoPattern := `(?i)^mailto:[^[:space:]@]+@[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?)+$` -}}
+  {{- if or (ne $email (strings.TrimSpace $email)) (ne (len (findRE $mailtoPattern $email)) 1) -}}
+    {{- errorf "profile.social.email must be a valid mailto address" -}}
+    {{- $profileValid = false -}}
+  {{- end -}}
+{{- end -}}
+{{- if $profileValid -}}
+<section id="contact" class="portfolio-contact-band" aria-labelledby="contact-title">
+  <div>
+    <p class="portfolio-label">Contact</p>
+    <h2 id="contact-title">Building AI or ML systems that need engineering depth?</h2>
+  </div>
+  <a class="portfolio-button" href="{{ index $social "email" }}">Start a conversation →</a>
+</section>
+{{- end -}}

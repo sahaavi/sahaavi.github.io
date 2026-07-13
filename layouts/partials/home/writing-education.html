@@ -1,0 +1,86 @@
+{{/* layouts/partials/home/writing-education.html */}}
+{{- $profile := dict -}}
+{{- $education := slice -}}
+{{- $profileValid := true -}}
+{{- if not (isset site.Data "profile") -}}
+  {{- errorf "data/profile.yaml is required" -}}
+  {{- $profileValid = false -}}
+{{- else -}}
+  {{- $profileCandidate := index site.Data "profile" -}}
+  {{- if not (reflect.IsMap $profileCandidate) -}}
+    {{- errorf "data/profile.yaml must be a map" -}}
+    {{- $profileValid = false -}}
+  {{- else -}}
+    {{- $profile = $profileCandidate -}}
+    {{- if not (isset $profile "education") -}}
+      {{- errorf "profile.education must be a list of exactly two items" -}}
+      {{- $profileValid = false -}}
+    {{- else -}}
+      {{- $educationCandidate := index $profile "education" -}}
+      {{- if not (reflect.IsSlice $educationCandidate) -}}
+        {{- errorf "profile.education must be a list of exactly two items" -}}
+        {{- $profileValid = false -}}
+      {{- else -}}
+        {{- $education = $educationCandidate -}}
+        {{- if ne (len $education) 2 -}}
+          {{- errorf "profile.education must be a list of exactly two items" -}}
+          {{- $profileValid = false -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- range $education -}}
+  {{- if not (reflect.IsMap .) -}}
+    {{- errorf "profile.education items must be maps" -}}
+    {{- $profileValid = false -}}
+  {{- else -}}
+    {{- $item := . -}}
+    {{- $identityValid := true -}}
+    {{- range slice "degree" "institution" -}}
+      {{- if not (isset $item .) -}}
+        {{- $identityValid = false -}}
+      {{- else -}}
+        {{- $value := index $item . -}}
+        {{- if ne (printf "%T" $value) "string" -}}
+          {{- $identityValid = false -}}
+        {{- else if not (strings.TrimSpace $value) -}}
+          {{- $identityValid = false -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if not $identityValid -}}
+      {{- errorf "profile.education items must define nonblank string degree and institution" -}}
+      {{- $profileValid = false -}}
+    {{- end -}}
+    {{- if isset . "detail" -}}
+      {{- if ne (printf "%T" (index . "detail")) "string" -}}
+        {{- errorf "profile.education detail must be a string" -}}
+        {{- $profileValid = false -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if $profileValid -}}
+<section id="writing" class="portfolio-section portfolio-closing-grid" aria-label="Writing, research, and education">
+  <article>
+    <p class="portfolio-label">04 · Writing & research</p>
+    <h2>Technical depth should remain inspectable.</h2>
+    <p>Engineering notes, the LLM-from-scratch series, the interactive tokenizer, and published ML research show how the work is understood and communicated.</p>
+    <ul class="portfolio-evidence-links">
+      <li><a href="/projects/llm-engineering-from-scratch/"><strong>LLM Engineering From Scratch</strong><span>Learning lab and implementation series</span></a></li>
+      <li><a href="/posts/llm-engineering-from-scratch-tokenizer/"><strong>Tokenizer From Scratch</strong><span>Interactive byte-level BPE walkthrough</span></a></li>
+      <li><a href="/projects/autism-spectrum-disorder-prediction/"><strong>Published ASD research</strong><span>Early machine-learning research foundation</span></a></li>
+    </ul>
+    <a class="portfolio-text-link" href="/posts/">Explore all writing →</a>
+  </article>
+  <article class="portfolio-education">
+    <p class="portfolio-label">05 · Education</p>
+    <h2>Data science and computer science foundations.</h2>
+    {{- range $education }}
+    <p class="portfolio-education-entry"><strong>{{ index . "degree" }}</strong>, {{ index . "institution" }}{{ if and (isset . "detail") (strings.TrimSpace (index . "detail")) }} · {{ strings.TrimSpace (index . "detail") }}{{ end }}</p>
+    {{- end }}
+    <a class="portfolio-text-link" href="/experience/">View the full experience profile →</a>
+  </article>
+</section>
+{{- end -}}
