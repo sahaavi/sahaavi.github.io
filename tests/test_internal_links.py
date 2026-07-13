@@ -422,6 +422,22 @@ class InternalLinkTests(HugoSiteTestCase):
             with self.subTest(generated_selector=selector):
                 self.assertIn(selector, generated_css)
 
+    def test_article_fragment_targets_clear_the_sticky_header(self) -> None:
+        for route in (
+            "/projects/maintenance-eye/",
+            "/posts/llm-engineering-from-scratch-tokenizer/",
+        ):
+            with self.subTest(route=route):
+                self.assertRegex(self.page_html(route), r'<h[2-6] id="[^"]+"')
+
+        selector = ".post-content :is(h2, h3, h4, h5, h6)[id] {"
+        css = (ROOT / "assets/css/extended/portfolio-base.css").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn(selector, css)
+        heading_rule = css.split(selector, 1)[1].split("}", 1)[0]
+        self.assertIn("scroll-margin-top: 90px", heading_rule)
+
     def test_deployment_runs_contracts_before_a_warning_clean_hugo_build(self) -> None:
         workflow = (ROOT / ".github/workflows/hugo.yml").read_text(encoding="utf-8")
         expected_markers = (
