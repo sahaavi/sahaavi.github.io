@@ -30,10 +30,16 @@ class DesignAssetTests(HugoSiteTestCase):
         )
         root_css = tokens_css.split(":root {", 1)[1].split("}", 1)[0]
         dark_css = tokens_css.split(':root[data-theme="dark"]', 1)[1].split("}", 1)[0]
+        auto_dark_css = tokens_css.split(':root[data-theme="auto"]', 1)[1].split(
+            "}", 1
+        )[0]
 
         self.assertIn("--portfolio-paper: #f5f7f4", tokens_css.lower())
         self.assertIn(':root[data-theme="dark"]', tokens_css)
         self.assertIn("--portfolio-paper: #08111c", tokens_css.lower())
+        self.assertIn("--portfolio-on-primary: #fff", root_css.lower())
+        self.assertIn("--portfolio-on-primary: #0d1726", dark_css.lower())
+        self.assertIn("--portfolio-on-primary: #0d1726", auto_dark_css.lower())
 
         compatibility_aliases = (
             "--accent: var(--portfolio-cyan)",

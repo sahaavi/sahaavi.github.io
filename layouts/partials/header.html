@@ -1,0 +1,26 @@
+{{/* layouts/partials/header.html */}}
+{{- $currentPath := .RelPermalink -}}
+<a class="portfolio-skip-link" href="#main-content">Skip to content</a>
+<header class="portfolio-header">
+  <nav class="portfolio-nav" aria-label="Primary navigation">
+    <a class="portfolio-brand" href="{{ site.Home.RelPermalink }}" aria-label="{{ site.Data.profile.name }} home">
+      <span class="portfolio-monogram" aria-hidden="true">{{ site.Data.profile.monogram }}</span>
+      <span>{{ site.Data.profile.name }}</span>
+      <span class="portfolio-brand-role">{{ site.Data.profile.role }}</span>
+    </a>
+    <div class="portfolio-nav-actions">
+      <ul id="menu" class="portfolio-menu">
+        {{- range site.Menus.main }}
+        {{- $isActive := and (not (strings.Contains .URL "#")) (eq $currentPath .URL) }}
+        <li><a href="{{ .URL | absLangURL }}"{{ if $isActive }} class="active" aria-current="page"{{ end }}>{{ .Name }}</a></li>
+        {{- end }}
+      </ul>
+      {{- if not site.Params.disableThemeToggle }}
+      <button id="theme-toggle" class="portfolio-theme-toggle" type="button" aria-label="Toggle color theme" aria-pressed="false" title="Toggle color theme">
+        <svg id="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+        <svg id="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72 1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      </button>
+      {{- end }}
+    </div>
+  </nav>
+</header>

@@ -32,6 +32,7 @@
   --portfolio-line-strong: #b8c3d1;
   --portfolio-blue: #245bdc;
   --portfolio-blue-dark: #1643ad;
+  --portfolio-on-primary: #fff;
   --portfolio-blue-soft: #e7eeff;
   --portfolio-cyan: #0d8d9d;
   --portfolio-green: #177a55;
@@ -62,6 +63,7 @@
   --portfolio-line-strong: #3e526c;
   --portfolio-blue: #78a2ff;
   --portfolio-blue-dark: #9dbbff;
+  --portfolio-on-primary: #0d1726;
   --portfolio-blue-soft: #152b55;
   --portfolio-cyan: #4cc0cc;
   --portfolio-green: #62cf9f;
@@ -90,6 +92,7 @@
     --portfolio-line-strong: #3e526c;
     --portfolio-blue: #78a2ff;
     --portfolio-blue-dark: #9dbbff;
+    --portfolio-on-primary: #0d1726;
     --portfolio-blue-soft: #152b55;
     --portfolio-cyan: #4cc0cc;
     --portfolio-green: #62cf9f;

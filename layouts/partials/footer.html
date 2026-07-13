@@ -62,15 +62,21 @@
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            const id = this.getAttribute("href").slice(1);
+            const target = document.getElementById(decodeURIComponent(id));
+            if (!target) {
+                return;
             }
+
+            e.preventDefault();
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            target.scrollIntoView({
+                behavior: prefersReducedMotion ? "auto" : "smooth"
+            });
+            if (this.classList.contains("portfolio-skip-link")) {
+                target.focus({ preventScroll: true });
+            }
+
             if (id === "top") {
                 history.replaceState(null, null, " ");
             } else {
@@ -99,8 +105,15 @@
 
 {{- if (not site.Params.disableThemeToggle) }}
 <script>
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-        const html = document.querySelector("html");
+    const themeToggle = document.getElementById("theme-toggle");
+    const html = document.querySelector("html");
+
+    const syncThemeState = () => {
+        themeToggle.setAttribute("aria-pressed", String(html.dataset.theme === "dark"));
+    };
+
+    syncThemeState();
+    themeToggle.addEventListener("click", () => {
         if (html.dataset.theme === "dark") {
             html.dataset.theme = 'light';
             localStorage.setItem("pref-theme", 'light');
@@ -108,7 +121,8 @@
             html.dataset.theme = 'dark';
             localStorage.setItem("pref-theme", 'dark');
         }
-    })
+        syncThemeState();
+    });
 
 </script>
 {{- end }}

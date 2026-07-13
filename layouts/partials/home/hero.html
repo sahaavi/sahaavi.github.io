@@ -1,0 +1,67 @@
+{{/* layouts/partials/home/hero.html */}}
+{{- $profile := site.Data.profile -}}
+{{- $roles := site.Data.experience.roles -}}
+{{- $careerSignals := slice -}}
+{{- if or (not $profile.name) (not (strings.TrimSpace $profile.name)) }}{{ errorf "data/profile.yaml must define name" }}{{ end -}}
+{{- if or (not $profile.role) (not (strings.TrimSpace $profile.role)) }}{{ errorf "data/profile.yaml must define role" }}{{ end -}}
+{{- if or (not $profile.location) (not (strings.TrimSpace $profile.location)) }}{{ errorf "data/profile.yaml must define location" }}{{ end -}}
+{{- if or (not $profile.work_authorized_label) (not (strings.TrimSpace $profile.work_authorized_label)) }}{{ errorf "data/profile.yaml must define work_authorized_label" }}{{ end -}}
+{{- if or (not $profile.hero.statement) (not (strings.TrimSpace $profile.hero.statement)) }}{{ errorf "profile.hero must define statement" }}{{ end -}}
+{{- if or (not $profile.hero.supporting) (not (strings.TrimSpace $profile.hero.supporting)) }}{{ errorf "profile.hero must define supporting" }}{{ end -}}
+{{- if ne (len $profile.hero.signals) 3 }}{{ errorf "profile.hero.signals must contain exactly three items" }}{{ end -}}
+{{- range $profile.hero.signals -}}
+  {{- if or (not .) (not (strings.TrimSpace .)) }}{{ errorf "profile.hero.signals items must be nonblank" }}{{ end -}}
+{{- end -}}
+{{- if ne (len $profile.actions) 3 }}{{ errorf "profile.actions must contain exactly three items" }}{{ end -}}
+{{- $primaryActionCount := 0 -}}
+{{- range $profile.actions -}}
+  {{- if or (not .label) (not (strings.TrimSpace .label)) (not .url) (not (strings.TrimSpace .url)) }}{{ errorf "profile.actions items must define label and url" }}{{ end -}}
+  {{- if .primary }}{{ $primaryActionCount = add $primaryActionCount 1 }}{{ end -}}
+{{- end -}}
+{{- if ne $primaryActionCount 1 }}{{ errorf "profile.actions must contain exactly one primary action" }}{{ end -}}
+{{- if lt (len $roles) 4 }}{{ errorf "data/experience.yaml must define at least four roles" }}{{ end -}}
+{{- range where $roles "hero_signal" true -}}
+  {{- if or (not .hero_order) (not .short_period) (not (strings.TrimSpace .short_period)) (not .title) (not (strings.TrimSpace .title)) (not .employer) (not (strings.TrimSpace .employer)) }}{{ errorf "hero role must define hero_order, short_period, title, and employer" }}{{ end -}}
+  {{- $careerSignals = $careerSignals | append (dict "order" .hero_order "period" .short_period "title" .title "organization" .employer "location" .location) -}}
+{{- end -}}
+{{- range where $profile.education "hero_signal" true -}}
+  {{- if or (not .hero_order) (not .short_period) (not (strings.TrimSpace .short_period)) (not .degree) (not (strings.TrimSpace .degree)) (not .institution) (not (strings.TrimSpace .institution)) }}{{ errorf "hero education signal must define hero_order, short_period, degree, and institution" }}{{ end -}}
+  {{- $careerSignals = $careerSignals | append (dict "order" .hero_order "period" .short_period "title" .degree "organization" .institution) -}}
+{{- end -}}
+{{- if ne (len $careerSignals) 4 }}{{ errorf "homepage career panel requires exactly four hero signals" }}{{ end -}}
+{{- range $careerSignals -}}
+  {{- if or (not .order) (not .period) (not (strings.TrimSpace .period)) (not .title) (not (strings.TrimSpace .title)) (not .organization) (not (strings.TrimSpace .organization)) }}{{ errorf "homepage career signal must define order, period, title, and organization" }}{{ end -}}
+{{- end -}}
+
+<section id="portfolio-hero" class="portfolio-hero" aria-labelledby="portfolio-hero-title">
+  <div class="portfolio-hero-grid">
+    <div class="portfolio-hero-copy">
+      <p class="portfolio-label">{{ $profile.role }} · {{ $profile.location }}</p>
+      <h1 id="portfolio-hero-title">{{ $profile.hero.statement }}</h1>
+      <p class="portfolio-hero-lead">{{ $profile.hero.supporting }}</p>
+      <div class="portfolio-hero-actions" aria-label="Primary actions">
+        {{- range $profile.actions }}
+        <a class="portfolio-button{{ if .primary }} portfolio-button-primary{{ end }}" href="{{ .url }}">{{ .label }}</a>
+        {{- end }}
+      </div>
+      <ul class="portfolio-signal-list" aria-label="AI and machine learning evidence">
+        {{- range $profile.hero.signals }}<li>{{ . }}</li>{{ end }}
+      </ul>
+    </div>
+    <aside class="portfolio-career-panel" aria-label="Career timeline">
+      <div class="portfolio-panel-heading">
+        <strong>Experience at a glance</strong>
+        <span class="portfolio-availability">{{ $profile.work_authorized_label }}</span>
+      </div>
+      <ol class="portfolio-career-list">
+        {{- range sort $careerSignals "order" "asc" }}
+        <li>
+          <span class="portfolio-career-period">{{ .period }}</span>
+          <strong>{{ .title }}</strong>
+          <span>{{ .organization }}{{ with .location }} · {{ . }}{{ end }}</span>
+        </li>
+        {{- end }}
+      </ol>
+    </aside>
+  </div>
+</section>

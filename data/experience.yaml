@@ -1,0 +1,75 @@
+roles:
+  - id: "bcrtc"
+    employer: "BC Rapid Transit Company"
+    title: "Data & Applied AI Analyst"
+    period: "Dec 2024 to present"
+    short_period: "2024 · Present"
+    location: "Burnaby, BC"
+    current: true
+    hero_signal: true
+    hero_order: 1
+    homepage_summary: "Build applied AI evaluation and human-review controls, predictive ML, and reusable data and feature foundations for enterprise decision support."
+    source_claim_ids:
+      - "stan-bcrtc-ragas-semantic-eval-20260709"
+      - "aviva-bcrtc-p15-recovery-duration-001"
+      - "seed-p11-event-feature-foundation"
+    evidence:
+      - label: "AI quality"
+        text: "Built a 150-case evaluation harness using RAGAS, semantic similarity, LLM-as-judge rubrics, trace capture, and latency and cost checks."
+      - label: "ML impact"
+        text: "Built an uncertainty-aware recovery-duration model that improved planning accuracy by 21% through calibration and interval-coverage checks."
+      - label: "Trust"
+        text: "Reduced unsupported AI-generated summary claims by 60% while keeping human review and release boundaries explicit."
+    details:
+      - "Built a 150-case AI evaluation harness with RAGAS, semantic-similarity and LLM-as-judge scoring, inspectable traces, and latency and cost gates, reducing unsupported summary claims by 60%."
+      - "Owned label definition, contextual feature engineering, model comparison, calibration checks, and uncertainty-aware output design for an internally used predictive model that improved planning accuracy by 21%."
+      - "Designed a reusable event and feature foundation with canonical entities, feature contracts, data-quality tests, lineage tracking, and read-only downstream consumption patterns."
+  - id: "brainstation23"
+    employer: "Brain Station 23"
+    title: "Data Scientist, Applied AI"
+    period: "Aug 2023 to Nov 2024"
+    short_period: "2023 · 2024"
+    location: "Dhaka, Bangladesh / Remote"
+    current: false
+    hero_signal: true
+    hero_order: 2
+    homepage_summary: "Financial analytics, predictive ML prototypes, document intelligence, production-service contributions, data pipelines, and cloud integrations."
+    source_claim_ids:
+      - "stage-bs23-ai-002"
+      - "stage-bs23-analytics-001"
+    metrics:
+      - value: "21%"
+        label: "analysis efficiency"
+      - value: "17%"
+        label: "data consistency"
+      - value: "26%"
+        label: "query performance"
+    details:
+      - "Contributed to production Python services and Dockerized integrations supporting financial analytics and data delivery."
+      - "Built predictive ML prototypes with feature engineering, validation, scikit-learn, TensorFlow, and XGBoost."
+      - "Contributed to document-intelligence and data workflows using Vertex AI, Cloud Functions, BigQuery, Python, SQL, and Power BI."
+  - id: "statscan"
+    employer: "UBC MDS × Statistics Canada"
+    title: "Capstone Data Scientist"
+    period: "Apr 2023 to Jul 2023"
+    short_period: "2023"
+    location: "Ottawa, ON"
+    current: false
+    hero_signal: false
+    homepage_summary: "Interpretable clustering, data profiling, outlier analysis, comparative evaluation, and policy-facing communication through the UBC MDS capstone."
+    details:
+      - "Implemented K-means and hierarchical clustering after data profiling and outlier analysis in R."
+      - "Produced cluster profiles and policy-facing findings for the Proximity Measure Database."
+  - id: "softology"
+    employer: "Softology IT"
+    title: "Co-Founder / Data Scientist"
+    period: "Sep 2021 to Aug 2022"
+    short_period: "2021 · 2022"
+    location: "Dhaka, Bangladesh"
+    current: false
+    hero_signal: true
+    hero_order: 4
+    homepage_summary: "Client-facing software delivery across applications, APIs, analytics, data workflows, project ownership, and technical handoff."
+    details:
+      - "Co-founded a software firm and delivered client applications, APIs, analytics, and data workflows."
+      - "Managed project scope, implementation, client communication, and technical handoff across concurrent engagements."

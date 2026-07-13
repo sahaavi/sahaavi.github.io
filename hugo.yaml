@@ -14,6 +14,9 @@ enableGitInfo: true
 minify:
   disableXML: true
   minifyOutput: true
+  tdewolff:
+    html:
+      keepQuotes: true
 
 params:
   env: production
@@ -66,25 +69,25 @@ params:
 
 menu:
   main:
-    - identifier: projects
-      name: Projects
-      url: /projects/
+    - identifier: experience
+      name: Experience
+      url: /experience/
       weight: 10
-    - identifier: blog
-      name: Blog
-      url: /posts/
+    - identifier: expertise
+      name: Expertise
+      url: /#expertise
       weight: 20
-    - identifier: books
-      name: Books
-      url: /books/
+    - identifier: work
+      name: Selected Work
+      url: /#work
       weight: 30
-    - identifier: about
-      name: About
-      url: /about/
+    - identifier: writing
+      name: Writing
+      url: /posts/
       weight: 40
-    - identifier: search
-      name: Search
-      url: /search/
+    - identifier: contact
+      name: Contact
+      url: /#contact
       weight: 50
 
 outputs:
