@@ -39,6 +39,9 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
+      - name: Run site contract tests
+        run: python3 -m unittest discover -s tests -v
+
       - name: Build with Hugo
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
@@ -47,7 +50,9 @@ jobs:
         run: |
           hugo \
             --gc \
-            --minify
+            --minify \
+            --cleanDestinationDir \
+            --panicOnWarning
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
