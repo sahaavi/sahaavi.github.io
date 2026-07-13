@@ -377,7 +377,8 @@ class InternalLinkTests(HugoSiteTestCase):
 
         self.assertIn("@media (max-width: 960px)", css)
         self.assertIn("@media (max-width: 768px)", css)
-        self.assertEqual(css.count("@media"), 2)
+        self.assertIn("@media (max-width: 640px)", css)
+        self.assertEqual(css.count("@media"), 3)
         self.assertIn("grid-template-columns: minmax(150px, 0.28fr)", css)
         self.assertIn("position: sticky", css)
 
