@@ -6,6 +6,7 @@
   {{- $rolesValid = false -}}
 {{- end -}}
 {{- range $roles -}}
+  {{- $role := . -}}
   {{- if ne (printf "%T" .current) "bool" }}
     {{- errorf "experience role current must be boolean" -}}
     {{- $rolesValid = false -}}
@@ -14,11 +15,39 @@
     {{- errorf "experience roles must define id, employer, title, period, short_period, location, and homepage_summary" -}}
     {{- $rolesValid = false -}}
   {{- end -}}
-  {{- with .metrics -}}
-    {{- range . -}}
-      {{- if or (not .value) (not (strings.TrimSpace .value)) (not .label) (not (strings.TrimSpace .label)) }}
-        {{- errorf "experience metrics must define value and label" -}}
-        {{- $rolesValid = false -}}
+  {{- if isset $role "metrics" -}}
+    {{- $metricsCandidate := index $role "metrics" -}}
+    {{- if not (reflect.IsSlice $metricsCandidate) -}}
+      {{- errorf "experience metrics must be a nonempty list" -}}
+      {{- $rolesValid = false -}}
+    {{- else if eq (len $metricsCandidate) 0 -}}
+      {{- errorf "experience metrics must be a nonempty list" -}}
+      {{- $rolesValid = false -}}
+    {{- else -}}
+      {{- range $metricsCandidate -}}
+        {{- if not (reflect.IsMap .) -}}
+          {{- errorf "experience metrics items must be maps" -}}
+          {{- $rolesValid = false -}}
+        {{- else -}}
+          {{- $metric := . -}}
+          {{- $metricValid := true -}}
+          {{- range slice "value" "label" -}}
+            {{- if not (isset $metric .) -}}
+              {{- $metricValid = false -}}
+            {{- else -}}
+              {{- $value := index $metric . -}}
+              {{- if ne (printf "%T" $value) "string" -}}
+                {{- $metricValid = false -}}
+              {{- else if not (strings.TrimSpace $value) -}}
+                {{- $metricValid = false -}}
+              {{- end -}}
+            {{- end -}}
+          {{- end -}}
+          {{- if not $metricValid -}}
+            {{- errorf "experience metrics must define value and label" -}}
+            {{- $rolesValid = false -}}
+          {{- end -}}
+        {{- end -}}
       {{- end -}}
     {{- end -}}
   {{- end -}}

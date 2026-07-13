@@ -75,7 +75,7 @@ button#theme-toggle.portfolio-theme-toggle svg { width: 18px; height: 18px; }
 .portfolio-section-head p:not(.portfolio-label) { max-width: 720px; color: var(--portfolio-ink-soft); font-size: 18px; }
 .portfolio-experience-primary { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr); gap: 48px; padding: clamp(28px, 5vw, 48px); border: 1px solid var(--portfolio-line-strong); border-radius: var(--portfolio-radius-lg); background: var(--portfolio-surface); box-shadow: var(--portfolio-shadow); }
 .portfolio-experience-primary h3 { margin: 12px 0 6px; font-size: clamp(27px, 4vw, 40px); }
-.portfolio-meta { color: var(--portfolio-ink-soft); font: 400 12px "IBM Plex Mono", monospace; }
+.portfolio-home .portfolio-meta { color: var(--portfolio-ink-soft); font: 400 12px "IBM Plex Mono", monospace; }
 .portfolio-evidence-list { margin: 0; padding: 0; border-top: 1px solid var(--portfolio-line); list-style: none; }
 .portfolio-evidence-list li { display: grid; grid-template-columns: 92px 1fr; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--portfolio-line); }
 .portfolio-evidence-list strong { color: var(--portfolio-blue); font: 500 12px "IBM Plex Mono", monospace; }

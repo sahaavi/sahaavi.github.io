@@ -1,0 +1,319 @@
+{{/* layouts/_default/experience.html */}}
+{{- define "main" }}
+{{- $profile := dict -}}
+{{- $education := slice -}}
+{{- $roles := slice -}}
+{{- $groups := slice -}}
+{{- $pageDataValid := true -}}
+
+{{/* Validate the profile data without dereferencing an unchecked value. */}}
+{{- if not (isset site.Data "profile") -}}
+  {{- errorf "data/profile.yaml is required for the experience page" -}}
+  {{- $pageDataValid = false -}}
+{{- else -}}
+  {{- $profileCandidate := index site.Data "profile" -}}
+  {{- if not (reflect.IsMap $profileCandidate) -}}
+    {{- errorf "data/profile.yaml must be a map for the experience page" -}}
+    {{- $pageDataValid = false -}}
+  {{- else -}}
+    {{- $profile = $profileCandidate -}}
+    {{- if not (isset $profile "hero") -}}
+      {{- errorf "data/profile.yaml hero must be a map for the experience page" -}}
+      {{- $pageDataValid = false -}}
+    {{- else -}}
+      {{- $heroCandidate := index $profile "hero" -}}
+      {{- if not (reflect.IsMap $heroCandidate) -}}
+        {{- errorf "data/profile.yaml hero must be a map for the experience page" -}}
+        {{- $pageDataValid = false -}}
+      {{- else -}}
+        {{- $supportingValid := true -}}
+        {{- if not (isset $heroCandidate "supporting") -}}
+          {{- $supportingValid = false -}}
+        {{- else -}}
+          {{- $supporting := index $heroCandidate "supporting" -}}
+          {{- if ne (printf "%T" $supporting) "string" -}}
+            {{- $supportingValid = false -}}
+          {{- else if not (strings.TrimSpace $supporting) -}}
+            {{- $supportingValid = false -}}
+          {{- end -}}
+        {{- end -}}
+        {{- if not $supportingValid -}}
+          {{- errorf "data/profile.yaml hero.supporting must be a nonblank string for the experience page" -}}
+          {{- $pageDataValid = false -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if not (isset $profile "education") -}}
+      {{- errorf "data/profile.yaml education must be a list of exactly two items for the experience page" -}}
+      {{- $pageDataValid = false -}}
+    {{- else -}}
+      {{- $educationCandidate := index $profile "education" -}}
+      {{- if not (reflect.IsSlice $educationCandidate) -}}
+        {{- errorf "data/profile.yaml education must be a list of exactly two items for the experience page" -}}
+        {{- $pageDataValid = false -}}
+      {{- else -}}
+        {{- $education = $educationCandidate -}}
+        {{- if ne (len $education) 2 -}}
+          {{- errorf "data/profile.yaml education must be a list of exactly two items for the experience page" -}}
+          {{- $pageDataValid = false -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- range $education -}}
+  {{- if not (reflect.IsMap .) -}}
+    {{- errorf "data/profile.yaml education item must be a map for the experience page" -}}
+    {{- $pageDataValid = false -}}
+  {{- else -}}
+    {{- $educationItem := . -}}
+    {{- $educationFieldsValid := true -}}
+    {{- range slice "degree" "institution" "period" -}}
+      {{- if not (isset $educationItem .) -}}
+        {{- $educationFieldsValid = false -}}
+      {{- else -}}
+        {{- $value := index $educationItem . -}}
+        {{- if ne (printf "%T" $value) "string" -}}
+          {{- $educationFieldsValid = false -}}
+        {{- else if not (strings.TrimSpace $value) -}}
+          {{- $educationFieldsValid = false -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if not $educationFieldsValid -}}
+      {{- errorf "data/profile.yaml education items must define nonblank string degree, institution, and period" -}}
+      {{- $pageDataValid = false -}}
+    {{- end -}}
+    {{- if isset $educationItem "detail" -}}
+      {{- if ne (printf "%T" (index $educationItem "detail")) "string" -}}
+        {{- errorf "data/profile.yaml education item detail must be a string when provided" -}}
+        {{- $pageDataValid = false -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* Validate professional experience independently from homepage partials. */}}
+{{- if not (isset site.Data "experience") -}}
+  {{- errorf "data/experience.yaml is required for the experience page" -}}
+  {{- $pageDataValid = false -}}
+{{- else -}}
+  {{- $experienceCandidate := index site.Data "experience" -}}
+  {{- if not (reflect.IsMap $experienceCandidate) -}}
+    {{- errorf "data/experience.yaml must be a map for the experience page" -}}
+    {{- $pageDataValid = false -}}
+  {{- else if not (isset $experienceCandidate "roles") -}}
+    {{- errorf "data/experience.yaml roles must be a list of exactly four items for the experience page" -}}
+    {{- $pageDataValid = false -}}
+  {{- else -}}
+    {{- $rolesCandidate := index $experienceCandidate "roles" -}}
+    {{- if not (reflect.IsSlice $rolesCandidate) -}}
+      {{- errorf "data/experience.yaml roles must be a list of exactly four items for the experience page" -}}
+      {{- $pageDataValid = false -}}
+    {{- else -}}
+      {{- $roles = $rolesCandidate -}}
+      {{- if ne (len $roles) 4 -}}
+        {{- errorf "data/experience.yaml roles must be a list of exactly four items for the experience page" -}}
+        {{- $pageDataValid = false -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- range $roles -}}
+  {{- if not (reflect.IsMap .) -}}
+    {{- errorf "data/experience.yaml role item must be a map for the experience page" -}}
+    {{- $pageDataValid = false -}}
+  {{- else -}}
+    {{- $role := . -}}
+    {{- $roleFieldsValid := true -}}
+    {{- range slice "period" "title" "employer" "location" -}}
+      {{- if not (isset $role .) -}}
+        {{- $roleFieldsValid = false -}}
+      {{- else -}}
+        {{- $value := index $role . -}}
+        {{- if ne (printf "%T" $value) "string" -}}
+          {{- $roleFieldsValid = false -}}
+        {{- else if not (strings.TrimSpace $value) -}}
+          {{- $roleFieldsValid = false -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if not $roleFieldsValid -}}
+      {{- errorf "data/experience.yaml roles must define nonblank string period, title, employer, and location" -}}
+      {{- $pageDataValid = false -}}
+    {{- end -}}
+    {{- if not (isset $role "details") -}}
+      {{- errorf "data/experience.yaml role details must be a nonempty list for the experience page" -}}
+      {{- $pageDataValid = false -}}
+    {{- else -}}
+      {{- $detailsCandidate := index $role "details" -}}
+      {{- if not (reflect.IsSlice $detailsCandidate) -}}
+        {{- errorf "data/experience.yaml role details must be a nonempty list for the experience page" -}}
+        {{- $pageDataValid = false -}}
+      {{- else if eq (len $detailsCandidate) 0 -}}
+        {{- errorf "data/experience.yaml role details must be a nonempty list for the experience page" -}}
+        {{- $pageDataValid = false -}}
+      {{- else -}}
+        {{- range $detailsCandidate -}}
+          {{- if or (ne (printf "%T" .) "string") (not (strings.TrimSpace .)) -}}
+            {{- errorf "data/experience.yaml role details must contain only nonblank strings" -}}
+            {{- $pageDataValid = false -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if isset $role "metrics" -}}
+      {{- $metricsCandidate := index $role "metrics" -}}
+      {{- if not (reflect.IsSlice $metricsCandidate) -}}
+        {{- errorf "data/experience.yaml role metrics must be a nonempty list for the experience page" -}}
+        {{- $pageDataValid = false -}}
+      {{- else if eq (len $metricsCandidate) 0 -}}
+        {{- errorf "data/experience.yaml role metrics must be a nonempty list for the experience page" -}}
+        {{- $pageDataValid = false -}}
+      {{- else -}}
+        {{- range $metricsCandidate -}}
+          {{- if not (reflect.IsMap .) -}}
+            {{- errorf "data/experience.yaml role metrics items must be maps for the experience page" -}}
+            {{- $pageDataValid = false -}}
+          {{- else -}}
+            {{- $metric := . -}}
+            {{- $metricFieldsValid := true -}}
+            {{- range slice "value" "label" -}}
+              {{- if not (isset $metric .) -}}
+                {{- $metricFieldsValid = false -}}
+              {{- else -}}
+                {{- $value := index $metric . -}}
+                {{- if ne (printf "%T" $value) "string" -}}
+                  {{- $metricFieldsValid = false -}}
+                {{- else if not (strings.TrimSpace $value) -}}
+                  {{- $metricFieldsValid = false -}}
+                {{- end -}}
+              {{- end -}}
+            {{- end -}}
+            {{- if not $metricFieldsValid -}}
+              {{- errorf "data/experience.yaml role metrics must define nonblank string value and label" -}}
+              {{- $pageDataValid = false -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{/* Validate only the expertise fields this route renders. */}}
+{{- if not (isset site.Data "expertise") -}}
+  {{- errorf "data/expertise.yaml is required for the experience page" -}}
+  {{- $pageDataValid = false -}}
+{{- else -}}
+  {{- $expertiseCandidate := index site.Data "expertise" -}}
+  {{- if not (reflect.IsMap $expertiseCandidate) -}}
+    {{- errorf "data/expertise.yaml must be a map for the experience page" -}}
+    {{- $pageDataValid = false -}}
+  {{- else if not (isset $expertiseCandidate "groups") -}}
+    {{- errorf "data/expertise.yaml groups must be a list of exactly four items for the experience page" -}}
+    {{- $pageDataValid = false -}}
+  {{- else -}}
+    {{- $groupsCandidate := index $expertiseCandidate "groups" -}}
+    {{- if not (reflect.IsSlice $groupsCandidate) -}}
+      {{- errorf "data/expertise.yaml groups must be a list of exactly four items for the experience page" -}}
+      {{- $pageDataValid = false -}}
+    {{- else -}}
+      {{- $groups = $groupsCandidate -}}
+      {{- if ne (len $groups) 4 -}}
+        {{- errorf "data/expertise.yaml groups must be a list of exactly four items for the experience page" -}}
+        {{- $pageDataValid = false -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- range $groups -}}
+  {{- if not (reflect.IsMap .) -}}
+    {{- errorf "data/expertise.yaml group item must be a map for the experience page" -}}
+    {{- $pageDataValid = false -}}
+  {{- else -}}
+    {{- $group := . -}}
+    {{- $groupFieldsValid := true -}}
+    {{- range slice "title" "summary" -}}
+      {{- if not (isset $group .) -}}
+        {{- $groupFieldsValid = false -}}
+      {{- else -}}
+        {{- $value := index $group . -}}
+        {{- if ne (printf "%T" $value) "string" -}}
+          {{- $groupFieldsValid = false -}}
+        {{- else if not (strings.TrimSpace $value) -}}
+          {{- $groupFieldsValid = false -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if not $groupFieldsValid -}}
+      {{- errorf "data/expertise.yaml groups must define nonblank string title and summary" -}}
+      {{- $pageDataValid = false -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- if $pageDataValid -}}
+<article class="portfolio-experience-page">
+  <header class="portfolio-experience-intro">
+    <p class="portfolio-label">Applied AI &amp; ML Engineer</p>
+    <h1>Professional experience</h1>
+    <p>{{ strings.TrimSpace (index (index $profile "hero") "supporting") }}</p>
+  </header>
+  <section class="portfolio-experience-section" aria-labelledby="experience-page-roles">
+    <h2 id="experience-page-roles">Experience</h2>
+    <div class="portfolio-role-list">
+      {{- range $roles }}
+      <article class="portfolio-role-detail">
+        <header>
+          <p class="portfolio-label">{{ strings.TrimSpace (index . "period") }}</p>
+          <h3>{{ strings.TrimSpace (index . "title") }}</h3>
+          <p class="portfolio-meta">{{ strings.TrimSpace (index . "employer") }} <span aria-hidden="true">·</span> {{ strings.TrimSpace (index . "location") }}</p>
+        </header>
+        <div class="portfolio-role-evidence">
+          <ul>
+            {{- range (index . "details") }}
+            <li>{{ strings.TrimSpace . }}</li>
+            {{- end }}
+          </ul>
+          {{- if isset . "metrics" }}
+          <dl class="portfolio-role-metrics">
+            {{- range (index . "metrics") }}
+            <div>
+              <dt>{{ strings.TrimSpace (index . "value") }}</dt>
+              <dd>{{ strings.TrimSpace (index . "label") }}</dd>
+            </div>
+            {{- end }}
+          </dl>
+          {{- end }}
+        </div>
+      </article>
+      {{- end }}
+    </div>
+  </section>
+  <section class="portfolio-experience-section" aria-labelledby="experience-page-education">
+    <h2 id="experience-page-education">Education</h2>
+    <ul class="portfolio-education-list">
+      {{- range $education }}
+      <li class="portfolio-education-item">
+        <strong>{{ strings.TrimSpace (index . "degree") }}</strong>
+        <span>{{ strings.TrimSpace (index . "institution") }}</span>
+        <span class="portfolio-meta">{{ strings.TrimSpace (index . "period") }}{{ if isset . "detail" }}{{ $detail := strings.TrimSpace (index . "detail") }}{{ with $detail }} <span aria-hidden="true">·</span> {{ . }}{{ end }}{{ end }}</span>
+      </li>
+      {{- end }}
+    </ul>
+  </section>
+  <section class="portfolio-experience-section" aria-labelledby="experience-page-range">
+    <h2 id="experience-page-range">Engineering range</h2>
+    <div class="portfolio-experience-expertise">
+      {{- range $groups }}
+      <article class="portfolio-expertise-item">
+        <h3>{{ strings.TrimSpace (index . "title") }}</h3>
+        <p>{{ strings.TrimSpace (index . "summary") }}</p>
+      </article>
+      {{- end }}
+    </div>
+  </section>
+</article>
+{{- end -}}
+{{- end }}

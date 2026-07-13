@@ -350,6 +350,8 @@ class HomepageContractTests(HugoSiteTestCase):
             "data/experience.yaml must define exactly three previous roles",
             "current role evidence must contain exactly three items",
             "current role evidence items must define label and text",
+            "experience metrics must be a nonempty list",
+            "experience metrics items must be maps",
             "experience metrics must define value and label",
         ):
             self.assertIn(validation, experience_source)
@@ -361,6 +363,18 @@ class HomepageContractTests(HugoSiteTestCase):
         selection_index = experience_source.index('$currentRoles := where $roles')
         self.assertLess(validation_index, guard_index)
         self.assertLess(guard_index, selection_index)
+        metrics_key_index = experience_source.index('isset $role "metrics"')
+        metrics_slice_guard = experience_source.index(
+            "reflect.IsSlice $metricsCandidate"
+        )
+        metrics_item_guard = experience_source.index("reflect.IsMap .")
+        metrics_range = experience_source.index("range $metricsCandidate")
+        self.assertLess(metrics_key_index, metrics_slice_guard)
+        self.assertLess(metrics_slice_guard, metrics_range)
+        self.assertLess(metrics_range, metrics_item_guard)
+        self.assertLess(metrics_item_guard, guard_index)
+        self.assertLess(metrics_item_guard, experience_source.index("{{ .value }}"))
+        self.assertLess(metrics_item_guard, experience_source.index("{{ .label }}"))
 
     def test_expertise_covers_ai_ml_software_and_delivery(self) -> None:
         html = self.page_html("/")
