@@ -1,34 +1,3 @@
-/* Custom Theme - Inter font, recruiter-focused portfolio layout */
-
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  letter-spacing: 0;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  letter-spacing: 0;
-}
-
-:root {
-  --primary: #1769aa;
-  --accent: #0b6b57;
-  --proof: #8a5a00;
-}
-
-.dark {
-  --primary: #67b7dc;
-  --accent: #7dd3b0;
-  --proof: #f0b84a;
-  --theme: #101418;
-  --entry: #171d24;
-  --border: #2b3542;
-}
 
 /* Homepage hero */
 .hero-section {

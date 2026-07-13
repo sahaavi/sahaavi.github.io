@@ -1,0 +1,57 @@
+html { scroll-behavior: smooth; }
+
+body {
+  color: var(--portfolio-ink);
+  background: var(--portfolio-paper);
+  font-family: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 17px;
+  line-height: 1.58;
+}
+
+body.list { background: var(--portfolio-paper); }
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--portfolio-ink);
+  font-family: "Instrument Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: -0.025em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--portfolio-cyan);
+  outline-offset: 4px;
+}
+
+#theme-toggle:focus-visible,
+.top-link:focus-visible,
+.toc summary:focus-visible,
+#searchResults a:focus-visible {
+  outline: 3px solid var(--portfolio-cyan);
+  outline-offset: 4px;
+}
+
+.main {
+  max-width: calc(var(--portfolio-max) + 40px);
+  padding-inline: 20px;
+}
+
+.portfolio-label {
+  margin: 0;
+  color: var(--portfolio-blue);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .main { padding-inline: 14px; }
+}
