@@ -180,6 +180,15 @@
   overflow-wrap: anywhere;
 }
 
+.portfolio-project-single .post-content > :is(p, ul, ol, blockquote) {
+  max-inline-size: min(72ch, 49.5rem);
+}
+
+.portfolio-project-single .post-content > :is(h2, h3, h4) {
+  max-inline-size: min(72ch, 49.5rem);
+  margin-inline: 0 auto;
+}
+
 .portfolio-project-evidence {
   margin: 28px 0;
 }
