@@ -221,6 +221,40 @@
   .portfolio-project-grid { grid-template-columns: 1fr; }
 }
 
+@media (max-width: 640px) {
+  .portfolio-project-card h3 a,
+  .project-meta-tags .project-tag,
+  .portfolio-project-single .post-content > ul > li > a:only-child,
+  .portfolio-project-evidence figcaption > a:only-child {
+    min-block-size: 44px;
+    display: inline-flex;
+    align-items: center;
+    max-inline-size: 100%;
+  }
+
+  .project-meta-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 8px;
+  }
+
+  .project-meta-tags .project-tag {
+    min-inline-size: 44px;
+    justify-content: center;
+  }
+
+  .portfolio-project-single #toc-container summary {
+    min-block-size: 44px;
+    padding-block: 8px;
+  }
+
+  .portfolio-project-single #TableOfContents a {
+    min-block-size: 44px;
+    display: flex;
+    align-items: center;
+  }
+}
+
 @media (max-width: 480px) {
   .portfolio-project-content { padding: 20px; }
 }

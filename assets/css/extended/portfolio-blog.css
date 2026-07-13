@@ -386,3 +386,27 @@
     text-align: left;
   }
 }
+
+@media (max-width: 640px) {
+  .blog-tag {
+    min-block-size: 44px;
+    min-inline-size: 44px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .blog-mobile-toc summary {
+    min-block-size: 44px;
+    padding-block: 10px;
+  }
+
+  #MobileTableOfContents a,
+  .blog-list-meta a,
+  .blog-meta a:not(.blog-tag),
+  .blog-article .post-content > ul > li > a:only-child {
+    min-block-size: 44px;
+    display: flex;
+    align-items: center;
+    max-inline-size: 100%;
+  }
+}

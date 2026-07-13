@@ -153,6 +153,7 @@ button#theme-toggle.portfolio-theme-toggle svg { width: 18px; height: 18px; }
 @media (max-width: 640px) {
   #menu.portfolio-menu { display: none; }
   .portfolio-nav { width: calc(100% - 28px); min-height: 66px; }
+  .portfolio-brand { min-block-size: 44px; }
   .portfolio-hero { padding: 62px 0 58px; }
   .portfolio-hero h1 { font-size: clamp(43px, 14.5vw, 64px); }
   .portfolio-hero-actions { display: grid; grid-template-columns: 1fr 1fr; }
