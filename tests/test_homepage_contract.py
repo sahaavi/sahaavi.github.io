@@ -1,9 +1,51 @@
+import shutil
+import subprocess
+import tempfile
 from html import unescape
+from pathlib import Path
 
 from tests.site_harness import HugoSiteTestCase, ROOT
 
 
 class HomepageContractTests(HugoSiteTestCase):
+    def build_with_expertise_fixture(
+        self, expertise_yaml: str | None
+    ) -> subprocess.CompletedProcess[str]:
+        with tempfile.TemporaryDirectory(prefix="portfolio-expertise-invalid-") as temp:
+            source = Path(temp) / "site"
+            shutil.copytree(
+                ROOT,
+                source,
+                ignore=shutil.ignore_patterns(
+                    ".git",
+                    ".gstack",
+                    ".hugo_build.lock",
+                    "__pycache__",
+                    "public",
+                    "resources",
+                ),
+            )
+            expertise_path = source / "data/expertise.yaml"
+            if expertise_yaml is None:
+                expertise_path.unlink()
+            else:
+                expertise_path.write_text(expertise_yaml, encoding="utf-8")
+            return subprocess.run(
+                [
+                    "hugo",
+                    "--gc",
+                    "--minify",
+                    "--enableGitInfo=false",
+                    "--cleanDestinationDir",
+                    "--destination",
+                    str(source / "public"),
+                ],
+                cwd=source,
+                check=False,
+                capture_output=True,
+                text=True,
+            )
+
     def test_header_prioritizes_experience_and_work(self) -> None:
         html = self.page_html("/")
         for label in ("Experience", "Expertise", "Selected Work", "Writing", "Contact"):
@@ -211,3 +253,200 @@ class HomepageContractTests(HugoSiteTestCase):
         selection_index = experience_source.index('$currentRoles := where $roles')
         self.assertLess(validation_index, guard_index)
         self.assertLess(guard_index, selection_index)
+
+    def test_expertise_covers_ai_ml_software_and_delivery(self) -> None:
+        html = self.page_html("/")
+        expertise = html.split('id="expertise"', 1)[1].split("</section>", 1)[0]
+        semantic_expertise = unescape(expertise)
+        for text in (
+            "Applied AI systems",
+            "Machine learning",
+            "Software & data",
+            "Delivery & trust",
+            "Data foundation",
+            "Model or retrieval",
+            "Evaluation",
+            "Software integration",
+            "Delivery loop",
+        ):
+            self.assertIn(text, semantic_expertise)
+
+        for text in (
+            "02 · Engineering range",
+            "More than models. The surrounding system matters.",
+            "The profile spans AI behavior, machine learning, software interfaces, "
+            "data foundations, and delivery quality.",
+        ):
+            self.assertIn(text, semantic_expertise)
+        self.assertIn("<h2", expertise)
+        self.assertEqual(expertise.count("<article>"), 4)
+        self.assertIn('<ol class="portfolio-lifecycle">', expertise)
+        lifecycle = expertise.split('<ol class="portfolio-lifecycle">', 1)[1].split(
+            "</ol>", 1
+        )[0]
+        self.assertEqual(lifecycle.count("<li>"), 5)
+
+        hero_index = html.index('id="portfolio-hero"')
+        experience_index = html.index('id="experience"')
+        expertise_index = html.index('id="expertise"')
+        self.assertLess(hero_index, experience_index)
+        self.assertLess(experience_index, expertise_index)
+        self.assertLess(expertise_index, html.index("</main>"))
+        if 'id="work"' in html:
+            self.assertLess(expertise_index, html.index('id="work"'))
+
+        expertise_source = (
+            ROOT / "layouts/partials/home/expertise.html"
+        ).read_text(encoding="utf-8")
+        for validation in (
+            "data/expertise.yaml is required",
+            "data/expertise.yaml must be a map",
+            "data/expertise.yaml must define groups",
+            "data/expertise.yaml must define lifecycle",
+            "expertise.groups must be a list",
+            "expertise.lifecycle must be a list",
+            "expertise group items must be maps",
+            "expertise lifecycle items must be maps",
+            "expertise.groups must contain four groups",
+            "expertise.lifecycle must contain five stages",
+            "expertise groups must define code, title, and summary",
+            "expertise groups must define at least one source_refs entry",
+            "expertise source_refs entries must be nonblank strings",
+            "expertise lifecycle stages must define title and detail",
+        ):
+            self.assertIn(validation, expertise_source)
+
+        expertise_data = (ROOT / "data/expertise.yaml").read_text(encoding="utf-8")
+        source_refs = (
+            "claim:stan-bcrtc-ragas-semantic-eval-20260709",
+            "project:content/projects/govtintel/index.md",
+            "project:content/projects/vision-maintenance-agent/index.md",
+            "claim:aviva-bcrtc-p15-recovery-duration-001",
+            "claim:seed-p11-event-feature-foundation",
+            "experience:data/experience.yaml#statscan",
+            "claim:stage-bs23-ai-002",
+        )
+        self.assertEqual(expertise_data.count("source_refs:"), 4)
+        for source_ref in source_refs:
+            self.assertIn(source_ref, expertise_data)
+            self.assertNotIn(source_ref, semantic_expertise)
+
+        home_css = (ROOT / "assets/css/extended/portfolio-home.css").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn(
+            ".portfolio-capability-rail { display: grid; grid-template-columns: repeat(4, 1fr);",
+            home_css,
+        )
+        tablet_css = home_css.split("@media (max-width: 920px)", 1)[1]
+        self.assertIn(
+            ".portfolio-capability-rail { grid-template-columns: 1fr 1fr; }",
+            tablet_css,
+        )
+        self.assertIn(
+            ".portfolio-lifecycle { grid-template-columns: 1fr;", tablet_css
+        )
+        mobile_css = home_css.split("@media (max-width: 640px)", 1)[1]
+        self.assertIn(
+            ".portfolio-capability-rail { grid-template-columns: 1fr; }",
+            mobile_css,
+        )
+        section_css = home_css.split(".portfolio-section {", 1)[1].split("}", 1)[0]
+        self.assertIn("scroll-margin-top: 84px", section_css)
+
+    def test_missing_expertise_data_fails_with_deliberate_error(self) -> None:
+        result = self.build_with_expertise_fixture(None)
+        output = result.stdout + result.stderr
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("data/expertise.yaml is required", output)
+        self.assertNotIn("reflect:", output)
+
+    def test_missing_expertise_groups_fails_with_deliberate_error(self) -> None:
+        valid_data = (ROOT / "data/expertise.yaml").read_text(encoding="utf-8")
+        lifecycle = "lifecycle:" + valid_data.split("lifecycle:", 1)[1]
+        result = self.build_with_expertise_fixture(lifecycle)
+        output = result.stdout + result.stderr
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("data/expertise.yaml must define groups", output)
+        self.assertNotIn("reflect:", output)
+
+    def test_missing_expertise_lifecycle_fails_with_deliberate_error(self) -> None:
+        valid_data = (ROOT / "data/expertise.yaml").read_text(encoding="utf-8")
+        groups = valid_data.split("lifecycle:", 1)[0]
+        result = self.build_with_expertise_fixture(groups)
+        output = result.stdout + result.stderr
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("data/expertise.yaml must define lifecycle", output)
+        self.assertNotIn("reflect:", output)
+
+    def test_malformed_expertise_shapes_fail_with_deliberate_errors(self) -> None:
+        valid_group = (
+            '  - code: "placeholder"\n'
+            '    title: "Placeholder"\n'
+            '    summary: "Placeholder"\n'
+            '    source_refs:\n'
+            '      - "placeholder:source"\n'
+        )
+        valid_stage = (
+            '  - title: "Placeholder"\n'
+            '    detail: "Placeholder"\n'
+        )
+        valid_groups = "groups:\n" + (valid_group * 4)
+        valid_lifecycle = "lifecycle:\n" + (valid_stage * 5)
+        cases = (
+            (
+                "list-valued root",
+                "- groups\n- lifecycle\n",
+                "data/expertise.yaml must be a map",
+            ),
+            (
+                "groups null",
+                "groups:\n" + valid_lifecycle,
+                "expertise.groups must be a list",
+            ),
+            (
+                "groups scalar",
+                "groups: invalid\n" + valid_lifecycle,
+                "expertise.groups must be a list",
+            ),
+            (
+                "lifecycle null",
+                valid_groups + "lifecycle:\n",
+                "expertise.lifecycle must be a list",
+            ),
+            (
+                "lifecycle scalar",
+                valid_groups + "lifecycle: invalid\n",
+                "expertise.lifecycle must be a list",
+            ),
+            (
+                "non-map group item",
+                "groups:\n  - invalid\n"
+                + (valid_group * 3)
+                + valid_lifecycle,
+                "expertise group items must be maps",
+            ),
+            (
+                "non-map lifecycle item",
+                valid_groups
+                + "lifecycle:\n  - invalid\n"
+                + (valid_stage * 4),
+                "expertise lifecycle items must be maps",
+            ),
+        )
+        generic_errors = (
+            "reflect:",
+            "range can't iterate",
+            "can't evaluate field",
+            "error calling isset",
+            "error calling len",
+        )
+
+        for name, fixture, expected_error in cases:
+            with self.subTest(name=name):
+                result = self.build_with_expertise_fixture(fixture)
+                output = (result.stdout + result.stderr).lower()
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn(expected_error.lower(), output)
+                for generic_error in generic_errors:
+                    self.assertNotIn(generic_error, output)

@@ -1,0 +1,116 @@
+{{/* layouts/partials/home/expertise.html */}}
+{{- $expertise := dict -}}
+{{- $groups := slice -}}
+{{- $lifecycle := slice -}}
+{{- $expertiseValid := true -}}
+{{- if not (isset site.Data "expertise") }}
+  {{- errorf "data/expertise.yaml is required" -}}
+  {{- $expertiseValid = false -}}
+{{- else -}}
+  {{- $expertiseCandidate := index site.Data "expertise" -}}
+  {{- if not (reflect.IsMap $expertiseCandidate) -}}
+    {{- errorf "data/expertise.yaml must be a map" -}}
+    {{- $expertiseValid = false -}}
+  {{- else -}}
+    {{- $expertise = $expertiseCandidate -}}
+    {{- if not (isset $expertise "groups") }}
+      {{- errorf "data/expertise.yaml must define groups" -}}
+      {{- $expertiseValid = false -}}
+    {{- else -}}
+      {{- $groupsCandidate := index $expertise "groups" -}}
+      {{- if not (reflect.IsSlice $groupsCandidate) -}}
+        {{- errorf "expertise.groups must be a list" -}}
+        {{- $expertiseValid = false -}}
+      {{- else -}}
+        {{- $groups = $groupsCandidate -}}
+        {{- if ne (len $groups) 4 }}
+          {{- errorf "expertise.groups must contain four groups" -}}
+          {{- $expertiseValid = false -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if not (isset $expertise "lifecycle") }}
+      {{- errorf "data/expertise.yaml must define lifecycle" -}}
+      {{- $expertiseValid = false -}}
+    {{- else -}}
+      {{- $lifecycleCandidate := index $expertise "lifecycle" -}}
+      {{- if not (reflect.IsSlice $lifecycleCandidate) -}}
+        {{- errorf "expertise.lifecycle must be a list" -}}
+        {{- $expertiseValid = false -}}
+      {{- else -}}
+        {{- $lifecycle = $lifecycleCandidate -}}
+        {{- if ne (len $lifecycle) 5 }}
+          {{- errorf "expertise.lifecycle must contain five stages" -}}
+          {{- $expertiseValid = false -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- range $groups -}}
+  {{- if not (reflect.IsMap .) -}}
+    {{- errorf "expertise group items must be maps" -}}
+    {{- $expertiseValid = false -}}
+  {{- else -}}
+    {{- if or (not .code) (not (strings.TrimSpace .code)) (not .title) (not (strings.TrimSpace .title)) (not .summary) (not (strings.TrimSpace .summary)) }}
+      {{- errorf "expertise groups must define code, title, and summary" -}}
+      {{- $expertiseValid = false -}}
+    {{- end -}}
+    {{- if not (isset . "source_refs") -}}
+      {{- errorf "expertise groups must define at least one source_refs entry" -}}
+      {{- $expertiseValid = false -}}
+    {{- else -}}
+      {{- $sourceRefs := index . "source_refs" -}}
+      {{- if not (reflect.IsSlice $sourceRefs) -}}
+        {{- errorf "expertise groups must define at least one source_refs entry" -}}
+        {{- $expertiseValid = false -}}
+      {{- else if lt (len $sourceRefs) 1 -}}
+        {{- errorf "expertise groups must define at least one source_refs entry" -}}
+        {{- $expertiseValid = false -}}
+      {{- else -}}
+        {{- range $sourceRefs -}}
+          {{- if or (ne (printf "%T" .) "string") (not (strings.TrimSpace .)) -}}
+            {{- errorf "expertise source_refs entries must be nonblank strings" -}}
+            {{- $expertiseValid = false -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- range $lifecycle -}}
+  {{- if not (reflect.IsMap .) -}}
+    {{- errorf "expertise lifecycle items must be maps" -}}
+    {{- $expertiseValid = false -}}
+  {{- else -}}
+    {{- if or (not .title) (not (strings.TrimSpace .title)) (not .detail) (not (strings.TrimSpace .detail)) }}
+      {{- errorf "expertise lifecycle stages must define title and detail" -}}
+      {{- $expertiseValid = false -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if $expertiseValid }}
+<section id="expertise" class="portfolio-section" aria-labelledby="expertise-title">
+  <div class="portfolio-section-head">
+    <p class="portfolio-label">02 · Engineering range</p>
+    <div>
+      <h2 id="expertise-title">More than models. The surrounding system matters.</h2>
+      <p>The profile spans AI behavior, machine learning, software interfaces, data foundations, and delivery quality.</p>
+    </div>
+  </div>
+  <div class="portfolio-capability-rail">
+    {{- range $groups }}
+    <article>
+      <span class="portfolio-capability-code">{{ .code }}</span>
+      <h3>{{ .title }}</h3>
+      <p>{{ .summary }}</p>
+    </article>
+    {{- end }}
+  </div>
+  <ol class="portfolio-lifecycle">
+    {{- range $lifecycle }}
+    <li><strong>{{ .title }}</strong><span>{{ .detail }}</span></li>
+    {{- end }}
+  </ol>
+</section>
+{{- end }}
