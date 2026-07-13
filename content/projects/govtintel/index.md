@@ -12,6 +12,25 @@ cover:
   hiddenInList: true
 weight: 2
 showToc: true
+home_featured: true
+home_order: 2
+portfolio_group: "featured-ai"
+portfolio_status: "Public repository"
+portfolio_category: "RAG system"
+portfolio_role: "Builder"
+portfolio_year: 2026
+repository_url: "https://github.com/sahaavi/GovtIntel"
+case_study_url: "/projects/govtintel/"
+home_summary: "Procurement intelligence system combining asynchronous ingestion, PostgreSQL, hybrid retrieval, reranking, SQL analytics, structured outputs, and fail-closed citation validation."
+system_map:
+  - label: "Award data"
+  - label: "PostgreSQL"
+  - label: "Vector index"
+  - label: "Hybrid retrieval"
+    accent: true
+  - label: "Reranking"
+  - label: "Citation checks"
+    accent: true
 ---
 
 ## Overview

@@ -3,11 +3,56 @@ import subprocess
 import tempfile
 from html import unescape
 from pathlib import Path
+from typing import Callable
 
 from tests.site_harness import HugoSiteTestCase, ROOT
 
 
 class HomepageContractTests(HugoSiteTestCase):
+    def build_with_project_fixture(
+        self,
+        project_path: str,
+        transform: Callable[[str], str],
+    ) -> subprocess.CompletedProcess[str]:
+        with tempfile.TemporaryDirectory(prefix="portfolio-project-invalid-") as temp:
+            source = Path(temp) / "site"
+            shutil.copytree(
+                ROOT,
+                source,
+                ignore=shutil.ignore_patterns(
+                    ".git",
+                    ".gstack",
+                    ".hugo_build.lock",
+                    "__pycache__",
+                    "public",
+                    "resources",
+                ),
+            )
+            project = source / project_path
+            original = project.read_text(encoding="utf-8")
+            transformed = transform(original)
+            self.assertNotEqual(
+                transformed,
+                original,
+                f"Fixture did not modify {project_path}",
+            )
+            project.write_text(transformed, encoding="utf-8")
+            return subprocess.run(
+                [
+                    "hugo",
+                    "--gc",
+                    "--minify",
+                    "--enableGitInfo=false",
+                    "--cleanDestinationDir",
+                    "--destination",
+                    str(source / "public"),
+                ],
+                cwd=source,
+                check=False,
+                capture_output=True,
+                text=True,
+            )
+
     def build_with_expertise_fixture(
         self, expertise_yaml: str | None
     ) -> subprocess.CompletedProcess[str]:
@@ -353,6 +398,392 @@ class HomepageContractTests(HugoSiteTestCase):
         )
         section_css = home_css.split(".portfolio-section {", 1)[1].split("}", 1)[0]
         self.assertIn("scroll-margin-top: 84px", section_css)
+
+    def test_selected_work_contains_exactly_two_equal_public_systems(self) -> None:
+        html = self.page_html("/")
+        work = html.split('id="work"', 1)[1].split("</section>", 1)[0]
+        self.assertIn('<body class="list portfolio-homepage" id="top">', html)
+        posts_body = self.page_html("/posts/").split("<body", 1)[1].split(">", 1)[0]
+        self.assertNotIn("portfolio-homepage", posts_body)
+        self.assertLess(html.index('id="experience"'), html.index('id="work"'))
+        self.assertLess(html.index('id="expertise"'), html.index('id="work"'))
+        self.assertLess(html.index('id="work"'), html.index("</main>"))
+        self.assertEqual(work.count('class="portfolio-work-row"'), 2)
+        self.assertEqual(work.count(">Maintenance-Eye<"), 1)
+        self.assertEqual(work.count(">GovIntel<"), 1)
+        self.assertLess(work.index(">Maintenance-Eye<"), work.index(">GovIntel<"))
+        self.assertEqual(work.count('class="portfolio-system-map"'), 2)
+        self.assertEqual(work.count('role="img"'), 2)
+        self.assertEqual(work.count("system components:"), 2)
+        self.assertNotIn("system flow:", work)
+        self.assertEqual(work.count(">Repository</a>"), 2)
+        self.assertEqual(work.count(">Case study</a>"), 2)
+        self.assertEqual(work.count('target="_blank"'), 2)
+        self.assertEqual(work.count('rel="noopener noreferrer"'), 2)
+        for text in (
+            "03 · Selected work",
+            "Public systems for inspecting the engineering.",
+            "Two focused case studies provide technical proof without taking over "
+            "the professional narrative.",
+            "Public demo",
+            "Public repository",
+            "Applied AI",
+            "RAG system",
+            "Builder",
+        ):
+            self.assertIn(text, unescape(work))
+
+        maintenance_row, govintel_row = [
+            row.split("</article>", 1)[0]
+            for row in work.split('class="portfolio-work-row"')[1:]
+        ]
+        self.assertIn(
+            'href="https://github.com/sahaavi/Maintenance-Eye"', maintenance_row
+        )
+        self.assertIn('aria-labelledby="work-project-1-title"', maintenance_row)
+        self.assertIn('<h3 id="work-project-1-title">Maintenance-Eye</h3>', maintenance_row)
+        self.assertIn('href="/projects/maintenance-eye/"', maintenance_row)
+        self.assertIn(
+            'aria-label="Maintenance-Eye repository, opens in a new tab"',
+            maintenance_row,
+        )
+        self.assertIn('aria-label="Maintenance-Eye case study"', maintenance_row)
+        self.assertIn(
+            'aria-label="Maintenance-Eye system components: Camera + voice, Gemini Live, User response, FastAPI, 9 guarded tools, Approval gate"',
+            maintenance_row,
+        )
+        self.assertIn('href="https://github.com/sahaavi/GovtIntel"', govintel_row)
+        self.assertIn('aria-labelledby="work-project-2-title"', govintel_row)
+        self.assertIn('<h3 id="work-project-2-title">GovIntel</h3>', govintel_row)
+        self.assertIn('href="/projects/govtintel/"', govintel_row)
+        self.assertIn(
+            'aria-label="GovIntel repository, opens in a new tab"', govintel_row
+        )
+        self.assertIn('aria-label="GovIntel case study"', govintel_row)
+        self.assertIn(
+            'aria-label="GovIntel system components: Award data, PostgreSQL, Vector index, Hybrid retrieval, Reranking, Citation checks"',
+            govintel_row,
+        )
+        self.assertIn("fail-closed citation validation", govintel_row)
+        self.assertNotIn("90%", govintel_row)
+        self.assertNotIn("<h3></h3>", work)
+        self.assertNotIn('aria-label=""', work)
+
+        selected_work_source = (
+            ROOT / "layouts/partials/home/selected-work.html"
+        ).read_text(encoding="utf-8")
+        for validation in (
+            "Homepage requires exactly two home_featured projects",
+            "Featured project title must be a nonblank string",
+            "Featured projects must define home_order, portfolio_group, portfolio_status, portfolio_category, portfolio_role, portfolio_year, repository_url, case_study_url, and home_summary",
+            "featured project home_order must be an integer",
+            "featured project portfolio_year must be an integer",
+            "featured project portfolio_year must be a four-digit year",
+            "featured project repository_url must be an absolute HTTPS URL",
+            "Featured project case_study_url must be an internal path matching its permalink",
+            "Featured project portfolio_group must equal featured-ai",
+            "Featured project home_order values must be unique",
+            "Featured project home_order values must be exactly 1 and 2",
+            "Featured project system_map must be a six-item list",
+            "Featured project system_map items must be maps",
+            "Featured project system_map items must define a nonblank string label",
+            "Featured project system_map accent must be boolean",
+        ):
+            self.assertIn(validation, selected_work_source)
+
+        home_css = (ROOT / "assets/css/extended/portfolio-home.css").read_text(
+            encoding="utf-8"
+        )
+        system_node_css = home_css.split(".portfolio-system-map span {", 1)[1].split(
+            "}", 1
+        )[0]
+        self.assertIn('font: 400 10px "IBM Plex Mono", monospace', system_node_css)
+        self.assertIn("padding: 4px", system_node_css)
+        self.assertIn("overflow-wrap: break-word", system_node_css)
+        self.assertIn("word-break: normal", system_node_css)
+        self.assertNotIn("overflow-wrap: anywhere", system_node_css)
+        work_link_css = home_css.split(".portfolio-work-links a {", 1)[1].split(
+            "}", 1
+        )[0]
+        self.assertIn("min-height: 44px", work_link_css)
+        tablet_css = home_css.split("@media (max-width: 920px)", 1)[1]
+        self.assertIn(
+            ".portfolio-work-row { grid-template-columns: 130px minmax(0, 1fr); }",
+            tablet_css,
+        )
+        self.assertIn(".portfolio-system-map { grid-column: 2; }", tablet_css)
+        mobile_css = home_css.split("@media (max-width: 640px)", 1)[1]
+        self.assertIn(
+            ".portfolio-work-row { grid-template-columns: minmax(0, 1fr); gap: 18px; }",
+            mobile_css,
+        )
+        self.assertIn(".portfolio-system-map { grid-column: auto; }", mobile_css)
+
+        baseof_source = (ROOT / "layouts/_default/baseof.html").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn(".IsHome", baseof_source)
+        self.assertIn('append "portfolio-homepage"', baseof_source)
+
+        base_css = (ROOT / "assets/css/extended/portfolio-base.css").read_text(
+            encoding="utf-8"
+        )
+        top_link_css = base_css.split(".top-link {", 1)[1].split("}", 1)[0]
+        self.assertIn("width: 44px", top_link_css)
+        self.assertIn("height: 44px", top_link_css)
+        homepage_top_link_css = base_css.split(
+            "@media (max-width: 1360px)", 1
+        )[1]
+        self.assertIn(
+            "body.portfolio-homepage .top-link { display: none; }",
+            homepage_top_link_css,
+        )
+
+    def test_maintenance_eye_copy_matches_public_code(self) -> None:
+        html = self.page_html("/")
+        work = html.split('id="work"', 1)[1].split("</section>", 1)[0]
+        self.assertIn("nine guarded tool workflows", work)
+        self.assertIn("human approval", work)
+        self.assertNotIn("multi-agent", work.lower())
+        self.assertNotIn("66 assets", work)
+        self.assertNotIn("150 work orders", work)
+
+    def test_malformed_selected_work_data_fails_with_deliberate_errors(self) -> None:
+        maintenance = "content/projects/vision-maintenance-agent/index.md"
+        govintel = "content/projects/govtintel/index.md"
+
+        def replace_once(old: str, new: str) -> Callable[[str], str]:
+            return lambda content: content.replace(old, new, 1)
+
+        cases = (
+            (
+                "featured count",
+                maintenance,
+                replace_once("home_featured: true\n", "home_featured: false\n"),
+                "Homepage requires exactly two home_featured projects",
+            ),
+            (
+                "missing title",
+                govintel,
+                replace_once('title: "GovIntel"\n', ""),
+                "Featured project title must be a nonblank string",
+            ),
+            (
+                "blank title",
+                govintel,
+                replace_once('title: "GovIntel"\n', 'title: "   "\n'),
+                "Featured project title must be a nonblank string",
+            ),
+            (
+                "missing required metadata",
+                maintenance,
+                replace_once('portfolio_status: "Public demo"\n', ""),
+                "Featured projects must define home_order, portfolio_group, portfolio_status, portfolio_category, portfolio_role, portfolio_year, repository_url, case_study_url, and home_summary",
+            ),
+            (
+                "duplicate order",
+                govintel,
+                replace_once("home_order: 2\n", "home_order: 1\n"),
+                "Featured project home_order values must be unique",
+            ),
+            (
+                "wrong order",
+                govintel,
+                replace_once("home_order: 2\n", "home_order: 3\n"),
+                "Featured project home_order values must be exactly 1 and 2",
+            ),
+            (
+                "string home order",
+                govintel,
+                replace_once("home_order: 2\n", 'home_order: "2"\n'),
+                "featured project home_order must be an integer",
+            ),
+            (
+                "boolean home order",
+                govintel,
+                replace_once("home_order: 2\n", "home_order: true\n"),
+                "featured project home_order must be an integer",
+            ),
+            (
+                "float home order",
+                govintel,
+                replace_once("home_order: 2\n", "home_order: 2.0\n"),
+                "featured project home_order must be an integer",
+            ),
+            (
+                "string portfolio year",
+                govintel,
+                replace_once("portfolio_year: 2026\n", 'portfolio_year: "2026"\n'),
+                "featured project portfolio_year must be an integer",
+            ),
+            (
+                "boolean portfolio year",
+                govintel,
+                replace_once("portfolio_year: 2026\n", "portfolio_year: true\n"),
+                "featured project portfolio_year must be an integer",
+            ),
+            (
+                "out-of-range portfolio year",
+                govintel,
+                replace_once("portfolio_year: 2026\n", "portfolio_year: 1999\n"),
+                "featured project portfolio_year must be a four-digit year",
+            ),
+            (
+                "null system map",
+                maintenance,
+                replace_once("system_map:\n", "system_map: null\nunused_system_map:\n"),
+                "Featured project system_map must be a six-item list",
+            ),
+            (
+                "scalar system map",
+                maintenance,
+                replace_once("system_map:\n", "system_map: invalid\nunused_system_map:\n"),
+                "Featured project system_map must be a six-item list",
+            ),
+            (
+                "non-map system node",
+                govintel,
+                replace_once('  - label: "Award data"\n', "  - invalid\n"),
+                "Featured project system_map items must be maps",
+            ),
+            (
+                "blank system node label",
+                govintel,
+                replace_once('  - label: "Award data"\n', '  - label: "   "\n'),
+                "Featured project system_map items must define a nonblank string label",
+            ),
+            (
+                "non-boolean accent",
+                govintel,
+                replace_once("    accent: true\n", '    accent: "true"\n'),
+                "Featured project system_map accent must be boolean",
+            ),
+            (
+                "non-https repository",
+                govintel,
+                replace_once(
+                    'repository_url: "https://github.com/sahaavi/GovtIntel"\n',
+                    'repository_url: "http://github.com/sahaavi/GovtIntel"\n',
+                ),
+                "featured project repository_url must be an absolute HTTPS URL",
+            ),
+            (
+                "hostless https repository",
+                govintel,
+                replace_once(
+                    'repository_url: "https://github.com/sahaavi/GovtIntel"\n',
+                    'repository_url: "https://"\n',
+                ),
+                "featured project repository_url must be an absolute HTTPS URL",
+            ),
+            (
+                "relative repository",
+                govintel,
+                replace_once(
+                    'repository_url: "https://github.com/sahaavi/GovtIntel"\n',
+                    'repository_url: "/sahaavi/GovtIntel"\n',
+                ),
+                "featured project repository_url must be an absolute HTTPS URL",
+            ),
+            (
+                "whitespace repository host",
+                govintel,
+                replace_once(
+                    'repository_url: "https://github.com/sahaavi/GovtIntel"\n',
+                    'repository_url: "https://   /sahaavi/GovtIntel"\n',
+                ),
+                "featured project repository_url must be an absolute HTTPS URL",
+            ),
+            (
+                "wrong-type repository",
+                govintel,
+                replace_once(
+                    'repository_url: "https://github.com/sahaavi/GovtIntel"\n',
+                    "repository_url: true\n",
+                ),
+                "featured project repository_url must be an absolute HTTPS URL",
+            ),
+            (
+                "double-dot repository host",
+                govintel,
+                replace_once(
+                    'repository_url: "https://github.com/sahaavi/GovtIntel"\n',
+                    'repository_url: "https://github..com/sahaavi/GovtIntel"\n',
+                ),
+                "featured project repository_url must be an absolute HTTPS URL",
+            ),
+            (
+                "leading-hyphen repository host",
+                govintel,
+                replace_once(
+                    'repository_url: "https://github.com/sahaavi/GovtIntel"\n',
+                    'repository_url: "https://-github.com/sahaavi/GovtIntel"\n',
+                ),
+                "featured project repository_url must be an absolute HTTPS URL",
+            ),
+            (
+                "trailing-hyphen repository host",
+                govintel,
+                replace_once(
+                    'repository_url: "https://github.com/sahaavi/GovtIntel"\n',
+                    'repository_url: "https://github-.com/sahaavi/GovtIntel"\n',
+                ),
+                "featured project repository_url must be an absolute HTTPS URL",
+            ),
+            (
+                "repository URL with port",
+                govintel,
+                replace_once(
+                    'repository_url: "https://github.com/sahaavi/GovtIntel"\n',
+                    'repository_url: "https://github.com:443/sahaavi/GovtIntel"\n',
+                ),
+                "featured project repository_url must be an absolute HTTPS URL",
+            ),
+            (
+                "case-study permalink mismatch",
+                govintel,
+                replace_once(
+                    'case_study_url: "/projects/govtintel/"\n',
+                    'case_study_url: "/projects/not-govtintel/"\n',
+                ),
+                "Featured project case_study_url must be an internal path matching its permalink",
+            ),
+            (
+                "wrong portfolio group",
+                govintel,
+                replace_once(
+                    'portfolio_group: "featured-ai"\n',
+                    'portfolio_group: "other"\n',
+                ),
+                "Featured project portfolio_group must equal featured-ai",
+            ),
+        )
+        generic_errors = (
+            "reflect:",
+            "range can't iterate",
+            "can't evaluate field",
+            "error calling isset",
+            "error calling len",
+            "error calling parse",
+        )
+        global_errors = (
+            "Homepage requires exactly two home_featured projects",
+            "Featured project home_order values must be unique",
+            "Featured project home_order values must be exactly 1 and 2",
+        )
+
+        for name, project_path, transform, expected_error in cases:
+            with self.subTest(name=name):
+                result = self.build_with_project_fixture(project_path, transform)
+                output = (result.stdout + result.stderr).lower()
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn(expected_error.lower(), output)
+                if expected_error not in global_errors:
+                    self.assertIn(
+                        project_path.removeprefix("content/").lower(), output
+                    )
+                for generic_error in generic_errors:
+                    self.assertNotIn(generic_error, output)
 
     def test_missing_expertise_data_fails_with_deliberate_error(self) -> None:
         result = self.build_with_expertise_fixture(None)

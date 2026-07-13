@@ -1,0 +1,177 @@
+{{/* layouts/partials/home/selected-work.html */}}
+{{- $featured := where site.RegularPages "Params.home_featured" true -}}
+{{- $featuredValid := true -}}
+{{- $orders := slice -}}
+{{- if ne (len $featured) 2 -}}
+  {{- errorf "Homepage requires exactly two home_featured projects" -}}
+  {{- $featuredValid = false -}}
+{{- end -}}
+{{- range $featured -}}
+  {{- $projectPath := .File.Path -}}
+  {{- $params := .Params -}}
+  {{- if or (ne (printf "%T" .Title) "string") (not (strings.TrimSpace .Title)) -}}
+    {{- errorf "%s: Featured project title must be a nonblank string" $projectPath -}}
+    {{- $featuredValid = false -}}
+  {{- end -}}
+  {{- $metadataValid := true -}}
+  {{- $requiredStrings := slice "portfolio_group" "portfolio_status" "portfolio_category" "portfolio_role" "case_study_url" "home_summary" -}}
+  {{- range $requiredStrings -}}
+    {{- if not (isset $params .) -}}
+      {{- $metadataValid = false -}}
+    {{- else -}}
+      {{- $value := index $params . -}}
+      {{- if ne (printf "%T" $value) "string" -}}
+        {{- $metadataValid = false -}}
+      {{- else if not (strings.TrimSpace $value) -}}
+        {{- $metadataValid = false -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- range slice "home_order" "portfolio_year" "repository_url" -}}
+    {{- if not (isset $params .) -}}
+      {{- $metadataValid = false -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if not $metadataValid -}}
+    {{- errorf "%s: Featured projects must define home_order, portfolio_group, portfolio_status, portfolio_category, portfolio_role, portfolio_year, repository_url, case_study_url, and home_summary" $projectPath -}}
+    {{- $featuredValid = false -}}
+  {{- else -}}
+    {{- $homeOrder := index $params "home_order" -}}
+    {{- if ne (printf "%T" $homeOrder) "int" -}}
+      {{- errorf "%s: featured project home_order must be an integer" $projectPath -}}
+      {{- $featuredValid = false -}}
+    {{- else -}}
+      {{- $orders = $orders | append $homeOrder -}}
+    {{- end -}}
+    {{- $portfolioYear := index $params "portfolio_year" -}}
+    {{- if ne (printf "%T" $portfolioYear) "int" -}}
+      {{- errorf "%s: featured project portfolio_year must be an integer" $projectPath -}}
+      {{- $featuredValid = false -}}
+    {{- else if or (lt $portfolioYear 2000) (gt $portfolioYear 2100) -}}
+      {{- errorf "%s: featured project portfolio_year must be a four-digit year" $projectPath -}}
+      {{- $featuredValid = false -}}
+    {{- end -}}
+    {{- $repositoryURL := index $params "repository_url" -}}
+    {{- $repositoryURLValid := true -}}
+    {{- if ne (printf "%T" $repositoryURL) "string" -}}
+      {{- $repositoryURLValid = false -}}
+    {{- else -}}
+      {{- $repositoryPattern := `(?i)^https://[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?(\.[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?)+(/[A-Za-z0-9._~:/?#@!$&'()*+,;=-]*)?$` -}}
+      {{- if or (ne $repositoryURL (strings.TrimSpace $repositoryURL)) (ne (len (findRE $repositoryPattern $repositoryURL)) 1) -}}
+        {{- $repositoryURLValid = false -}}
+      {{- else -}}
+        {{- $parsedRepositoryURL := urls.Parse $repositoryURL -}}
+        {{- if or (ne $parsedRepositoryURL.Scheme "https") (not $parsedRepositoryURL.Host) -}}
+          {{- $repositoryURLValid = false -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+    {{- if not $repositoryURLValid -}}
+      {{- errorf "%s: featured project repository_url must be an absolute HTTPS URL" $projectPath -}}
+      {{- $featuredValid = false -}}
+    {{- end -}}
+    {{- $caseStudyURL := index $params "case_study_url" -}}
+    {{- if or (not (hasPrefix $caseStudyURL "/")) (hasPrefix $caseStudyURL "//") (ne $caseStudyURL .RelPermalink) -}}
+      {{- errorf "%s: Featured project case_study_url must be an internal path matching its permalink" $projectPath -}}
+      {{- $featuredValid = false -}}
+    {{- end -}}
+    {{- if ne (index $params "portfolio_group") "featured-ai" -}}
+      {{- errorf "%s: Featured project portfolio_group must equal featured-ai" $projectPath -}}
+      {{- $featuredValid = false -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- if not (isset $params "system_map") -}}
+    {{- errorf "%s: Featured project system_map must be a six-item list" $projectPath -}}
+    {{- $featuredValid = false -}}
+  {{- else -}}
+    {{- $systemMapCandidate := index $params "system_map" -}}
+    {{- if not (reflect.IsSlice $systemMapCandidate) -}}
+      {{- errorf "%s: Featured project system_map must be a six-item list" $projectPath -}}
+      {{- $featuredValid = false -}}
+    {{- else if ne (len $systemMapCandidate) 6 -}}
+      {{- errorf "%s: Featured project system_map must be a six-item list" $projectPath -}}
+      {{- $featuredValid = false -}}
+    {{- else -}}
+      {{- range $systemMapCandidate -}}
+        {{- if not (reflect.IsMap .) -}}
+          {{- errorf "%s: Featured project system_map items must be maps" $projectPath -}}
+          {{- $featuredValid = false -}}
+        {{- else -}}
+          {{- if not (isset . "label") -}}
+            {{- errorf "%s: Featured project system_map items must define a nonblank string label" $projectPath -}}
+            {{- $featuredValid = false -}}
+          {{- else -}}
+            {{- $label := index . "label" -}}
+            {{- if ne (printf "%T" $label) "string" -}}
+              {{- errorf "%s: Featured project system_map items must define a nonblank string label" $projectPath -}}
+              {{- $featuredValid = false -}}
+            {{- else if not (strings.TrimSpace $label) -}}
+              {{- errorf "%s: Featured project system_map items must define a nonblank string label" $projectPath -}}
+              {{- $featuredValid = false -}}
+            {{- end -}}
+          {{- end -}}
+          {{- if isset . "accent" -}}
+            {{- if ne (printf "%T" (index . "accent")) "bool" -}}
+              {{- errorf "%s: Featured project system_map accent must be boolean" $projectPath -}}
+              {{- $featuredValid = false -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if eq (len $orders) 2 -}}
+  {{- if eq (index $orders 0) (index $orders 1) -}}
+    {{- errorf "Featured project home_order values must be unique" -}}
+    {{- $featuredValid = false -}}
+  {{- else if or (not (in $orders 1)) (not (in $orders 2)) -}}
+    {{- errorf "Featured project home_order values must be exactly 1 and 2" -}}
+    {{- $featuredValid = false -}}
+  {{- end -}}
+{{- end -}}
+{{- if $featuredValid -}}
+<section id="work" class="portfolio-section" aria-labelledby="work-title">
+  <div class="portfolio-section-head">
+    <p class="portfolio-label">03 · Selected work</p>
+    <div>
+      <h2 id="work-title">Public systems for inspecting the engineering.</h2>
+      <p>Two focused case studies provide technical proof without taking over the professional narrative.</p>
+    </div>
+  </div>
+  <div class="portfolio-work-list">
+    {{- range sort $featured "Params.home_order" "asc" -}}
+      {{- $projectOrder := index .Params "home_order" -}}
+      {{- $headingID := printf "work-project-%d-title" $projectOrder -}}
+      {{- $systemMap := index .Params "system_map" -}}
+      {{- $systemLabels := slice -}}
+      {{- range $systemMap -}}
+        {{- $systemLabels = $systemLabels | append (index . "label") -}}
+      {{- end -}}
+      {{- $systemLabel := printf "%s system components: %s" .Title (delimit $systemLabels ", ") -}}
+    <article class="portfolio-work-row" aria-labelledby="{{ $headingID }}">
+      <div class="portfolio-work-meta">
+        <strong>{{ index .Params "portfolio_status" }}</strong>
+        <span>{{ index .Params "portfolio_category" }}</span>
+        <span>{{ index .Params "portfolio_role" }}</span>
+        <span>{{ index .Params "portfolio_year" }}</span>
+      </div>
+      <div class="portfolio-work-copy">
+        <h3 id="{{ $headingID }}">{{ .Title }}</h3>
+        <p>{{ index .Params "home_summary" }}</p>
+        <div class="portfolio-work-links">
+          <a href="{{ index .Params "repository_url" }}" target="_blank" rel="noopener noreferrer" aria-label="{{ .Title }} repository, opens in a new tab">Repository</a>
+          <a href="{{ index .Params "case_study_url" }}" aria-label="{{ .Title }} case study">Case study</a>
+        </div>
+      </div>
+      <div class="portfolio-system-map" role="img" aria-label="{{ $systemLabel }}">
+        {{- range $systemMap -}}
+        <span{{ if and (isset . "accent") (index . "accent") }} class="is-accent"{{ end }}>{{ index . "label" }}</span>
+        {{- end -}}
+      </div>
+    </article>
+    {{- end -}}
+  </div>
+</section>
+{{- end -}}

@@ -11,11 +11,14 @@
 <html lang="{{ site.Language }}" dir="{{ .Language.LanguageDirection | default "auto" }}" data-theme="auto">
 {{- end }}
 <head>{{- partial "head.html" . -}}</head>
-{{- if or (ne .Kind "page") (eq .Layout "archives") (eq .Layout "search") }}
-<body class="list" id="top">
-{{- else }}
-<body id="top">
-{{- end }}
+{{- $bodyClasses := slice -}}
+{{- if or (ne .Kind "page") (eq .Layout "archives") (eq .Layout "search") -}}
+  {{- $bodyClasses = $bodyClasses | append "list" -}}
+{{- end -}}
+{{- if .IsHome -}}
+  {{- $bodyClasses = $bodyClasses | append "portfolio-homepage" -}}
+{{- end -}}
+<body{{ with $bodyClasses }} class="{{ delimit . " " }}"{{ end }} id="top">
   {{- partialCached "header.html" . .Page }}
   <main id="main-content" class="main" tabindex="-1">
     {{- block "main" . }}{{ end }}

@@ -11,6 +11,25 @@ cover:
   relative: true
 weight: 1
 showToc: true
+home_featured: true
+home_order: 1
+portfolio_group: "featured-ai"
+portfolio_status: "Public demo"
+portfolio_category: "Applied AI"
+portfolio_role: "Builder"
+portfolio_year: 2026
+repository_url: "https://github.com/sahaavi/Maintenance-Eye"
+case_study_url: "/projects/maintenance-eye/"
+home_summary: "Multimodal maintenance copilot with live camera and voice input, nine guarded tool workflows, a FastAPI and WebSocket backend, human approval, cloud packaging, and automated tests."
+system_map:
+  - label: "Camera + voice"
+  - label: "Gemini Live"
+    accent: true
+  - label: "User response"
+  - label: "FastAPI"
+  - label: "9 guarded tools"
+    accent: true
+  - label: "Approval gate"
 ---
 
 ## Overview
