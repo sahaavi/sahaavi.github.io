@@ -174,7 +174,9 @@ class HomepageContractTests(HugoSiteTestCase):
             encoding="utf-8"
         )
         self.assertIn("@media (max-width: 1040px)", css)
-        self.assertIn("@media (max-width: 820px)", css)
+        self.assertIn("@media (min-width: 641px) and (max-width: 899px)", css)
+        self.assertIn("@media (max-width: 640px)", css)
+        self.assertNotIn("@media (max-width: 820px)", css)
         brand_css = css.split(".portfolio-brand {", 1)[1].split("}", 1)[0]
         self.assertIn("white-space: nowrap", brand_css)
         for selector in (
