@@ -1,8 +1,8 @@
 # AI/ML Engineer Portfolio Redesign
 
-**Date:** 2026-07-12  
+**Date:** 2026-07-12
 **Status:** Approved for implementation<br>
-**Approved direction:** Engineer Dossier  
+**Approved direction:** Engineer Dossier
 **Visual reference:** `/home/avisaha/.gstack/projects/sahaavi-sahaavi.github.io/designs/engineer-dossier-20260712/homepage-preview.html`
 
 ## 1. Purpose

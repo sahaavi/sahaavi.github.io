@@ -202,7 +202,7 @@ class BaselineSiteTests(HugoSiteTestCase):
 
 - [ ] **Step 4: Run the baseline tests**
 
-Run: `python3 -m unittest tests.test_baseline -v`  
+Run: `python3 -m unittest tests.test_baseline -v`
 Expected: `Ran 3 tests` and `OK`.
 
 - [ ] **Step 5: Commit the harness**
@@ -265,7 +265,7 @@ class DesignAssetTests(HugoSiteTestCase):
 
 - [ ] **Step 2: Run the test to verify it fails**
 
-Run: `python3 -m unittest tests.test_design_assets -v`  
+Run: `python3 -m unittest tests.test_design_assets -v`
 Expected: FAIL because the local font files and token stylesheet do not exist and Google Fonts is still referenced.
 
 - [ ] **Step 3: Extract version-pinned Fontsource assets**
@@ -433,7 +433,7 @@ Delete `assets/css/extended/custom.css:1-31`. Do not edit its homepage, blog, or
 
 - [ ] **Step 8: Run the tests**
 
-Run: `python3 -m unittest tests.test_design_assets tests.test_baseline -v`  
+Run: `python3 -m unittest tests.test_design_assets tests.test_baseline -v`
 Expected: `Ran 6 tests` and `OK`.
 
 - [ ] **Step 9: Commit the design foundation**
@@ -500,7 +500,7 @@ class HomepageContractTests(HugoSiteTestCase):
 
 - [ ] **Step 2: Run the test to verify it fails**
 
-Run: `python3 -m unittest tests.test_homepage_contract -v`  
+Run: `python3 -m unittest tests.test_homepage_contract -v`
 Expected: FAIL because the old navigation and project-first hero are still rendered.
 
 - [ ] **Step 3: Create profile data**
@@ -873,7 +873,7 @@ Create `assets/css/extended/portfolio-home.css` with the approved preview's head
 
 - [ ] **Step 10: Run the hero contract**
 
-Run: `python3 -m unittest tests.test_homepage_contract tests.test_design_assets tests.test_baseline -v`  
+Run: `python3 -m unittest tests.test_homepage_contract tests.test_design_assets tests.test_baseline -v`
 Expected: `Ran 9 tests` and `OK`.
 
 - [ ] **Step 11: Commit the hero slice**
@@ -934,7 +934,7 @@ Add these methods to `HomepageContractTests`:
 
 - [ ] **Step 2: Run the assertions to verify failure**
 
-Run: `python3 -m unittest tests.test_homepage_contract.HomepageContractTests.test_professional_experience_precedes_selected_work tests.test_homepage_contract.HomepageContractTests.test_experience_uses_canonical_titles_and_scoped_metrics -v`  
+Run: `python3 -m unittest tests.test_homepage_contract.HomepageContractTests.test_professional_experience_precedes_selected_work tests.test_homepage_contract.HomepageContractTests.test_experience_uses_canonical_titles_and_scoped_metrics -v`
 Expected: FAIL because no experience section is rendered.
 
 - [ ] **Step 3: Create the experience partial**
@@ -1027,7 +1027,7 @@ Append the approved `.portfolio-section`, `.portfolio-section-head`, `.portfolio
 
 - [ ] **Step 6: Run the homepage contract**
 
-Run: `python3 -m unittest tests.test_homepage_contract -v`  
+Run: `python3 -m unittest tests.test_homepage_contract -v`
 Expected: all six homepage tests pass.
 
 - [ ] **Step 7: Commit**
@@ -1069,7 +1069,7 @@ git commit -m "feat: foreground professional experience"
 
 - [ ] **Step 2: Verify failure**
 
-Run: `python3 -m unittest tests.test_homepage_contract.HomepageContractTests.test_expertise_covers_ai_ml_software_and_delivery -v`  
+Run: `python3 -m unittest tests.test_homepage_contract.HomepageContractTests.test_expertise_covers_ai_ml_software_and_delivery -v`
 Expected: FAIL because `#expertise` is not rendered.
 
 - [ ] **Step 3: Create expertise data**
@@ -1170,7 +1170,7 @@ Append:
 
 - [ ] **Step 6: Run tests and commit**
 
-Run: `python3 -m unittest tests.test_homepage_contract -v`  
+Run: `python3 -m unittest tests.test_homepage_contract -v`
 Expected: all homepage tests pass.
 
 ```bash
@@ -1213,7 +1213,7 @@ git commit -m "feat: show AI ML engineering range"
 
 - [ ] **Step 2: Verify failure**
 
-Run: `python3 -m unittest tests.test_homepage_contract.HomepageContractTests.test_selected_work_contains_exactly_two_equal_public_systems tests.test_homepage_contract.HomepageContractTests.test_maintenance_eye_copy_matches_public_code -v`  
+Run: `python3 -m unittest tests.test_homepage_contract.HomepageContractTests.test_selected_work_contains_exactly_two_equal_public_systems tests.test_homepage_contract.HomepageContractTests.test_maintenance_eye_copy_matches_public_code -v`
 Expected: FAIL because `#work` is not rendered.
 
 - [ ] **Step 3: Add exact featured metadata to Maintenance-Eye**
@@ -1343,7 +1343,7 @@ Append the following complete structural rules:
 
 - [ ] **Step 7: Run tests and commit**
 
-Run: `python3 -m unittest tests.test_homepage_contract -v`  
+Run: `python3 -m unittest tests.test_homepage_contract -v`
 Expected: all selected-work and earlier homepage tests pass.
 
 ```bash
@@ -1394,7 +1394,7 @@ git commit -m "feat: add balanced selected AI systems"
 
 - [ ] **Step 2: Verify failure**
 
-Run: `python3 -m unittest tests.test_homepage_contract.HomepageContractTests.test_homepage_closes_with_writing_education_and_contact -v`  
+Run: `python3 -m unittest tests.test_homepage_contract.HomepageContractTests.test_homepage_closes_with_writing_education_and_contact -v`
 Expected: FAIL because the closing sections do not exist.
 
 - [ ] **Step 3: Create writing and education partial**
@@ -1558,7 +1558,7 @@ Append these shared rules to `portfolio-base.css`:
 
 - [ ] **Step 8: Run tests and commit**
 
-Run: `python3 -m unittest tests.test_homepage_contract tests.test_baseline -v`  
+Run: `python3 -m unittest tests.test_homepage_contract tests.test_baseline -v`
 Expected: all tests pass.
 
 ```bash
@@ -1602,7 +1602,7 @@ class ExperienceRouteTests(HugoSiteTestCase):
 
 - [ ] **Step 2: Verify failure**
 
-Run: `python3 -m unittest tests.test_experience_contract -v`  
+Run: `python3 -m unittest tests.test_experience_contract -v`
 Expected: FAIL because `/experience/` does not exist.
 
 - [ ] **Step 3: Create route metadata**
@@ -1685,7 +1685,7 @@ Delete `content/about.md`. Append to `portfolio-base.css`:
 
 - [ ] **Step 6: Run tests and commit**
 
-Run: `python3 -m unittest tests.test_experience_contract tests.test_homepage_contract -v`  
+Run: `python3 -m unittest tests.test_experience_contract tests.test_homepage_contract -v`
 Expected: all tests pass.
 
 ```bash
@@ -1741,7 +1741,7 @@ class ProjectContractTests(HugoSiteTestCase):
 
 - [ ] **Step 2: Verify failure**
 
-Run: `python3 -m unittest tests.test_project_contract -v`  
+Run: `python3 -m unittest tests.test_project_contract -v`
 Expected: FAIL because the current list is ungrouped and Next is nested inside the Previous condition.
 
 - [ ] **Step 3: Expand the project archetype**
@@ -2022,7 +2022,7 @@ Create the scoped project stylesheet:
 
 - [ ] **Step 9: Run tests and commit**
 
-Run: `python3 -m unittest tests.test_project_contract tests.test_baseline -v`  
+Run: `python3 -m unittest tests.test_project_contract tests.test_baseline -v`
 Expected: all tests pass and draft routes remain absent.
 
 ```bash
@@ -2092,7 +2092,7 @@ class MetadataContractTests(HugoSiteTestCase):
 
 - [ ] **Step 2: Verify failure**
 
-Run: `python3 -m unittest tests.test_metadata_contract -v`  
+Run: `python3 -m unittest tests.test_metadata_contract -v`
 Expected: FAIL because the title, PNG, ProfilePage schema, and project schema are not complete.
 
 - [ ] **Step 3: Update site metadata**
@@ -2166,7 +2166,7 @@ if __name__ == "__main__":
     main()
 ```
 
-Run: `python3 scripts/generate_og_image.py`  
+Run: `python3 scripts/generate_og_image.py`
 Expected: `static/images/og-image.png` exists and is 1200×630.
 
 Pillow is a workstation-only regeneration dependency. Commit the generated PNG; CI validates its PNG header and dimensions with the Python standard library and does not run this generator.
@@ -2267,7 +2267,7 @@ Create the complete local schema override below. It preserves article and sectio
 
 - [ ] **Step 6: Run tests and commit**
 
-Run: `python3 -m unittest tests.test_metadata_contract -v`  
+Run: `python3 -m unittest tests.test_metadata_contract -v`
 Expected: all five metadata tests pass.
 
 ```bash
@@ -2366,7 +2366,7 @@ class InternalLinkTests(HugoSiteTestCase):
 
 - [ ] **Step 2: Verify the cleanup test fails**
 
-Run: `python3 -m unittest tests.test_internal_links.InternalLinkTests.test_legacy_custom_stylesheet_is_removed tests.test_internal_links.InternalLinkTests.test_blog_styles_are_preserved_without_legacy_home_or_project_rules -v`  
+Run: `python3 -m unittest tests.test_internal_links.InternalLinkTests.test_legacy_custom_stylesheet_is_removed tests.test_internal_links.InternalLinkTests.test_blog_styles_are_preserved_without_legacy_home_or_project_rules -v`
 Expected: FAIL because `custom.css` still exists and the scoped blog stylesheet does not.
 
 - [ ] **Step 3: Preserve only the existing blog rules**
@@ -2406,10 +2406,10 @@ Change the production build command to:
 
 - [ ] **Step 5: Run the entire automated suite**
 
-Run: `python3 -m unittest discover -s tests -v`  
+Run: `python3 -m unittest discover -s tests -v`
 Expected: every test passes.
 
-Run: `hugo --gc --minify --cleanDestinationDir --destination /tmp/portfolio-production-build`  
+Run: `hugo --gc --minify --cleanDestinationDir --destination /tmp/portfolio-production-build`
 Expected: exit code `0`, 65 or more generated pages, no new warning.
 
 - [ ] **Step 6: Commit**
