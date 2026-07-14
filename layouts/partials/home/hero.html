@@ -5,7 +5,6 @@
 {{- if or (not $profile.name) (not (strings.TrimSpace $profile.name)) }}{{ errorf "data/profile.yaml must define name" }}{{ end -}}
 {{- if or (not $profile.role) (not (strings.TrimSpace $profile.role)) }}{{ errorf "data/profile.yaml must define role" }}{{ end -}}
 {{- if or (not $profile.location) (not (strings.TrimSpace $profile.location)) }}{{ errorf "data/profile.yaml must define location" }}{{ end -}}
-{{- if or (not $profile.work_authorized_label) (not (strings.TrimSpace $profile.work_authorized_label)) }}{{ errorf "data/profile.yaml must define work_authorized_label" }}{{ end -}}
 {{- if or (not $profile.hero.statement) (not (strings.TrimSpace $profile.hero.statement)) }}{{ errorf "profile.hero must define statement" }}{{ end -}}
 {{- if or (not $profile.hero.supporting) (not (strings.TrimSpace $profile.hero.supporting)) }}{{ errorf "profile.hero must define supporting" }}{{ end -}}
 {{- if ne (len $profile.hero.signals) 3 }}{{ errorf "profile.hero.signals must contain exactly three items" }}{{ end -}}
@@ -51,7 +50,6 @@
     <aside class="portfolio-career-panel" aria-label="Career timeline">
       <div class="portfolio-panel-heading">
         <strong>Experience at a glance</strong>
-        <span class="portfolio-availability">{{ $profile.work_authorized_label }}</span>
       </div>
       <ol class="portfolio-career-list">
         {{- range sort $careerSignals "order" "asc" }}

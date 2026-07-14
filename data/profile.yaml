@@ -1,8 +1,7 @@
 name: "Avishek Saha"
 monogram: "AS"
 role: "Applied AI & ML Engineer"
-location: "Vancouver, BC"
-work_authorized_label: "Canada work authorized"
+location: "Canada"
 hero:
   statement: "Building AI products and ML systems with measurable impact."
   supporting: "My experience spans source-grounded LLM workflows, predictive models, evaluation systems, data and feature pipelines, APIs, and cloud delivery, with measured improvements in quality, efficiency, review effort, and decision support."
@@ -14,7 +13,7 @@ actions:
   - label: "Explore experience"
     url: "/experience/"
     primary: true
-  - label: "Selected work"
+  - label: "Projects"
     url: "/#work"
     primary: false
   - label: "Contact"

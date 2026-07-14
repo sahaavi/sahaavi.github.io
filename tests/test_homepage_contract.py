@@ -228,6 +228,10 @@ class HomepageContractTests(HugoSiteTestCase):
         self.assertIn(
             "Building AI products and ML systems with measurable impact.", hero
         )
+        self.assertIn("Applied AI & ML Engineer · Canada", hero)
+        self.assertIn('href="/#work">Projects</a>', hero)
+        self.assertNotIn('>Selected work</a>', hero)
+        self.assertNotIn("Canada work authorized", hero)
         self.assertIn(
             "My experience spans source-grounded LLM workflows, predictive models, "
             "evaluation systems, data and feature pipelines, APIs, and cloud delivery, "
@@ -244,10 +248,10 @@ class HomepageContractTests(HugoSiteTestCase):
         hero_source = (ROOT / "layouts/partials/home/hero.html").read_text(
             encoding="utf-8"
         )
+        self.assertNotIn("work_authorized_label", hero_source)
         for validation in (
             "data/profile.yaml must define role",
             "data/profile.yaml must define location",
-            "data/profile.yaml must define work_authorized_label",
             "profile.hero must define statement",
             "profile.hero must define supporting",
             "profile.hero.signals items must be nonblank",
